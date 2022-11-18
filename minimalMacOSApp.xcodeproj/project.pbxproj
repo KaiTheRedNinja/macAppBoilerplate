@@ -14,6 +14,10 @@
 		937BDF2A2927C7E700F99805 /* minimalMacOSAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF292927C7E700F99805 /* minimalMacOSAppTests.swift */; };
 		937BDF342927C7E700F99805 /* minimalMacOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF332927C7E700F99805 /* minimalMacOSAppUITests.swift */; };
 		937BDF362927C7E700F99805 /* minimalMacOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF352927C7E700F99805 /* minimalMacOSAppUITestsLaunchTests.swift */; };
+		937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF422927CA1000F99805 /* MainWindowController.swift */; };
+		937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */; };
+		937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF462927CA8900F99805 /* WorkspaceView.swift */; };
+		937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF482927CA9100F99805 /* InspectorSidebar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		937BDF2F2927C7E700F99805 /* minimalMacOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = minimalMacOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		937BDF332927C7E700F99805 /* minimalMacOSAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minimalMacOSAppUITests.swift; sourceTree = "<group>"; };
 		937BDF352927C7E700F99805 /* minimalMacOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minimalMacOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		937BDF422927CA1000F99805 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebar.swift; sourceTree = "<group>"; };
+		937BDF462927CA8900F99805 /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
+		937BDF482927CA9100F99805 /* InspectorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 				937BDF192927C7E600F99805 /* ViewController.swift */,
 				937BDF1B2927C7E700F99805 /* Assets.xcassets */,
 				937BDF1D2927C7E700F99805 /* Main.storyboard */,
+				937BDF422927CA1000F99805 /* MainWindowController.swift */,
+				937BDF482927CA9100F99805 /* InspectorSidebar.swift */,
+				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
+				937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */,
 				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
 			);
 			path = minimalMacOSApp;
@@ -253,6 +265,10 @@
 			files = (
 				937BDF1A2927C7E600F99805 /* ViewController.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
+				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
+				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
+				937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */,
+				937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
