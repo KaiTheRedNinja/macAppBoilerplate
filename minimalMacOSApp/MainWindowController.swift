@@ -31,8 +31,8 @@ class MainWindowController: NSWindowController {
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
-        navigator.titlebarSeparatorStyle = .none
-        navigator.minimumThickness = 260
+        navigator.titlebarSeparatorStyle = .line
+        navigator.minimumThickness = 240
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
@@ -73,6 +73,7 @@ extension MainWindowController: NSToolbarDelegate {
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .toggleFirstSidebarItem,
+            .sidebarTrackingSeparator,
             .flexibleSpace,
 //            .showColors
 //            .toggleLastSidebarItem
