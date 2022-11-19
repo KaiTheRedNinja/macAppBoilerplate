@@ -9,8 +9,14 @@ import SwiftUI
 
 struct InspectorSidebar: View {
     var body: some View {
-        Text("Hello, World!")
-            .frame(minHeight: 300)
+        VStack(alignment: .center) {
+            HStack {
+                Spacer()
+                Text("Needs Implementation")
+                Spacer()
+            }
+        }
+        .frame(maxHeight: .infinity)
     }
 }
 

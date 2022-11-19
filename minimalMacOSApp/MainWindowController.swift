@@ -44,14 +44,14 @@ class MainWindowController: NSWindowController {
         mainContent.canCollapse = false
         splitVC.addSplitViewItem(mainContent)
 
-//        let inspectorView = InspectorSidebar()
-//        let inspector = NSSplitViewItem(
-//            viewController: NSHostingController(rootView: inspectorView)
-//        )
-//        inspector.titlebarSeparatorStyle = .line
-//        inspector.minimumThickness = 260
-//        inspector.collapseBehavior = .useConstraints
-//        splitVC.addSplitViewItem(inspector)
+        let inspectorView = InspectorSidebar()
+        let inspector = NSSplitViewItem(
+            sidebarWithViewController: NSHostingController(rootView: inspectorView)
+        )
+        inspector.titlebarSeparatorStyle = .line
+        inspector.minimumThickness = 260
+        inspector.collapseBehavior = .useConstraints
+        splitVC.addSplitViewItem(inspector)
 
         self.splitViewController = splitVC
     }
@@ -75,8 +75,9 @@ extension MainWindowController: NSToolbarDelegate {
             .toggleFirstSidebarItem,
             .sidebarTrackingSeparator,
             .flexibleSpace,
-//            .showColors
-//            .toggleLastSidebarItem
+            .itemListTrackingSeparator,
+            .flexibleSpace,
+            .toggleLastSidebarItem
         ]
     }
 
@@ -84,9 +85,8 @@ extension MainWindowController: NSToolbarDelegate {
         [
             .toggleFirstSidebarItem,
             .flexibleSpace,
-//            .showColors
-//            .itemListTrackingSeparator,
-//            .toggleLastSidebarItem
+            .itemListTrackingSeparator,
+            .toggleLastSidebarItem
         ]
     }
 
@@ -146,22 +146,27 @@ extension MainWindowController: NSToolbarDelegate {
     }
 
     @objc func toggleLastPanel() {
-        guard let lastSplitView = splitViewController.splitViewItems.last else { return }
+        guard let lastSplitView = splitViewController.splitViewItems.last,
+              let toolbar = window?.toolbar
+        else { return }
         lastSplitView.animator().isCollapsed.toggle()
 
+        let itemCount = toolbar.items.count
+        print("Items: \(toolbar.items.map({ $0.itemIdentifier.rawValue }))")
         if lastSplitView.isCollapsed {
-            window?.toolbar?.removeItem(at: 1)
-//            window?.toolbar?.removeItem(at: 1)
+           toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
+           toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
         } else {
-            window?.toolbar?.insertItem(
+            toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
-                at: 1
+                at: itemCount-1 // insert it as second last
             )
-//            window?.toolbar?.insertItem(
-//                withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
-//                at: 2
-//            )
+            toolbar.insertItem(
+                withItemIdentifier: NSToolbarItem.Identifier.flexibleSpace,
+                at: itemCount-0 // insert it as "last" (actually second last now)
+            )
         }
+        print("Items after: \(toolbar.items.map({ $0.itemIdentifier.rawValue }))")
     }
 }
 
@@ -174,3 +179,11 @@ private extension NSToolbarItem.Identifier {
     //    static let runApplication = NSToolbarItem.Identifier("RunApplication")
     //    static let toolbarAppInformation = NSToolbarItem.Identifier("ToolbarAppInformation")
 }
+
+//[
+//    <NSToolbarItem: 0x6000002acb00> identifier = "ToggleFirstSidebarItem",
+//    <NSTrackingSeparatorToolbarItem: 0x6000000b9a40> identifier = "NSToolbarSidebarTrackingSeparatorItemIdentifier" identifier = "NSToolbarSidebarTrackingSeparatorItemIdentifier" splitView = 0x153051ba0 dividerIndex = 0,
+//    <NSToolbarFlexibleSpaceItem: 0x6000002ac6e0> identifier = "NSToolbarFlexibleSpaceItem",
+//    <NSTrackingSeparatorToolbarItem: 0x6000000b9b00> identifier = "ItemListTrackingSeparator" identifier = "ItemListTrackingSeparator" splitView = 0x153051ba0 dividerIndex = 1,
+//    <NSToolbarItem: 0x6000002acbb0> identifier = "ToggleLastSidebarItem"
+//]
