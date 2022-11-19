@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct WorkspaceView: View {
+
+    @StateObject
+    var tabManager: TabManager = .shared
+
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
@@ -26,9 +30,11 @@ struct WorkspaceView: View {
             )
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            VStack(spacing: 0) {
-                TabBar()
-                Divider().foregroundColor(.secondary)
+            if tabManager.openedTabs.count > 1 {
+                VStack(spacing: 0) {
+                    TabBar()
+                    Divider().foregroundColor(.secondary)
+                }
             }
         }
     }
