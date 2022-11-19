@@ -26,7 +26,7 @@ class TabManager: ObservableObject {
         self.selectedTab = initialTab
     }
 
-    @Published var openedTabs: [TabBarItemRepresentable] {
+    @Published private(set) var openedTabs: [TabBarItemRepresentable] {
         didSet {
             openedTabIDs = openedTabs.map({ $0.tabID })
         }
@@ -48,7 +48,7 @@ class TabManager: ObservableObject {
         }
     }
 
-    func closeTab(id: TabBarItemID?, removeAllOccurences: Bool = true) {
+    public func closeTab(id: TabBarItemID?, removeAllOccurences: Bool = true) {
         guard let id else { return }
 
         if removeAllOccurences {
@@ -62,7 +62,7 @@ class TabManager: ObservableObject {
         }
     }
 
-    func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
+    public func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
         if let origin, let originIndex = openedTabs.firstIndex(where: { $0.tabID == origin.tabID }) {
             openedTabs.insert(tab, at: originIndex+1)
         } else {
