@@ -19,14 +19,13 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         setupSplitView()
         setupToolbar()
     }
 
     private func setupSplitView() {
         let splitVC = NSSplitViewController()
-
-        splitVC.minimumThicknessForInlineSidebars = 260
 
         let navigatorView = NavigatorSidebar()
         let navigator = NSSplitViewItem(
