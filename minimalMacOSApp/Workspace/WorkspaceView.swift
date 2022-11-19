@@ -9,14 +9,28 @@ import SwiftUI
 
 struct WorkspaceView: View {
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Spacer()
-                Text("Needs Implementation")
-                Spacer()
+        ZStack {
+            VStack(alignment: .center) {
+                HStack {
+                    Spacer()
+                    Text("Needs Implementation")
+                    Spacer()
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .background {
+            EffectView(
+                NSVisualEffectView.Material.contentBackground,
+                blendingMode: NSVisualEffectView.BlendingMode.withinWindow
+            )
+        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            VStack(spacing: 0) {
+                TabBar()
+                Divider().foregroundColor(.secondary)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

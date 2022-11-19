@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
 		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
+		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
+		936239DB29286C7900763131 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DA29286C7900763131 /* TabBar.swift */; };
+		936239DE29286EF200763131 /* TabBarItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DD29286EF200763131 /* TabBarItemID.swift */; };
+		936239E02928773800763131 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DF2928773800763131 /* TabManager.swift */; };
+		936239E229287E6D00763131 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E129287E6D00763131 /* TabBarItem.swift */; };
+		936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E329288A9B00763131 /* TabBarItemRepresentable.swift */; };
 		937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF172927C7E600F99805 /* AppDelegate.swift */; };
 		937BDF1C2927C7E700F99805 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1B2927C7E700F99805 /* Assets.xcassets */; };
 		937BDF1F2927C7E700F99805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1D2927C7E700F99805 /* Main.storyboard */; };
@@ -41,6 +47,12 @@
 /* Begin PBXFileReference section */
 		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
+		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
+		936239DA29286C7900763131 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		936239DD29286EF200763131 /* TabBarItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemID.swift; sourceTree = "<group>"; };
+		936239DF2928773800763131 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		936239E129287E6D00763131 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		936239E329288A9B00763131 /* TabBarItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemRepresentable.swift; sourceTree = "<group>"; };
 		937BDF142927C7E600F99805 /* minimalMacOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = minimalMacOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		937BDF172927C7E600F99805 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		937BDF1B2927C7E700F99805 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
+				936239DC29286EA100763131 /* TabBar */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -124,6 +137,26 @@
 				936239D52928645B00763131 /* NavigatorModeSelectModel.swift */,
 			);
 			path = Navigator;
+			sourceTree = "<group>";
+		};
+		936239D729286A5500763131 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				936239D829286A7300763131 /* EffectView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		936239DC29286EA100763131 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				936239DA29286C7900763131 /* TabBar.swift */,
+				936239E329288A9B00763131 /* TabBarItemRepresentable.swift */,
+				936239E129287E6D00763131 /* TabBarItem.swift */,
+				936239DF2928773800763131 /* TabManager.swift */,
+				936239DD29286EF200763131 /* TabBarItemID.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		937BDF0B2927C7E600F99805 = {
@@ -149,12 +182,13 @@
 		937BDF162927C7E600F99805 /* minimalMacOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
 				936239CE2928634100763131 /* Application */,
 				936239CF2928635900763131 /* Window */,
 				936239D22928637900763131 /* Navigator */,
 				936239D02928636900763131 /* Inspector */,
 				936239D12928637000763131 /* Workspace */,
-				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
+				936239D729286A5500763131 /* Helper */,
 			);
 			path = minimalMacOSApp;
 			sourceTree = "<group>";
@@ -306,12 +340,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936239DB29286C7900763131 /* TabBar.swift in Sources */,
+				936239DE29286EF200763131 /* TabBarItemID.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
+				936239D929286A7300763131 /* EffectView.swift in Sources */,
+				936239E229287E6D00763131 /* TabBarItem.swift in Sources */,
 				937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */,
+				936239E02928773800763131 /* TabManager.swift in Sources */,
 				936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */,
+				936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */,
 				937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
