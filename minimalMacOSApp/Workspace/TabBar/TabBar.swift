@@ -34,14 +34,12 @@ struct TabBar: View {
                             alignment: .center,
                             spacing: -1
                         ) {
-                            ForEach(tabManager.openedTabs, id: \.id) { id in
-                                if let item = tabManager.tabForID(id: id) {
-                                    TabBarItem(
-                                        expectedWidth: $expectedTabWidth,
-                                        item: item
-                                    )
-                                    .frame(height: 28)
-                                }
+                            ForEach(tabManager.openedTabs, id: \.tabID) { item in
+                                TabBarItem(
+                                    expectedWidth: $expectedTabWidth,
+                                    item: item
+                                )
+                                .frame(height: 28)
                             }
                         }
                         // This padding is to hide dividers at two ends under the accessory view divider.
@@ -58,7 +56,7 @@ struct TabBar: View {
                             scrollReader.scrollTo(selectedId)
                         }
                         // When tabs are changing, re-compute the expected tab width.
-                        .onChange(of: tabManager.openedTabs) { _ in
+                        .onChange(of: tabManager.openedTabIDs) { _ in
                             updateForTabCountChange(geometryProxy: geometryProxy)
                         }
                         // When window size changes, re-compute the expected tab width.

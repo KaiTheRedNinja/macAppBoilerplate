@@ -14,14 +14,28 @@ struct WorkspaceView: View {
 
     var body: some View {
         ZStack {
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("Needs Implementation")
-                    Spacer()
+            if let tabID = tabManager.selectedTab {
+                switch tabID {
+                case .test(let string):
+                    VStack(alignment: .center) {
+                        HStack {
+                            Spacer()
+                            Text("Test: \(string)")
+                            Spacer()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
+            } else {
+                VStack(alignment: .center) {
+                    HStack {
+                        Spacer()
+                        Text("No Tab")
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background {
             EffectView(

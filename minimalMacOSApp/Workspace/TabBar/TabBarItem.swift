@@ -53,7 +53,7 @@ struct TabBarItem: View {
         withAnimation(
             .easeOut( duration: 0.20 )
         ) {
-//            workspace.closeTab(item: item.tabID)
+            tabManager.closeTab(id: item.tabID)
         }
     }
 
