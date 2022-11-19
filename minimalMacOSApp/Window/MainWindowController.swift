@@ -31,7 +31,7 @@ class MainWindowController: NSWindowController {
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
-        navigator.titlebarSeparatorStyle = .line
+        navigator.titlebarSeparatorStyle = .none
         navigator.minimumThickness = 240
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
