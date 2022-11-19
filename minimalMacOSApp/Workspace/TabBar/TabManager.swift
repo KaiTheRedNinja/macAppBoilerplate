@@ -14,7 +14,11 @@ class TabManager: ObservableObject {
         TestTabBarItem(id: "TEST"),
         TestTabBarItem(id: "BOOO"),
         TestTabBarItem(id: "HELLOOOO"),
-        TestTabBarItem(id: "im so tired")
+        TestTabBarItem(id: "im so tired"),
+        TestTabBarItem(id: "im so tired2"),
+        TestTabBarItem(id: "im so tired3"),
+        TestTabBarItem(id: "im so tired4"),
+        TestTabBarItem(id: "im so tired5")
     ])
 
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarItemID? = nil) {
@@ -51,6 +55,10 @@ class TabManager: ObservableObject {
             openedTabs.removeAll(where: { $0.tabID == id })
         } else if let index = openedTabs.firstIndex(where: { $0.tabID == id }) {
             openedTabs.remove(at: index)
+        }
+
+        if id == selectedTab {
+            selectedTab = nil
         }
     }
 }

@@ -28,7 +28,7 @@ struct TabBar: View {
 //            .padding(.leading, 8)
 
             GeometryReader { geometryProxy in
-                ScrollView {
+                ScrollView(.horizontal, showsIndicators: false) {
                     ScrollViewReader { scrollReader in
                         HStack(
                             alignment: .center,
