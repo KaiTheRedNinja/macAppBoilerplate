@@ -14,7 +14,7 @@ public protocol TabBarItemRepresentable {
     /// String to be shown as tab's title
     var title: String { get }
     /// Image to be shown as tab's icon
-    var icon: Image { get }
+    var icon: NSImage { get }
     /// Color of the tab's icon
     var iconColor: Color { get }
 }

@@ -110,7 +110,7 @@ extension OutlineViewController {
     }
 }
 
-protocol OutlineElement: Codable {
+protocol OutlineElement {
     var children: [OutlineElement] { get set }
     var expandable: Bool { get set }
 }

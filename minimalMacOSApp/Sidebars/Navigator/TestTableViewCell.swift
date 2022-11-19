@@ -13,7 +13,7 @@ class TestTableViewCell: StandardTableViewCell {
 
     override func configIcon(icon: NSImageView) {
         super.configIcon(icon: icon)
-        icon.image = NSImage(systemSymbolName: "circle.fill", accessibilityDescription: nil)
+        icon.image = item?.icon
     }
 
     override func configLabel(label: NSTextField, isEditable: Bool) {

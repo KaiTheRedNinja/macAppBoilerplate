@@ -99,7 +99,7 @@ struct TabBarItem: View {
     @ViewBuilder
     var iconTextView: some View {
         HStack(alignment: .center, spacing: 5) {
-            item.icon
+            Image(nsImage: item.icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.secondary)

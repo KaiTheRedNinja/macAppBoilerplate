@@ -26,13 +26,33 @@ class TestOutlineViewController: OutlineViewController {
         let view = TestTableViewCell(frame: frameRect)
 
         view.item = item
+        view.configIcon(icon: view.icon)
         view.configLabel(label: view.label, isEditable: view.label.isEditable)
 
         return view
     }
+
+    override func outlineViewSelectionDidChange(_ notification: Notification) {
+        print("Seleciton changed")
+
+        let selectedIndex = outlineView.selectedRow
+        guard selectedIndex >= 0,
+                let selectedItem = outlineView.item(atRow: selectedIndex) as? TestElement
+        else { return }
+
+        TabManager.shared.openTab(tab: selectedItem)
+    }
 }
 
-class TestElement: OutlineElement {
+class TestElement: OutlineElement, TabBarItemRepresentable {
+
+    // MARK: TabBarItemRepresentable
+    var tabID: TabBarItemID
+    var title: String
+    var icon: NSImage
+    var iconColor: Color
+
+    // MARK: OutlineElement
     var children: [OutlineElement] {
         didSet {
             expandable = !children.isEmpty
@@ -42,27 +62,14 @@ class TestElement: OutlineElement {
 
     var text: String
 
-    init(_ text: String, children: [TestElement]) {
+    init(_ text: String, children: [TestElement] = []) {
         self.text = text
         self.children = children
         self.expandable = !children.isEmpty
-    }
 
-    enum Keys: CodingKey {
-        case children
-        case text
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: Keys.self)
-        try container.encode(self.children as! [TestElement], forKey: .children)
-        try container.encode(self.text, forKey: .text)
-    }
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Keys.self)
-        self.children = try container.decode([TestElement].self, forKey: .children)
-        self.expandable = !children.isEmpty
-        self.text = try container.decode(String.self, forKey: .text)
+        self.tabID = .test(text)
+        self.title = text
+        self.icon = NSImage(systemSymbolName: "circle", accessibilityDescription: nil)!
+        self.iconColor = .accentColor
     }
 }
