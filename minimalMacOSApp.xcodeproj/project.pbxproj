@@ -31,6 +31,7 @@
 		937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */; };
 		937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF462927CA8900F99805 /* WorkspaceView.swift */; };
 		937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF482927CA9100F99805 /* InspectorSidebar.swift */; };
+		93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A19AFD29290626002B170A /* TestTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebar.swift; sourceTree = "<group>"; };
 		937BDF462927CA8900F99805 /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
 		937BDF482927CA9100F99805 /* InspectorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; };
+		93A19AFD29290626002B170A /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */,
 				936239D52928645B00763131 /* NavigatorModeSelectModel.swift */,
 				936239F52928C47E00763131 /* TestOutlineViewController.swift */,
+				93A19AFD29290626002B170A /* TestTableViewCell.swift */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
 				936239D929286A7300763131 /* EffectView.swift in Sources */,
+				93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */,
 				936239E229287E6D00763131 /* TabBarItem.swift in Sources */,
 				936239F42928C39F00763131 /* OutlineView.swift in Sources */,
 				937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */,

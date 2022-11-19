@@ -18,7 +18,7 @@ struct NavigatorSidebar: View {
             case 0:
                 OutlineView { _ in
                     TestOutlineViewController()
-                } updateController: { controller, _ in }
+                }
             default:
                 VStack(alignment: .center) {
                     HStack {

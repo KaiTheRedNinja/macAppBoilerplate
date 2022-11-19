@@ -23,12 +23,10 @@ class TestOutlineViewController: OutlineViewController {
         print("View requested for \(item)")
         guard let tableColumn, let item = item as? TestElement else { return nil }
         let frameRect = NSRect(x: 0, y: 0, width: tableColumn.width, height: defaultRowHeight)
-        let view = StandardTableViewCell(frame: frameRect)
-        view.label.stringValue = item.text
+        let view = TestTableViewCell(frame: frameRect)
 
-        if let image = NSImage(systemSymbolName: "circle", accessibilityDescription: nil) {
-            view.icon = NSImageView(image: image)
-        }
+        view.item = item
+        view.configLabel(label: view.label, isEditable: view.label.isEditable)
 
         return view
     }

@@ -11,7 +11,7 @@ struct OutlineView: NSViewControllerRepresentable {
     typealias NSViewControllerType = OutlineViewController
 
     init(createController: @escaping (Context) -> OutlineViewController,
-         updateController: @escaping (OutlineViewController, Context) -> Void) {
+         updateController: @escaping (OutlineViewController, Context) -> Void = { _, _ in }) {
         self.createController = createController
         self.updateController = updateController
     }
