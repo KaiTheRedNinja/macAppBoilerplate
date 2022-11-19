@@ -159,6 +159,15 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		936239E52928B31700763131 /* Sidebars */ = {
+			isa = PBXGroup;
+			children = (
+				936239D22928637900763131 /* Navigator */,
+				936239D02928636900763131 /* Inspector */,
+			);
+			path = Sidebars;
+			sourceTree = "<group>";
+		};
 		937BDF0B2927C7E600F99805 = {
 			isa = PBXGroup;
 			children = (
@@ -185,8 +194,7 @@
 				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
 				936239CE2928634100763131 /* Application */,
 				936239CF2928635900763131 /* Window */,
-				936239D22928637900763131 /* Navigator */,
-				936239D02928636900763131 /* Inspector */,
+				936239E52928B31700763131 /* Sidebars */,
 				936239D12928637000763131 /* Workspace */,
 				936239D729286A5500763131 /* Helper */,
 			);
