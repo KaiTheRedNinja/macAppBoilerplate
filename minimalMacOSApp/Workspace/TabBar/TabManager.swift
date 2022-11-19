@@ -56,6 +56,8 @@ class TabManager: ObservableObject {
            let firstIndex = openedTabs.firstIndex(where: { $0.tabID == id }) {
             let index = (firstIndex + 1) % openedTabs.count
             selectedTab = openedTabIDs[index]
+        } else {
+            selectedTab = nil
         }
 
         if removeAllOccurences {
@@ -66,7 +68,10 @@ class TabManager: ObservableObject {
     }
 
     public func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
-        guard !openedTabs.contains(where: { $0.tabID == tab.tabID }) else { return }
+        if openedTabs.contains(where: { $0.tabID == tab.tabID }) && focus {
+            selectedTab = tab.tabID
+            return
+        }
 
         if let origin, let originIndex = openedTabs.firstIndex(where: { $0.tabID == origin.tabID }) {
             openedTabs.insert(tab, at: originIndex+1)

@@ -33,14 +33,18 @@ class TestOutlineViewController: OutlineViewController {
     }
 
     override func outlineViewSelectionDidChange(_ notification: Notification) {
-        print("Seleciton changed")
+        print("Selection changed")
 
         let selectedIndex = outlineView.selectedRow
         guard selectedIndex >= 0,
                 let selectedItem = outlineView.item(atRow: selectedIndex) as? TestElement
         else { return }
 
-        TabManager.shared.openTab(tab: selectedItem)
+        withAnimation(
+            .easeOut( duration: 0.20 )
+        ) {
+            TabManager.shared.openTab(tab: selectedItem)
+        }
     }
 }
 
