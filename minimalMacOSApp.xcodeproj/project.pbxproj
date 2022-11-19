@@ -166,12 +166,36 @@
 		936239E52928B31700763131 /* Sidebars */ = {
 			isa = PBXGroup;
 			children = (
-				936239E62928B35900763131 /* SidebarToolbarTop.swift */,
-				936239E82928B37F00763131 /* SidebarModeSelectModel.swift */,
+				936239EA2928B78F00763131 /* Protocols */,
 				936239D22928637900763131 /* Navigator */,
 				936239D02928636900763131 /* Inspector */,
 			);
 			path = Sidebars;
+			sourceTree = "<group>";
+		};
+		936239EA2928B78F00763131 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				936239EB2928B79900763131 /* Selection */,
+				936239EC2928B7A400763131 /* OutlineView */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		936239EB2928B79900763131 /* Selection */ = {
+			isa = PBXGroup;
+			children = (
+				936239E62928B35900763131 /* SidebarToolbarTop.swift */,
+				936239E82928B37F00763131 /* SidebarModeSelectModel.swift */,
+			);
+			path = Selection;
+			sourceTree = "<group>";
+		};
+		936239EC2928B7A400763131 /* OutlineView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OutlineView;
 			sourceTree = "<group>";
 		};
 		937BDF0B2927C7E600F99805 = {
