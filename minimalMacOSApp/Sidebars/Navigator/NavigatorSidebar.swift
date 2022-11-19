@@ -15,6 +15,10 @@ struct NavigatorSidebar: View {
     var body: some View {
         VStack {
             switch selection {
+            case 0:
+                OutlineView { _ in
+                    TestOutlineViewController()
+                } updateController: { controller, _ in }
             default:
                 VStack(alignment: .center) {
                     HStack {
