@@ -44,7 +44,7 @@ struct WorkspaceView: View {
             )
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            if tabManager.openedTabs.count > 1 {
+            if tabManager.openedTabs.count > 0 {
                 VStack(spacing: 0) {
                     TabBar()
                     Divider().foregroundColor(.secondary)
