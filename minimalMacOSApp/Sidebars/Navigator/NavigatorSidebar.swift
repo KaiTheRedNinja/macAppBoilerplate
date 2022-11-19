@@ -32,6 +32,7 @@ struct NavigatorSidebar: View {
         }
         .safeAreaInset(edge: .top) {
             NavigatorSidebarToolbarTop(selection: $selection)
+                .padding(.bottom, -8)
         }
     }
 }
