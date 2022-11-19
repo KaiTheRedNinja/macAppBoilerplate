@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct NavigatorSidebar: View {
+
+    @State
+    public var selection: Int = 0
+
     var body: some View {
         VStack(alignment: .center) {
             HStack {

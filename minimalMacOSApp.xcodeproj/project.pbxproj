@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF172927C7E600F99805 /* AppDelegate.swift */; };
-		937BDF1A2927C7E600F99805 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF192927C7E600F99805 /* ViewController.swift */; };
 		937BDF1C2927C7E700F99805 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1B2927C7E700F99805 /* Assets.xcassets */; };
 		937BDF1F2927C7E700F99805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1D2927C7E700F99805 /* Main.storyboard */; };
 		937BDF2A2927C7E700F99805 /* minimalMacOSAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF292927C7E700F99805 /* minimalMacOSAppTests.swift */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		937BDF142927C7E600F99805 /* minimalMacOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = minimalMacOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		937BDF172927C7E600F99805 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		937BDF192927C7E600F99805 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		937BDF1B2927C7E700F99805 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		937BDF1E2927C7E700F99805 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minimalMacOSApp.entitlements; sourceTree = "<group>"; };
@@ -80,6 +78,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		936239CE2928634100763131 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF172927C7E600F99805 /* AppDelegate.swift */,
+				937BDF1B2927C7E700F99805 /* Assets.xcassets */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		936239CF2928635900763131 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF422927CA1000F99805 /* MainWindowController.swift */,
+				937BDF1D2927C7E700F99805 /* Main.storyboard */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		936239D02928636900763131 /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF482927CA9100F99805 /* InspectorSidebar.swift */,
+			);
+			path = Inspector;
+			sourceTree = "<group>";
+		};
+		936239D12928637000763131 /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
+			);
+			path = Workspace;
+			sourceTree = "<group>";
+		};
+		936239D22928637900763131 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */,
+			);
+			path = Navigator;
+			sourceTree = "<group>";
+		};
 		937BDF0B2927C7E600F99805 = {
 			isa = PBXGroup;
 			children = (
@@ -103,14 +143,11 @@
 		937BDF162927C7E600F99805 /* minimalMacOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				937BDF172927C7E600F99805 /* AppDelegate.swift */,
-				937BDF192927C7E600F99805 /* ViewController.swift */,
-				937BDF1B2927C7E700F99805 /* Assets.xcassets */,
-				937BDF1D2927C7E700F99805 /* Main.storyboard */,
-				937BDF422927CA1000F99805 /* MainWindowController.swift */,
-				937BDF482927CA9100F99805 /* InspectorSidebar.swift */,
-				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
-				937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */,
+				936239CE2928634100763131 /* Application */,
+				936239CF2928635900763131 /* Window */,
+				936239D22928637900763131 /* Navigator */,
+				936239D02928636900763131 /* Inspector */,
+				936239D12928637000763131 /* Workspace */,
 				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
 			);
 			path = minimalMacOSApp;
@@ -263,7 +300,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937BDF1A2927C7E600F99805 /* ViewController.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
