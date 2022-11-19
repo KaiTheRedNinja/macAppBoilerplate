@@ -7,10 +7,16 @@
 
 import SwiftUI
 
-struct NavigatorSidebarToolbarTop: View {
+struct NavigatorSidebarToolbarTop: SidebarToolbarTop {
+
+    typealias ModeModel = NavigatorModeSelectModel
+
+    func changeSelection(to: Int) {
+        selection = to
+    }
 
     @Environment(\.controlActiveState)
-    private var activeState
+    var activeState
 
     @Binding
     var selection: Int
@@ -19,29 +25,7 @@ struct NavigatorSidebarToolbarTop: View {
     var model: NavigatorModeSelectModel = .shared
 
     var body: some View {
-        HStack(spacing: 2) {
-            ForEach(model.icons) { icon in
-                Button {
-                    selection = icon.id
-                } label: {
-                    model.makeIcon(
-                        named: icon.imageName,
-                        title: icon.title
-                    )
-                }
-                .buttonStyle(NavigatorToolbarButtonStyle(id: icon.id, selection: selection, activeState: activeState))
-                .imageScale(.medium)
-            }
-        }
-        .frame(height: 29, alignment: .center)
-        .frame(maxWidth: .infinity)
-        .overlay(alignment: .top) {
-            Divider()
-        }
-        .overlay(alignment: .bottom) {
-            Divider()
-        }
-        .animation(.default, value: model.icons)
+        content
     }
 }
 

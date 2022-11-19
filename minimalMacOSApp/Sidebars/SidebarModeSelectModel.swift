@@ -1,24 +1,21 @@
 //
-//  NavigatorModeSelectModel.swift
+//  SidebarModeSelectModel.swift
 //  minimalMacOSApp
 //
 //  Created by Kai Quan Tay on 19/11/22.
 //
 
+import Foundation
 import SwiftUI
 
-final class NavigatorModeSelectModel: SidebarModeSelectModel {
+protocol SidebarModeSelectModel: ObservableObject {
+    static var shared: Self { get }
 
-    static var shared: NavigatorModeSelectModel = .init()
+    var icons: [SidebarDockIcon] { get set }
+}
 
-    var icons: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
-
+extension SidebarModeSelectModel {
+    @ViewBuilder
     func makeIcon(named: String, title: String) -> some View {
         getSafeImage(named: named, accesibilityDescription: title)
             .help(title)
@@ -34,4 +31,10 @@ final class NavigatorModeSelectModel: SidebarModeSelectModel {
             return Image(named)
         }
     }
+}
+
+struct SidebarDockIcon: Identifiable, Equatable {
+    let imageName: String
+    let title: String
+    var id: Int
 }
