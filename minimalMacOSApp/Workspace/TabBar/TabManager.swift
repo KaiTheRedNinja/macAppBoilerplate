@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+let disableTabs: Bool = false
+
 class TabManager: ObservableObject {
     static let shared: TabManager = .init(openedTabs: [
         TestElement("hi"),
@@ -22,14 +24,18 @@ class TabManager: ObservableObject {
     ])
 
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarItemID? = nil) {
-        self.openedTabs = openedTabs
+        self.openedTabs = disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
         self.openedTabIDs = openedTabs.map({ $0.tabID })
     }
 
     @Published private(set) var openedTabs: [TabBarItemRepresentable] {
         didSet {
-            openedTabIDs = openedTabs.map({ $0.tabID })
+            if disableTabs && !openedTabs.isEmpty {
+                self.openedTabs = []
+            } else {
+                openedTabIDs = openedTabs.map({ $0.tabID })
+            }
         }
     }
     @Published private(set) var openedTabIDs: [TabBarItemID] = []
@@ -52,6 +58,11 @@ class TabManager: ObservableObject {
     public func closeTab(id: TabBarItemID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
+        if disableTabs && id == selectedTab {
+            selectedTab = nil
+            return
+        }
+
         if refocus && id == selectedTab,
            let firstIndex = openedTabs.firstIndex(where: { $0.tabID == id }) {
             let index = (firstIndex + 1) % openedTabs.count
@@ -68,7 +79,7 @@ class TabManager: ObservableObject {
     }
 
     public func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
-        if openedTabs.contains(where: { $0.tabID == tab.tabID }) && focus {
+        if (openedTabs.contains(where: { $0.tabID == tab.tabID }) && focus) || disableTabs {
             selectedTab = tab.tabID
             return
         }
