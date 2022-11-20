@@ -93,6 +93,7 @@ struct TabBar: View {
             // Min size of a native tab.
             CGFloat(140)
         )
+        print("Expected tab width: \(expectedTabWidth)")
     }
 
     /// Conditionally updates the `expectedTabWidth`.

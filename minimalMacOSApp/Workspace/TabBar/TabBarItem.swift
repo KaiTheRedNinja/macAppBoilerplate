@@ -226,6 +226,7 @@ struct TabBarItem: View {
         }
         .id(item.tabID)
 //        .tabBarContextMenu(item: item, workspace: workspace, isTemporary: isTemporary)
+        .frame(maxWidth: expectedWidth)
     }
 }
 

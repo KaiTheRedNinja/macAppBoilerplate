@@ -20,7 +20,7 @@ class TabManager: ObservableObject {
         TestElement("im so tired2"),
         TestElement("im so tired3"),
         TestElement("im so tired4"),
-        TestElement("im so tired5")
+        TestElement("this is just a really really long title like how does this even exist")
     ])
 
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarItemID? = nil) {
