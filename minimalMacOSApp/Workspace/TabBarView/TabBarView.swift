@@ -87,7 +87,6 @@ class TabBarView: NSView {
 
         // pin idealWidth between the minimum and maximum tab sizes
         idealWidth = max(minimumTabWidth, min(idealWidth, maximumTabWidth))
-        print("Ideal width: \(idealWidth)")
 
         // iterate over the tabs and size them as needed
         var widthSoFar: CGFloat = 0
@@ -102,31 +101,66 @@ class TabBarView: NSView {
             // if the tab is marked as dead, animate its width to 0 and remove it
             guard tabView.isAlive else {
                 print("Tab \(tabView.tabRepresentable.tabID) is dead")
-                tabView.frame = NSRect(x: widthSoFar, y: 0, width: 0, height: 30)
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = animationDuration
 
-                tabView.removeFromSuperview()
-                self.tabViews.removeAll(where: { $0.tabRepresentable.tabID == tabView.tabRepresentable.tabID })
+                    // change the width to 0
+                    tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: 0, height: 30)
+
+                    // change the opacity
+                    tabView.animator().alphaValue = 0.0
+                }) {
+                    // on completion, remove the tab view
+                    tabView.removeFromSuperview()
+                    self.tabViews.removeAll(where: { $0.tabRepresentable.tabID == tabView.tabRepresentable.tabID })
+                }
                 // no need to increment widthSoFar as the tab will have no width
                 continue
             }
 
             // size the tab to the ideal width
             let tabIsFocused = tabManager.selectedTab == tabView.tabRepresentable.tabID
+            tabView.manageDividers()
 
             if tabIsFocused {
                 // if its focused, size it to be the maximum size
-                tabView.frame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
+                if animate {
+                    NSAnimationContext.runAnimationGroup({ context in
+                        context.duration = animationDuration
+                        tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
+                    })
+                } else {
+                    tabView.frame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
+                }
+                // this color does not animate, sadly
+                tabView.layer?.backgroundColor = NSColor.controlAccentColor.cgColor.copy(alpha: 0.5)
                 widthSoFar += maximumTabWidth
             } else {
                 // if it is not focused, size it to be the ideal size
-                tabView.frame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
+                if animate {
+                    NSAnimationContext.runAnimationGroup({ context in
+                        context.duration = animationDuration
+                        tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
+                    })
+                } else {
+                    tabView.frame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
+                }
+                // this color does not animate, sadly
+                tabView.layer?.backgroundColor = nil
                 widthSoFar += idealWidth
             }
-            print("Width so far: \(widthSoFar)")
         }
 
         // set the document view size
-        scrollView?.documentView?.frame = NSRect(x: 0, y: 0, width: widthSoFar, height: 30)
+        let newDocSize = NSRect(x: 0, y: 0, width: max(frame.width, widthSoFar), height: 30)
+        if animate {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = animationDuration
+                scrollView?.documentView?.animator().frame = newDocSize
+            })
+        } else {
+            scrollView?.documentView?.frame = newDocSize
+        }
     }
 
     override func resizeSubviews(withOldSize oldSize: NSSize) {

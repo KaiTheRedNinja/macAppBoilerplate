@@ -16,6 +16,9 @@ class TabBarItemView: NSView {
     var iconView: NSButton
     var textView: NSTextField
 
+    var leftDivider = NSView()
+    var rightDivider = NSView()
+
     override init(frame frameRect: NSRect) {
         textView = NSTextField()
         icon = NSImage(systemSymbolName: "circle", accessibilityDescription: nil) ?? NSImage()
@@ -44,8 +47,8 @@ class TabBarItemView: NSView {
 
     func addViews(rect: NSRect) {
         wantsLayer = true
-        layer?.borderWidth = 1
-        layer?.borderColor = .white
+//        layer?.borderWidth = 1
+//        layer?.borderColor = .white
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
 
         iconView.isBordered = false
@@ -53,8 +56,8 @@ class TabBarItemView: NSView {
         iconView.target = self
         iconView.action = #selector(closeTab)
         iconView.wantsLayer = true
-        iconView.layer?.borderColor = .white
-        iconView.layer?.borderWidth = 1
+//        iconView.layer?.borderColor = .white
+//        iconView.layer?.borderWidth = 1
         addSubview(iconView)
 
         textView.drawsBackground = false
@@ -63,8 +66,50 @@ class TabBarItemView: NSView {
         textView.isEditable = false
         addSubview(textView)
 
+        addSubview(leftDivider)
+        addSubview(rightDivider)
+
         updateIconAndLabel()
         resizeSubviews(withOldSize: .zero)
+    }
+
+    func manageDividers(animate: Bool = true) {
+        leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: 14)
+        leftDivider.wantsLayer = true
+        leftDivider.layer?.backgroundColor = NSColor.gray.cgColor
+
+        rightDivider.frame = NSRect(x: frame.width, y: 8, width: 1, height: 14)
+        rightDivider.wantsLayer = true
+        rightDivider.layer?.backgroundColor = NSColor.gray.cgColor
+
+        var leftAlphaValue: CGFloat = 1
+        var rightAlphaValue: CGFloat = 1
+
+        // get the location of the tab. If it is the first or last, disable the appropriate divider
+        // if ever leading/trailing items are added to the tab bar, these can be disabled.
+        if tabManager.openedTabs.first?.tabID == tabRepresentable.tabID {
+            leftAlphaValue = 0
+        }
+        if tabManager.openedTabs.last?.tabID == tabRepresentable.tabID {
+            rightAlphaValue = 0
+        }
+
+        // if the tab is currently selected, disable the dividers
+        if tabManager.selectedTab == tabRepresentable.tabID {
+            leftAlphaValue = 0
+            rightAlphaValue = 0
+        }
+
+        if animate {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = animationDuration
+                leftDivider.animator().alphaValue = leftAlphaValue
+                rightDivider.animator().alphaValue = rightAlphaValue
+            })
+        } else {
+            leftDivider.alphaValue = leftAlphaValue
+            rightDivider.alphaValue = rightAlphaValue
+        }
     }
 
     func updateIconAndLabel() {
@@ -84,7 +129,7 @@ class TabBarItemView: NSView {
         // the text won't show if the tab is in compact mode, but to make animation
         // easier on show/hide, the frame is set anyway
         let newTextViewFrame = CGRect(x: frame.height-2, y: 0,
-                                      width: frame.width-frame.height+8-4, height: frame.height-7)
+                                      width: frame.width-frame.height, height: frame.height-7)
 
         // if the tab is in expanded mode
         if frame.width > tabBecomesSmall {
@@ -133,6 +178,7 @@ class TabBarItemView: NSView {
                 textView.alphaValue = 0
             }
         }
+        manageDividers()
         updateTrackingAreas()
     }
 
