@@ -44,7 +44,6 @@ class TabBarView: NSView {
         // iterate over tabs and mark those that don't exist anymore as dead
         for tabView in tabViews {
             if !tabManager.openedTabIDs.contains(tabView.tabRepresentable.tabID) {
-                print("Tab Removed: \(tabView.tabRepresentable.tabID)")
                 tabView.isAlive = false
             }
         }
@@ -53,7 +52,6 @@ class TabBarView: NSView {
         var newTabs = tabViews
         for (index, tab) in tabManager.openedTabs.enumerated() {
             if !tabViews.map({ $0.tabRepresentable.tabID }).contains(tab.tabID) {
-                print("Tab added: \(tab.tabID)")
                 let newItem = TabBarItemView()
                 newItem.tabBarView = self
                 newItem.tabRepresentable = tab
@@ -202,15 +200,12 @@ class TabBarView: NSView {
 
         if state == .ended || repositioned {
             // reorder the tabs in tabManager to match tab bar
-            print("repositioning")
-            print("old tabs: \n\t\(tabManager.openedTabIDs.map({ "\($0)" }).joined(separator: "\n\t"))")
             tabManager.openedTabs = tabManager.openedTabs.sorted { firstTab, secondTab in
                 // find the first instance of each tab
                 let firstLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == firstTab.tabID }) ?? -1
                 let secondLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == secondTab.tabID }) ?? -1
                 return firstLocation < secondLocation
             }
-            print("new tabs: \n\t\(tabManager.openedTabIDs.map({ "\($0)" }).joined(separator: "\n\t"))")
         }
 
         sizeTabs(animate: (state == .ended) ? true : repositioned)
