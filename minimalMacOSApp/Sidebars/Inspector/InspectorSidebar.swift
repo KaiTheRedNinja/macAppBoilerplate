@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct InspectorSidebar: View {
+
+    @State
+    public var selection: Int = 0
+
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                Spacer()
-                Text("Needs Implementation")
-                Spacer()
+        VStack {
+            switch selection {
+            default:
+                VStack(alignment: .center) {
+                    HStack {
+                        Spacer()
+                        Text("Needs Implementation")
+                        Spacer()
+                    }
+                }
+                .frame(maxHeight: .infinity)
             }
         }
-        .frame(maxHeight: .infinity)
+        .safeAreaInset(edge: .top) {
+            InspectorSidebarToolbarTop(selection: $selection)
+                .padding(.bottom, -8)
+        }
     }
 }
 

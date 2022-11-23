@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */; };
+		930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */; };
 		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
 		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
 		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebarToolbarTop.swift; sourceTree = "<group>"; };
+		930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorModeSelectModel.swift; sourceTree = "<group>"; };
 		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				937BDF482927CA9100F99805 /* InspectorSidebar.swift */,
+				930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */,
+				930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */,
 			);
 			path = Inspector;
 			sourceTree = "<group>";
@@ -414,8 +420,10 @@
 				936239DB29286C7900763131 /* TabBar.swift in Sources */,
 				93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */,
 				936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */,
+				930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */,
 				936239DE29286EF200763131 /* TabBarItemID.swift in Sources */,
 				936239F02928B98900763131 /* OutlineViewController.swift in Sources */,
+				930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
 				93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */,
