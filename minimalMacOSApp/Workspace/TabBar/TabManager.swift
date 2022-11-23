@@ -29,7 +29,7 @@ class TabManager: ObservableObject {
         self.openedTabIDs = openedTabs.map({ $0.tabID })
     }
 
-    @Published private(set) var openedTabs: [TabBarItemRepresentable] {
+    @Published var openedTabs: [TabBarItemRepresentable] {
         didSet {
             if disableTabs && !openedTabs.isEmpty {
                 self.openedTabs = []

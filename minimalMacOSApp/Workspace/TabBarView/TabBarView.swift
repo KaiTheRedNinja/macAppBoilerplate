@@ -39,7 +39,6 @@ class TabBarView: NSView {
     }
 
     func updateTabs() {
-        print("Updating tabs")
         // iterate over tabs and mark those that don't exist anymore as dead
         for tabView in tabViews {
             if !tabManager.openedTabIDs.contains(tabView.tabRepresentable.tabID) {
@@ -130,6 +129,14 @@ class TabBarView: NSView {
                 widthSoFar += idealWidth * (tabView.zoomAmount + 1)
             }
 
+            // if the tab is panning, don't set the x location, the view is handling that itself
+            if tabView.isPanning {
+                newFrame = NSRect(x: tabView.frame.minX,
+                                  y: newFrame.minY,
+                                  width: newFrame.width,
+                                  height: newFrame.height)
+            }
+
             if animate {
                 NSAnimationContext.runAnimationGroup({ context in
                     context.duration = animationDuration
@@ -151,6 +158,55 @@ class TabBarView: NSView {
         } else {
             scrollView?.documentView?.frame = newDocSize
         }
+    }
+
+    /// Repositions tabs when one is being dragged around
+    /// - Parameters:
+    ///   - movingTab: The tab being dragged
+    ///   - state: The state of the pan gesture moving the tab
+    func repositionTabs(movingTab: TabBarItemView, state: NSPanGestureRecognizer.State) {
+
+        // the point that we use to determine if the tab should be moved
+        let referencePoint = NSPoint(x: movingTab.frame.midX, y: 0)
+        var repositioned = false
+
+        for (index, tab) in tabViews.enumerated() {
+            // ignore deleting and panning tabs
+            guard tab.isAlive && !tab.isPanning else { continue }
+            if referencePoint.x < tab.frame.maxX && referencePoint.x >= tab.frame.midX {
+                // the dragged point is on the right side of this tab
+                repositioned = true
+                if let movingTabPosition = tabViews.firstIndex(of: movingTab) {
+                    tabViews.remove(at: movingTabPosition)
+                    let goTo = tabViews.firstIndex(of: tab) ?? (movingTabPosition - 1)
+                    tabViews.insert(movingTab, at: goTo + 1)
+                }
+                break
+            } else if referencePoint.x > tab.frame.minX && referencePoint.x < tab.frame.midX {
+                // the dragged point is on the left side of this tab
+                repositioned = true
+                if let movingTabPosition = tabViews.firstIndex(of: movingTab) {
+                    tabViews.remove(at: movingTabPosition)
+                    tabViews.insert(movingTab, at: index)
+                }
+                break
+            }
+        }
+
+        if state == .ended || repositioned {
+            // reorder the tabs in tabManager to match tab bar
+            print("repositioning")
+            print("old tabs: \n\t\(tabManager.openedTabIDs.map({ "\($0)" }).joined(separator: "\n\t"))")
+            tabManager.openedTabs = tabManager.openedTabs.sorted { firstTab, secondTab in
+                // find the first instance of each tab
+                let firstLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == firstTab.tabID }) ?? -1
+                let secondLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == secondTab.tabID }) ?? -1
+                return firstLocation < secondLocation
+            }
+            print("new tabs: \n\t\(tabManager.openedTabIDs.map({ "\($0)" }).joined(separator: "\n\t"))")
+        }
+
+        sizeTabs(animate: (state == .ended) ? true : repositioned)
     }
 
     override func resizeSubviews(withOldSize oldSize: NSSize) {

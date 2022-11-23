@@ -37,6 +37,7 @@ class TabBarItemView: NSView {
 //        layer?.borderColor = .white
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
         self.addGestureRecognizer(NSMagnificationGestureRecognizer(target: self, action: #selector(didZoom(_:))))
+        self.addGestureRecognizer(NSPanGestureRecognizer(target: self, action: #selector(didPan(_:))))
 
         iconView.isBordered = false
         iconView.bezelStyle = .regularSquare
@@ -65,7 +66,7 @@ class TabBarItemView: NSView {
         leftDivider.wantsLayer = true
         leftDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
-        rightDivider.frame = NSRect(x: frame.width, y: 8, width: 1, height: 14)
+        rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: 14)
         rightDivider.wantsLayer = true
         rightDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
@@ -232,5 +233,23 @@ class TabBarItemView: NSView {
             zoomAmount = gesture.magnification
             tabBarView.sizeTabs(animate: false)
         }
+    }
+
+    var isPanning: Bool = false         // flag to indicate if the tab is panning
+    var originalFrame: NSRect = .zero   // the original frame pre-pan
+    var clickPointOffset: CGFloat = 0.0 // the distance that the tab should move
+    @objc
+    func didPan(_ sender: NSPanGestureRecognizer?) {
+        guard let gesture = sender else { return }
+        let location = gesture.location(in: self.superview)
+        if gesture.state == .began {
+            isPanning = true
+            originalFrame = self.frame
+            clickPointOffset = location.x - self.frame.minX
+        } else if gesture.state == .ended {
+            isPanning = false
+        }
+        frame = NSRect(x: location.x - clickPointOffset, y: 0, width: frame.width, height: frame.height)
+        tabBarView.repositionTabs(movingTab: self, state: gesture.state)
     }
 }
