@@ -82,8 +82,8 @@ class TabBarItemView: NSView {
             rightAlphaValue = 0
         }
 
-        // if the tab is currently selected, disable the dividers
-        if tabManager.selectedTab == tabRepresentable.tabID {
+        // if the tab is currently selected or being dragged, disable the dividers
+        if tabManager.selectedTab == tabRepresentable.tabID || isPanning {
             leftAlphaValue = 0
             rightAlphaValue = 0
         }

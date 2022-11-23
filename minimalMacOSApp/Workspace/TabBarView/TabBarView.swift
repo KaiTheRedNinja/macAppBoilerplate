@@ -131,15 +131,20 @@ class TabBarView: NSView {
                 widthSoFar += idealWidth * (tabView.zoomAmount + 1)
             }
 
-            // if the tab is panning, don't set the x location, the view is handling that itself
+            // if the tab is panning, don't set the x location, the view is handling that itself.
+            // if its not the focused tab, make the background gray
             if tabView.isPanning {
                 newFrame = NSRect(x: tabView.frame.minX,
                                   y: newFrame.minY,
                                   width: newFrame.width,
                                   height: newFrame.height)
-            }
 
-            if animate {
+                if !tabIsFocused {
+                    newColor = NSColor.gray.cgColor.copy(alpha: 0.5)
+                }
+
+            // animate only if the tab is not panning
+            } else if animate {
                 NSAnimationContext.runAnimationGroup({ context in
                     context.duration = animationDuration
                     tabView.animator().frame = newFrame
