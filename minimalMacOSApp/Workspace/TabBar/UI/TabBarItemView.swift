@@ -33,8 +33,6 @@ class TabBarItemView: NSView {
 
     func addViews(rect: NSRect) {
         wantsLayer = true
-//        layer?.borderWidth = 1
-//        layer?.borderColor = .white
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
         self.addGestureRecognizer(NSMagnificationGestureRecognizer(target: self, action: #selector(didZoom(_:))))
         self.addGestureRecognizer(NSPanGestureRecognizer(target: self, action: #selector(didPan(_:))))
@@ -44,8 +42,6 @@ class TabBarItemView: NSView {
         iconView.target = self
         iconView.action = #selector(closeTab)
         iconView.wantsLayer = true
-//        iconView.layer?.borderColor = .white
-//        iconView.layer?.borderWidth = 1
         addSubview(iconView)
 
         textView.drawsBackground = false
@@ -74,16 +70,19 @@ class TabBarItemView: NSView {
         var rightAlphaValue: CGFloat = 1
 
         // get the location of the tab. If it is the first or last, disable the appropriate divider
-        // if ever leading/trailing items are added to the tab bar, these can be disabled.
-        if tabManager.openedTabs.first?.tabID == tabRepresentable.tabID {
+        // if the tab is to the left/right of the current tab, then hide the appropriate divider too
+        let selectedTabIndex = tabManager.selectedTab == nil ? nil :
+                                tabManager.openedTabIDs.firstIndex(of: tabManager.selectedTab!)
+        let thisItemTabIndex = tabManager.openedTabIDs.firstIndex(of: tabRepresentable.tabID)
+        if thisItemTabIndex == 0 || thisItemTabIndex == (selectedTabIndex ?? -10) + 1 {
             leftAlphaValue = 0
         }
-        if tabManager.openedTabs.last?.tabID == tabRepresentable.tabID {
+        if thisItemTabIndex == tabManager.openedTabs.count-1 || thisItemTabIndex == (selectedTabIndex ?? -10) - 1 {
             rightAlphaValue = 0
         }
 
         // if the tab is currently selected or being dragged, disable the dividers
-        if tabManager.selectedTab == tabRepresentable.tabID || isPanning {
+        if thisItemTabIndex == selectedTabIndex || isPanning {
             leftAlphaValue = 0
             rightAlphaValue = 0
         }
