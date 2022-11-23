@@ -49,15 +49,19 @@ class TabBarView: NSView {
         }
 
         // iterate over tabs and create new ones as needed
-        for tab in tabManager.openedTabs {
+        var newTabs = tabViews
+        for (index, tab) in tabManager.openedTabs.enumerated() {
             if !tabViews.map({ $0.tabRepresentable.tabID }).contains(tab.tabID) {
                 print("Tab added: \(tab.tabID)")
                 let newItem = TabBarItemView()
                 newItem.tabRepresentable = tab
                 newItem.addViews(rect: .zero)
-                tabViews.append(newItem)
+                newItem.frame = NSRect(x: 0, y: 0, width: 0, height: 30)
+                newItem.resizeSubviews(withOldSize: .zero)
+                newTabs.insert(newItem, at: index)
             }
         }
+        self.tabViews = newTabs
         sizeTabs()
     }
 
@@ -70,15 +74,16 @@ class TabBarView: NSView {
         let numberOfTabs = tabManager.openedTabs.count
         var idealWidth: CGFloat = minimumTabWidth
 
-        if tabManager.selectedTab == nil {
-            // if no selected tabs
-            idealWidth = widthOfTabView/CGFloat(numberOfTabs)
-        } else {
-            // if has selected tab, size it appropriately.
-            // we subtract the size of the selected tab to make the tabs have
-            // a correct-looking size
-            idealWidth = widthOfTabView-maximumTabWidth/CGFloat(numberOfTabs-1)
-        }
+        idealWidth = widthOfTabView/CGFloat(numberOfTabs)
+//        if tabManager.selectedTab == nil {
+//            // if no selected tabs
+//            idealWidth = widthOfTabView/CGFloat(numberOfTabs)
+//        } else {
+//            // if has selected tab, size it appropriately.
+//            // we subtract the size of the selected tab to make the tabs have
+//            // a correct-looking size
+//            idealWidth = widthOfTabView-maximumTabWidth/CGFloat(numberOfTabs-1)
+//        }
 
         // pin idealWidth between the minimum and maximum tab sizes
         idealWidth = max(minimumTabWidth, min(idealWidth, maximumTabWidth))
@@ -95,11 +100,14 @@ class TabBarView: NSView {
             }
 
             // if the tab is marked as dead, animate its width to 0 and remove it
-            if !tabView.isAlive {
+            guard tabView.isAlive else {
                 print("Tab \(tabView.tabRepresentable.tabID) is dead")
                 tabView.frame = NSRect(x: widthSoFar, y: 0, width: 0, height: 30)
+
+                tabView.removeFromSuperview()
                 self.tabViews.removeAll(where: { $0.tabRepresentable.tabID == tabView.tabRepresentable.tabID })
                 // no need to increment widthSoFar as the tab will have no width
+                continue
             }
 
             // size the tab to the ideal width

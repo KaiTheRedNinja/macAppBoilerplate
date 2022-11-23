@@ -9,6 +9,7 @@ import Cocoa
 
 class TabBarItemView: NSView {
     var tabRepresentable: TabBarItemRepresentable!
+    var tabManager: TabManager = .shared
     var isAlive: Bool = true
 
     var icon: NSImage
@@ -24,6 +25,17 @@ class TabBarItemView: NSView {
 
     @objc
     func closeTab() {
+        tabManager.closeTab(id: tabRepresentable.tabID)
+    }
+
+    @objc
+    func focusTab() {
+        guard !mouseHovering else {
+            closeTab()
+            return
+        }
+
+        tabManager.selectedTab = tabRepresentable.tabID
     }
 
     required init?(coder: NSCoder) {
@@ -31,6 +43,11 @@ class TabBarItemView: NSView {
     }
 
     func addViews(rect: NSRect) {
+        wantsLayer = true
+        layer?.borderWidth = 1
+        layer?.borderColor = .white
+        self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
+
         iconView.isBordered = false
         iconView.bezelStyle = .regularSquare
         iconView.target = self
@@ -45,10 +62,6 @@ class TabBarItemView: NSView {
         textView.cell?.lineBreakMode = .byTruncatingTail
         textView.isEditable = false
         addSubview(textView)
-
-        wantsLayer = true
-        layer?.borderWidth = 1
-        layer?.borderColor = .white
 
         updateIconAndLabel()
         resizeSubviews(withOldSize: .zero)
@@ -146,7 +159,7 @@ class TabBarItemView: NSView {
     }
 
     private func makeTrackingArea() -> NSTrackingArea {
-        return NSTrackingArea(rect: NSRect(x: 0, y: 0, width: frame.width, height: frame.height),
+        return NSTrackingArea(rect: iconView.frame,
                               options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
     }
 
