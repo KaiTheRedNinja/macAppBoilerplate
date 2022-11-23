@@ -54,9 +54,14 @@ class TabBarView: NSView {
             if !tabViews.map({ $0.tabRepresentable.tabID }).contains(tab.tabID) {
                 print("Tab added: \(tab.tabID)")
                 let newItem = TabBarItemView()
+                newItem.tabBarView = self
                 newItem.tabRepresentable = tab
                 newItem.addViews(rect: .zero)
-                newItem.frame = NSRect(x: 0, y: 0, width: 0, height: 30)
+                if index-1 < newTabs.count && index-1 >= 0 {
+                    newItem.frame = NSRect(x: newTabs[index-1].frame.maxX, y: 0, width: 0, height: 30)
+                } else {
+                    newItem.frame = NSRect(x: 0, y: 0, width: 0, height: 30)
+                }
                 newItem.resizeSubviews(withOldSize: .zero)
                 newTabs.insert(newItem, at: index)
             }
@@ -122,33 +127,30 @@ class TabBarView: NSView {
             let tabIsFocused = tabManager.selectedTab == tabView.tabRepresentable.tabID
             tabView.manageDividers()
 
+            var newFrame = tabView.frame
+            var newColor: CGColor?
+
             if tabIsFocused {
                 // if its focused, size it to be the maximum size
-                if animate {
-                    NSAnimationContext.runAnimationGroup({ context in
-                        context.duration = animationDuration
-                        tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
-                    })
-                } else {
-                    tabView.frame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
-                }
-                // this color does not animate, sadly
-                tabView.layer?.backgroundColor = NSColor.controlAccentColor.cgColor.copy(alpha: 0.5)
+                newFrame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
+                newColor = NSColor.controlAccentColor.cgColor.copy(alpha: 0.5)
                 widthSoFar += maximumTabWidth
             } else {
                 // if it is not focused, size it to be the ideal size
-                if animate {
-                    NSAnimationContext.runAnimationGroup({ context in
-                        context.duration = animationDuration
-                        tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
-                    })
-                } else {
-                    tabView.frame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
-                }
-                // this color does not animate, sadly
-                tabView.layer?.backgroundColor = nil
+                newFrame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
+                newColor = nil
                 widthSoFar += idealWidth
             }
+
+            if animate {
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = animationDuration
+                    tabView.animator().frame = newFrame
+                })
+            } else {
+                tabView.frame = newFrame
+            }
+            tabView.layer?.backgroundColor = newColor
         }
 
         // set the document view size

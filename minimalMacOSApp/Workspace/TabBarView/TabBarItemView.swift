@@ -9,6 +9,7 @@ import Cocoa
 
 class TabBarItemView: NSView {
     var tabRepresentable: TabBarItemRepresentable!
+    var tabBarView: TabBarView!
     var tabManager: TabManager = .shared
     var isAlive: Bool = true
 
@@ -26,21 +27,6 @@ class TabBarItemView: NSView {
         super.init(frame: frameRect)
     }
 
-    @objc
-    func closeTab() {
-        tabManager.closeTab(id: tabRepresentable.tabID)
-    }
-
-    @objc
-    func focusTab() {
-        guard !mouseHovering else {
-            closeTab()
-            return
-        }
-
-        tabManager.selectedTab = tabRepresentable.tabID
-    }
-
     required init?(coder: NSCoder) {
         fatalError("TabBarItemView does not support init from coder")
     }
@@ -50,6 +36,7 @@ class TabBarItemView: NSView {
 //        layer?.borderWidth = 1
 //        layer?.borderColor = .white
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
+        self.addGestureRecognizer(NSMagnificationGestureRecognizer(target: self, action: #selector(didZoom(_:))))
 
         iconView.isBordered = false
         iconView.bezelStyle = .regularSquare
@@ -215,5 +202,34 @@ class TabBarItemView: NSView {
 
     public override func mouseExited(with event: NSEvent) {
         mouseHovering = false
+    }
+
+    // MARK: Gestures
+    @objc
+    func closeTab() {
+        tabManager.closeTab(id: tabRepresentable.tabID)
+    }
+
+    @objc
+    func focusTab() {
+        guard !mouseHovering else {
+            closeTab()
+            return
+        }
+
+        tabManager.selectedTab = tabRepresentable.tabID
+    }
+
+    var zoomAmount: CGFloat = 0
+    @objc
+    func didZoom(_ sender: NSMagnificationGestureRecognizer?) {
+        guard let gesture = sender else { return }
+        if gesture.state == .ended {
+            zoomAmount = 0
+            tabBarView.sizeTabs(animate: true)
+        } else {
+            zoomAmount = gesture.magnification
+            tabBarView.sizeTabs(animate: false)
+        }
     }
 }
