@@ -62,11 +62,11 @@ class TabBarItemView: NSView {
     }
 
     func manageDividers(animate: Bool = true) {
-        leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: 14)
+        leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: tabBarViewHeight-16)
         leftDivider.wantsLayer = true
         leftDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
-        rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: 14)
+        rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: tabBarViewHeight-16)
         rightDivider.wantsLayer = true
         rightDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
