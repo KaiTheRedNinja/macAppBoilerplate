@@ -46,7 +46,8 @@ struct WorkspaceView: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             if tabManager.openedTabs.count > 0 && !disableTabs {
                 VStack(spacing: 0) {
-                    TabBar()
+                    TabBarViewRepresentable(tabManager: .shared)
+                        .frame(height: 30)
                     Divider().foregroundColor(.secondary)
                 }
             }

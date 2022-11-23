@@ -32,6 +32,9 @@
 		937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF462927CA8900F99805 /* WorkspaceView.swift */; };
 		937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF482927CA9100F99805 /* InspectorSidebar.swift */; };
 		93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A19AFD29290626002B170A /* TestTableViewCell.swift */; };
+		93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF3292DC11D009F470D /* TabBarView.swift */; };
+		93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF6292DC856009F470D /* TabBarItemView.swift */; };
+		93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		937BDF462927CA8900F99805 /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
 		937BDF482927CA9100F99805 /* InspectorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; };
 		93A19AFD29290626002B170A /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		93B8FEF3292DC11D009F470D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		93B8FEF6292DC856009F470D /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
+		93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +143,9 @@
 		936239D12928637000763131 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
-				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
+				93B8FEF5292DC14E009F470D /* TabBarView */,
 				936239DC29286EA100763131 /* TabBar */,
+				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -261,6 +268,16 @@
 				937BDF352927C7E700F99805 /* minimalMacOSAppUITestsLaunchTests.swift */,
 			);
 			path = minimalMacOSAppUITests;
+			sourceTree = "<group>";
+		};
+		93B8FEF5292DC14E009F470D /* TabBarView */ = {
+			isa = PBXGroup;
+			children = (
+				93B8FEF3292DC11D009F470D /* TabBarView.swift */,
+				93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */,
+				93B8FEF6292DC856009F470D /* TabBarItemView.swift */,
+			);
+			path = TabBarView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,11 +412,13 @@
 			files = (
 				936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */,
 				936239DB29286C7900763131 /* TabBar.swift in Sources */,
+				93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */,
 				936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */,
 				936239DE29286EF200763131 /* TabBarItemID.swift in Sources */,
 				936239F02928B98900763131 /* OutlineViewController.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
+				93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */,
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
 				936239D929286A7300763131 /* EffectView.swift in Sources */,
 				93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */,
@@ -409,6 +428,7 @@
 				936239E02928773800763131 /* TabManager.swift in Sources */,
 				936239EE2928B8E200763131 /* StandardTableViewCell.swift in Sources */,
 				936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */,
+				93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */,
 				936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */,
 				936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */,
 				936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */,

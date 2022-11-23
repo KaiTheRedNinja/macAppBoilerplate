@@ -152,7 +152,6 @@ extension MainWindowController: NSToolbarDelegate {
         lastSplitView.animator().isCollapsed.toggle()
 
         let itemCount = toolbar.items.count
-        print("Items: \(toolbar.items.map({ $0.itemIdentifier.rawValue }))")
         if lastSplitView.isCollapsed {
            toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
            toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
@@ -166,7 +165,6 @@ extension MainWindowController: NSToolbarDelegate {
                 at: itemCount-0 // insert it as "last" (actually second last now)
             )
         }
-        print("Items after: \(toolbar.items.map({ $0.itemIdentifier.rawValue }))")
     }
 }
 
