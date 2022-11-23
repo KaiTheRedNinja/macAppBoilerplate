@@ -12,10 +12,8 @@
 		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
 		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
 		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
-		936239DB29286C7900763131 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DA29286C7900763131 /* TabBar.swift */; };
 		936239DE29286EF200763131 /* TabBarItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DD29286EF200763131 /* TabBarItemID.swift */; };
 		936239E02928773800763131 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DF2928773800763131 /* TabManager.swift */; };
-		936239E229287E6D00763131 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E129287E6D00763131 /* TabBarItem.swift */; };
 		936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E329288A9B00763131 /* TabBarItemRepresentable.swift */; };
 		936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E62928B35900763131 /* SidebarToolbarTop.swift */; };
 		936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E82928B37F00763131 /* SidebarModeSelectModel.swift */; };
@@ -62,10 +60,8 @@
 		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
-		936239DA29286C7900763131 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		936239DD29286EF200763131 /* TabBarItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemID.swift; sourceTree = "<group>"; };
 		936239DF2928773800763131 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		936239E129287E6D00763131 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		936239E329288A9B00763131 /* TabBarItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemRepresentable.swift; sourceTree = "<group>"; };
 		936239E62928B35900763131 /* SidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239E82928B37F00763131 /* SidebarModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarModeSelectModel.swift; sourceTree = "<group>"; };
@@ -149,7 +145,6 @@
 		936239D12928637000763131 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
-				93B8FEF5292DC14E009F470D /* TabBarView */,
 				936239DC29286EA100763131 /* TabBar */,
 				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
 			);
@@ -179,9 +174,8 @@
 		936239DC29286EA100763131 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				936239DA29286C7900763131 /* TabBar.swift */,
+				93B8FEF5292DC14E009F470D /* UI */,
 				936239E329288A9B00763131 /* TabBarItemRepresentable.swift */,
-				936239E129287E6D00763131 /* TabBarItem.swift */,
 				936239DF2928773800763131 /* TabManager.swift */,
 				936239DD29286EF200763131 /* TabBarItemID.swift */,
 			);
@@ -276,14 +270,14 @@
 			path = minimalMacOSAppUITests;
 			sourceTree = "<group>";
 		};
-		93B8FEF5292DC14E009F470D /* TabBarView */ = {
+		93B8FEF5292DC14E009F470D /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				93B8FEF3292DC11D009F470D /* TabBarView.swift */,
 				93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */,
 				93B8FEF6292DC856009F470D /* TabBarItemView.swift */,
 			);
-			path = TabBarView;
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,7 +411,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */,
-				936239DB29286C7900763131 /* TabBar.swift in Sources */,
 				93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */,
 				936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */,
 				930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */,
@@ -430,7 +423,6 @@
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
 				936239D929286A7300763131 /* EffectView.swift in Sources */,
 				93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */,
-				936239E229287E6D00763131 /* TabBarItem.swift in Sources */,
 				936239F42928C39F00763131 /* OutlineView.swift in Sources */,
 				937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */,
 				936239E02928773800763131 /* TabManager.swift in Sources */,
