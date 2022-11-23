@@ -71,7 +71,6 @@ class TabBarView: NSView {
     }
 
     func sizeTabs(animate: Bool = true) {
-        print("Updating size of tabs with animation \(animate)")
         scrollView?.frame = self.frame
         let widthOfTabView = self.frame.width
 
@@ -80,15 +79,6 @@ class TabBarView: NSView {
         var idealWidth: CGFloat = minimumTabWidth
 
         idealWidth = widthOfTabView/CGFloat(numberOfTabs)
-//        if tabManager.selectedTab == nil {
-//            // if no selected tabs
-//            idealWidth = widthOfTabView/CGFloat(numberOfTabs)
-//        } else {
-//            // if has selected tab, size it appropriately.
-//            // we subtract the size of the selected tab to make the tabs have
-//            // a correct-looking size
-//            idealWidth = widthOfTabView-maximumTabWidth/CGFloat(numberOfTabs-1)
-//        }
 
         // pin idealWidth between the minimum and maximum tab sizes
         idealWidth = max(minimumTabWidth, min(idealWidth, maximumTabWidth))
@@ -98,14 +88,12 @@ class TabBarView: NSView {
         for tabView in self.tabViews {
             // make sure that the tab is in the scroll subview
             if tabView.superview != scrollView?.documentView {
-                print("Tab \(tabView.tabRepresentable.tabID) added to scroll view")
                 tabView.removeFromSuperview()
                 scrollView?.documentView?.addSubview(tabView)
             }
 
             // if the tab is marked as dead, animate its width to 0 and remove it
             guard tabView.isAlive else {
-                print("Tab \(tabView.tabRepresentable.tabID) is dead")
                 NSAnimationContext.runAnimationGroup({ context in
                     context.duration = animationDuration
 
@@ -132,14 +120,14 @@ class TabBarView: NSView {
 
             if tabIsFocused {
                 // if its focused, size it to be the maximum size
-                newFrame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth, height: 30)
+                newFrame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth * (tabView.zoomAmount + 1), height: 30)
                 newColor = NSColor.controlAccentColor.cgColor.copy(alpha: 0.5)
-                widthSoFar += maximumTabWidth
+                widthSoFar += maximumTabWidth * (tabView.zoomAmount + 1)
             } else {
                 // if it is not focused, size it to be the ideal size
-                newFrame = NSRect(x: widthSoFar, y: 0, width: idealWidth, height: 30)
+                newFrame = NSRect(x: widthSoFar, y: 0, width: idealWidth * (tabView.zoomAmount + 1), height: 30)
                 newColor = nil
-                widthSoFar += idealWidth
+                widthSoFar += idealWidth * (tabView.zoomAmount + 1)
             }
 
             if animate {

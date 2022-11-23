@@ -228,6 +228,7 @@ class TabBarItemView: NSView {
             zoomAmount = 0
             tabBarView.sizeTabs(animate: true)
         } else {
+            print("Zoom amount: \(gesture.magnification)")
             zoomAmount = gesture.magnification
             tabBarView.sizeTabs(animate: false)
         }
