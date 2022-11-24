@@ -26,24 +26,20 @@ class TabManager: ObservableObject {
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarItemID? = nil) {
         self.openedTabs = disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
-        self.openedTabIDs = openedTabs.map({ $0.tabID })
     }
 
     @Published var openedTabs: [TabBarItemRepresentable] {
         didSet {
             if disableTabs && !openedTabs.isEmpty {
                 self.openedTabs = []
-            } else {
-                openedTabIDs = openedTabs.map({ $0.tabID })
             }
         }
     }
-    @Published private(set) var openedTabIDs: [TabBarItemID] = []
 
     @Published var selectedTab: TabBarItemID?
-    var selectedTabItem: TabBarItemRepresentable? {
-        get { tabForID(id: selectedTab) }
-        set { selectedTab = newValue?.tabID }
+
+    func selectedTabItem() -> TabBarItemRepresentable? {
+        return tabForID(id: selectedTab)
     }
 
     func tabForID(id: TabBarItemID?) -> TabBarItemRepresentable? {
@@ -66,7 +62,7 @@ class TabManager: ObservableObject {
         if refocus && id == selectedTab,
            let firstIndex = openedTabs.firstIndex(where: { $0.tabID == id }) {
             let index = (firstIndex + 1) % openedTabs.count
-            selectedTab = openedTabIDs[index]
+            selectedTab = openedTabs[index].tabID
         } else {
             selectedTab = nil
         }

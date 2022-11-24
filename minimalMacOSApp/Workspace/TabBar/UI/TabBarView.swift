@@ -43,7 +43,7 @@ class TabBarView: NSView {
     func updateTabs() {
         // iterate over tabs and mark those that don't exist anymore as dead
         for tabView in tabViews {
-            if !tabManager.openedTabIDs.contains(tabView.tabRepresentable.tabID) {
+            if !tabManager.openedTabs.contains(where: { $0.tabID == tabView.tabRepresentable.tabID }) {
                 tabView.isAlive = false
             }
         }
