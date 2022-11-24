@@ -22,12 +22,65 @@ class MainWindowController: NSWindowController {
         self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         setupSplitView()
         setupToolbar()
+
+        // set up the items
+        NavigatorModeSelectModel.shared.icons = navigatorItems
+        InspectorModeSelectModel.shared.icons = inspectorItems
+    }
+
+    var navigatorItems: [SidebarDockIcon] = [
+        .init(imageName: "1.circle", title: "One", id: 0),
+        .init(imageName: "2.circle", title: "Two", id: 1),
+        .init(imageName: "3.circle", title: "Three", id: 2),
+        .init(imageName: "4.circle", title: "Four", id: 3),
+        .init(imageName: "5.circle", title: "Five", id: 4)
+    ]
+
+    var inspectorItems: [SidebarDockIcon] = [
+        .init(imageName: "1.circle", title: "One", id: 0),
+        .init(imageName: "2.circle", title: "Two", id: 1),
+        .init(imageName: "3.circle", title: "Three", id: 2),
+        .init(imageName: "4.circle", title: "Four", id: 3),
+        .init(imageName: "5.circle", title: "Five", id: 4)
+    ]
+
+    @ViewBuilder
+    func viewForNavigationSidebar(selection: Int) -> some View {
+        switch selection {
+        case 0:
+            OutlineView { _ in
+                TestOutlineViewController()
+            }
+        default:
+            VStack(alignment: .center) {
+                HStack {
+                    Spacer()
+                    Text("Needs Implementation")
+                    Spacer()
+                }
+            }
+            .frame(maxHeight: .infinity)
+        }
+    }
+
+    @ViewBuilder
+    func viewForInspectorSidebar(selection: Int) -> some View {
+        VStack(alignment: .center) {
+            HStack {
+                Spacer()
+                Text("Needs Implementation")
+                Spacer()
+            }
+        }
+        .frame(maxHeight: .infinity)
     }
 
     private func setupSplitView() {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar()
+        let navigatorView = NavigatorSidebar(viewForSelection: { selection in
+            self.viewForNavigationSidebar(selection: selection)
+        })
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -44,7 +97,9 @@ class MainWindowController: NSWindowController {
         mainContent.canCollapse = false
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar()
+        let inspectorView = InspectorSidebar(viewForSelection: { selection in
+            self.viewForInspectorSidebar(selection: selection)
+        })
         let inspector = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: inspectorView)
         )

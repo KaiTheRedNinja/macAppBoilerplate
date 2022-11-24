@@ -11,13 +11,7 @@ final class InspectorModeSelectModel: SidebarModeSelectModel {
 
     static var shared: InspectorModeSelectModel = .init()
 
-    var icons: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
+    var icons: [SidebarDockIcon] = []
 
     func makeIcon(named: String, title: String) -> some View {
         getSafeImage(named: named, accesibilityDescription: title)

@@ -7,24 +7,20 @@
 
 import SwiftUI
 
-struct InspectorSidebar: View {
+struct InspectorSidebar<Content: View>: View {
 
     @State
     public var selection: Int = 0
 
+    init(@ViewBuilder viewForSelection: @escaping (Int) -> Content) {
+        self.viewForSelection = viewForSelection
+    }
+
+    var viewForSelection: (Int) -> Content
+
     var body: some View {
         VStack {
-            switch selection {
-            default:
-                VStack(alignment: .center) {
-                    HStack {
-                        Spacer()
-                        Text("Needs Implementation")
-                        Spacer()
-                    }
-                }
-                .frame(maxHeight: .infinity)
-            }
+            viewForSelection(selection)
         }
         .safeAreaInset(edge: .top) {
             InspectorSidebarToolbarTop(selection: $selection)
@@ -35,6 +31,8 @@ struct InspectorSidebar: View {
 
 struct InspectorSidebar_Previews: PreviewProvider {
     static var previews: some View {
-        InspectorSidebar()
+        InspectorSidebar(viewForSelection: { _ in
+            Text("HII")
+        })
     }
 }

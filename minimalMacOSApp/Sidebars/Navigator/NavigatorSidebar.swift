@@ -7,28 +7,20 @@
 
 import SwiftUI
 
-struct NavigatorSidebar: View {
+struct NavigatorSidebar<Content: View>: View {
 
     @State
     public var selection: Int = 0
 
+    init(@ViewBuilder viewForSelection: @escaping (Int) -> Content) {
+        self.viewForSelection = viewForSelection
+    }
+
+    var viewForSelection: (Int) -> Content
+
     var body: some View {
         VStack {
-            switch selection {
-            case 0:
-                OutlineView { _ in
-                    TestOutlineViewController()
-                }
-            default:
-                VStack(alignment: .center) {
-                    HStack {
-                        Spacer()
-                        Text("Needs Implementation")
-                        Spacer()
-                    }
-                }
-                .frame(maxHeight: .infinity)
-            }
+            viewForSelection(selection)
         }
         .safeAreaInset(edge: .top) {
             NavigatorSidebarToolbarTop(selection: $selection)
@@ -39,6 +31,8 @@ struct NavigatorSidebar: View {
 
 struct NavigatorSidebar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigatorSidebar()
+        NavigatorSidebar(viewForSelection: { _ in
+            Text("HIII")
+        })
     }
 }
