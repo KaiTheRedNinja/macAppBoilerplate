@@ -75,6 +75,32 @@ class MainWindowController: NSWindowController {
         .frame(maxHeight: .infinity)
     }
 
+    @ViewBuilder
+    func viewForWorkspace(tab: TabBarID) -> some View {
+        if let tab = tab as? TestTabBarID {
+            switch tab {
+            case .test(let string):
+                VStack(alignment: .center) {
+                    HStack {
+                        Spacer()
+                        Text("Test: \(string)")
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        } else {
+            VStack(alignment: .center) {
+                HStack {
+                    Spacer()
+                    Text("Wrong Format")
+                    Spacer()
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
     private func setupSplitView() {
         let splitVC = NSSplitViewController()
 
@@ -89,7 +115,9 @@ class MainWindowController: NSWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView()
+        let workspaceView = WorkspaceView(viewForTab: { tab in
+            self.viewForWorkspace(tab: tab)
+        })
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )

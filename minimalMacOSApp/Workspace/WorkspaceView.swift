@@ -7,25 +7,21 @@
 
 import SwiftUI
 
-struct WorkspaceView: View {
+struct WorkspaceView<Content: View>: View {
 
     @StateObject
     var tabManager: TabManager = .shared
 
+    init(@ViewBuilder viewForTab: @escaping (TabBarID) -> Content) {
+        self.viewForTab = viewForTab
+    }
+
+    var viewForTab: (TabBarID) -> Content
+
     var body: some View {
         ZStack {
             if let tabID = tabManager.selectedTab as? TestTabBarID {
-                switch tabID {
-                case .test(let string):
-                    VStack(alignment: .center) {
-                        HStack {
-                            Spacer()
-                            Text("Test: \(string)")
-                            Spacer()
-                        }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+                self.viewForTab(tabID)
             } else {
                 VStack(alignment: .center) {
                     HStack {
@@ -57,6 +53,6 @@ struct WorkspaceView: View {
 
 struct WorkspaceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkspaceView()
+        WorkspaceView(viewForTab: { _ in Text("HIII") })
     }
 }
