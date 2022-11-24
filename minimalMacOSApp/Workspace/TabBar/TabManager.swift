@@ -11,17 +11,7 @@ import SwiftUI
 let disableTabs: Bool = false
 
 class TabManager: ObservableObject {
-    static let shared: TabManager = .init(openedTabs: [
-        TestElement("hi"),
-        TestElement("TEST"),
-        TestElement("BOOO"),
-        TestElement("HELLOOOO"),
-        TestElement("im so tired"),
-        TestElement("im so tired2"),
-        TestElement("im so tired3"),
-        TestElement("im so tired4"),
-        TestElement("this is just a really really long title like how does this even exist")
-    ])
+    static let shared: TabManager = .init()
 
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
         self.openedTabs = disableTabs ? [] : openedTabs
