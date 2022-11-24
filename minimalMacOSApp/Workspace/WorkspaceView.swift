@@ -20,7 +20,7 @@ struct WorkspaceView<Content: View>: View {
 
     var body: some View {
         ZStack {
-            if let tabID = tabManager.selectedTab as? TestTabBarID {
+            if let tabID = tabManager.selectedTab {
                 self.viewForTab(tabID)
             } else {
                 VStack(alignment: .center) {
