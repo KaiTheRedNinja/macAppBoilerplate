@@ -14,7 +14,7 @@ struct WorkspaceView: View {
 
     var body: some View {
         ZStack {
-            if let tabID = tabManager.selectedTab {
+            if let tabID = tabManager.selectedTab as? TestTabBarID {
                 switch tabID {
                 case .test(let string):
                     VStack(alignment: .center) {

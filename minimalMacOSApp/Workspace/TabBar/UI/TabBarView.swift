@@ -43,7 +43,7 @@ class TabBarView: NSView {
     func updateTabs() {
         // iterate over tabs and mark those that don't exist anymore as dead
         for tabView in tabViews {
-            if !tabManager.openedTabs.contains(where: { $0.tabID == tabView.tabRepresentable.tabID }) {
+            if !tabManager.openedTabs.contains(where: { $0.tabID.id == tabView.tabRepresentable.tabID.id }) {
                 tabView.isAlive = false
             }
         }
@@ -51,7 +51,7 @@ class TabBarView: NSView {
         // iterate over tabs and create new ones as needed
         var newTabs = tabViews
         for (index, tab) in tabManager.openedTabs.enumerated() {
-            if !tabViews.map({ $0.tabRepresentable.tabID }).contains(tab.tabID) {
+            if !tabViews.contains(where: { $0.tabRepresentable.tabID.id == tab.tabID.id }) {
                 let newItem = TabBarItemView()
                 newItem.tabBarView = self
                 newItem.tabRepresentable = tab
@@ -104,14 +104,15 @@ class TabBarView: NSView {
                 }) {
                     // on completion, remove the tab view
                     tabView.removeFromSuperview()
-                    self.tabViews.removeAll(where: { $0.tabRepresentable.tabID == tabView.tabRepresentable.tabID })
+                    self.tabViews.removeAll(where: { $0.tabRepresentable.tabID.id ==
+                        tabView.tabRepresentable.tabID.id })
                 }
                 // no need to increment widthSoFar as the tab will have no width
                 continue
             }
 
             // size the tab to the ideal width
-            let tabIsFocused = tabManager.selectedTab == tabView.tabRepresentable.tabID
+            let tabIsFocused = tabManager.selectedTab?.id == tabView.tabRepresentable.tabID.id
             tabView.manageDividers()
 
             var newFrame = tabView.frame
@@ -202,8 +203,10 @@ class TabBarView: NSView {
             // reorder the tabs in tabManager to match tab bar
             tabManager.openedTabs = tabManager.openedTabs.sorted { firstTab, secondTab in
                 // find the first instance of each tab
-                let firstLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == firstTab.tabID }) ?? -1
-                let secondLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID == secondTab.tabID }) ?? -1
+                let firstLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID.id ==
+                    firstTab.tabID.id }) ?? -1
+                let secondLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID.id ==
+                    secondTab.tabID.id }) ?? -1
                 return firstLocation < secondLocation
             }
         }

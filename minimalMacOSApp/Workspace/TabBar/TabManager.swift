@@ -23,7 +23,7 @@ class TabManager: ObservableObject {
         TestElement("this is just a really really long title like how does this even exist")
     ])
 
-    private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarItemID? = nil) {
+    private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
         self.openedTabs = disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
     }
@@ -36,31 +36,27 @@ class TabManager: ObservableObject {
         }
     }
 
-    @Published var selectedTab: TabBarItemID?
+    @Published var selectedTab: TabBarID?
 
     func selectedTabItem() -> TabBarItemRepresentable? {
         return tabForID(id: selectedTab)
     }
 
-    func tabForID(id: TabBarItemID?) -> TabBarItemRepresentable? {
+    func tabForID(id: TabBarID?) -> TabBarItemRepresentable? {
         guard let id else { return nil }
-
-        switch id {
-        case .test(_):
-            return openedTabs.first(where: { $0.tabID == id })
-        }
+        return openedTabs.first(where: { $0.tabID.id == id.id })
     }
 
-    public func closeTab(id: TabBarItemID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
+    public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
-        if disableTabs && id == selectedTab {
+        if disableTabs && id.id == selectedTab?.id {
             selectedTab = nil
             return
         }
 
-        if refocus && id == selectedTab,
-           let firstIndex = openedTabs.firstIndex(where: { $0.tabID == id }) {
+        if refocus && id.id == selectedTab?.id,
+           let firstIndex = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
             let index = (firstIndex + 1) % openedTabs.count
             selectedTab = openedTabs[index].tabID
         } else {
@@ -68,19 +64,19 @@ class TabManager: ObservableObject {
         }
 
         if removeAllOccurences {
-            openedTabs.removeAll(where: { $0.tabID == id })
-        } else if let index = openedTabs.firstIndex(where: { $0.tabID == id }) {
+            openedTabs.removeAll(where: { $0.tabID.id == id.id })
+        } else if let index = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
             openedTabs.remove(at: index)
         }
     }
 
     public func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
-        if (openedTabs.contains(where: { $0.tabID == tab.tabID }) && focus) || disableTabs {
+        if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || disableTabs {
             selectedTab = tab.tabID
             return
         }
 
-        if let origin, let originIndex = openedTabs.firstIndex(where: { $0.tabID == origin.tabID }) {
+        if let origin, let originIndex = openedTabs.firstIndex(where: { $0.tabID.id == origin.tabID.id }) {
             openedTabs.insert(tab, at: originIndex+1)
         } else {
             openedTabs.append(tab)

@@ -51,7 +51,7 @@ class TestOutlineViewController: OutlineViewController {
 class TestElement: OutlineElement, TabBarItemRepresentable {
 
     // MARK: TabBarItemRepresentable
-    var tabID: TabBarItemID
+    var tabID: TabBarID
     var title: String
     var icon: NSImage
     var iconColor: Color
@@ -71,7 +71,7 @@ class TestElement: OutlineElement, TabBarItemRepresentable {
         self.children = children
         self.expandable = !children.isEmpty
 
-        self.tabID = .test(text)
+        self.tabID = TestTabBarID.test(text)
         self.title = text
         self.icon = NSImage(systemSymbolName: "circle", accessibilityDescription: nil)!
         self.iconColor = .accentColor

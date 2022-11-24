@@ -72,8 +72,8 @@ class TabBarItemView: NSView {
         // get the location of the tab. If it is the first or last, disable the appropriate divider
         // if the tab is to the left/right of the current tab, then hide the appropriate divider too
         let selectedTabIndex = tabManager.selectedTab == nil ? nil :
-            tabManager.openedTabs.firstIndex(where: { $0.tabID == tabManager.selectedTab! })
-        let thisItemTabIndex = tabManager.openedTabs.firstIndex(where: { $0.tabID ==  tabRepresentable.tabID })
+        tabManager.openedTabs.firstIndex(where: { $0.tabID.id == tabManager.selectedTab!.id })
+        let thisItemTabIndex = tabManager.openedTabs.firstIndex(where: { $0.tabID.id ==  tabRepresentable.tabID.id })
         if thisItemTabIndex == 0 || thisItemTabIndex == (selectedTabIndex ?? -10) + 1 {
             leftAlphaValue = 0
         }

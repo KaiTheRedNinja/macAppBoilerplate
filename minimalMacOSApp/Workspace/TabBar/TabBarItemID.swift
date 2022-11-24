@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-public enum TabBarItemID: Identifiable, Hashable {
-    public var id: String {
-        switch self {
-        case .test(let string):
-            return "_test_\(string)"
-        }
-    }
+public protocol TabBarID {
+    var id: String { get }
+}
 
-    case test(String)
+extension TabBarID {
+    static func == (lhs: TabBarID, rhs: TabBarID) -> Bool {
+        lhs.id == rhs.id
+    }
 }

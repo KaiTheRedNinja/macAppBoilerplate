@@ -35,6 +35,7 @@
 		93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF3292DC11D009F470D /* TabBarView.swift */; };
 		93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF6292DC856009F470D /* TabBarItemView.swift */; };
 		93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */; };
+		93EABBFE292F6499009053D9 /* TestTabBarID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EABBFD292F6499009053D9 /* TestTabBarID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		93B8FEF3292DC11D009F470D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		93B8FEF6292DC856009F470D /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewRepresentable.swift; sourceTree = "<group>"; };
+		93EABBFD292F6499009053D9 /* TestTabBarID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTabBarID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +159,6 @@
 				937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */,
 				936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */,
 				936239D52928645B00763131 /* NavigatorModeSelectModel.swift */,
-				936239F52928C47E00763131 /* TestOutlineViewController.swift */,
-				93A19AFD29290626002B170A /* TestTableViewCell.swift */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
@@ -243,6 +243,7 @@
 		937BDF162927C7E600F99805 /* minimalMacOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				93EABBFC292F6418009053D9 /* TestClasses */,
 				937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */,
 				936239CE2928634100763131 /* Application */,
 				936239CF2928635900763131 /* Window */,
@@ -278,6 +279,16 @@
 				93B8FEF6292DC856009F470D /* TabBarItemView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		93EABBFC292F6418009053D9 /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				936239F52928C47E00763131 /* TestOutlineViewController.swift */,
+				93A19AFD29290626002B170A /* TestTableViewCell.swift */,
+				93EABBFD292F6499009053D9 /* TestTabBarID.swift */,
+			);
+			path = TestClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +443,7 @@
 				936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */,
 				936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */,
 				936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */,
+				93EABBFE292F6499009053D9 /* TestTabBarID.swift in Sources */,
 				937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

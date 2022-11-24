@@ -10,7 +10,7 @@ import SwiftUI
 /// Protocol for data passed to TabBarItem to conform to
 public protocol TabBarItemRepresentable {
     /// Unique tab identifier
-    var tabID: TabBarItemID { get }
+    var tabID: TabBarID { get }
     /// String to be shown as tab's title
     var title: String { get }
     /// Image to be shown as tab's icon
