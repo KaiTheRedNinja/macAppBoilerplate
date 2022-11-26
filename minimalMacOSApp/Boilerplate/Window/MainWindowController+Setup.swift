@@ -1,14 +1,13 @@
 //
-//  MainWindowController.swift
+//  MainWindowController+Setup.swift
 //  minimalMacOSApp
 //
-//  Created by Kai Quan Tay on 18/11/22.
+//  Created by Kai Quan Tay on 26/11/22.
 //
 
-import Cocoa
 import SwiftUI
 
-class MainWindowController: NSWindowController {
+extension MainWindowController {
 
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
@@ -28,77 +27,16 @@ class MainWindowController: NSWindowController {
         InspectorModeSelectModel.shared.icons = inspectorItems
     }
 
-    var navigatorItems: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
-
-    var inspectorItems: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
-
-    @ViewBuilder
-    func viewForNavigationSidebar(selection: Int) -> some View {
-        switch selection {
-        case 0:
-            OutlineView { _ in
-                TestOutlineViewController()
-            }
-        default:
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("Needs Implementation")
-                    Spacer()
-                }
-            }
-            .frame(maxHeight: .infinity)
-        }
-    }
-
-    @ViewBuilder
-    func viewForInspectorSidebar(selection: Int) -> some View {
-        VStack(alignment: .center) {
-            HStack {
-                Spacer()
-                Text("Needs Implementation")
-                Spacer()
-            }
-        }
-        .frame(maxHeight: .infinity)
-    }
-
-    @ViewBuilder
-    func viewForWorkspace(tab: TabBarID) -> some View {
-        if let tab = tab as? TestTabBarID {
-            switch tab {
-            case .test(let string):
-                VStack(alignment: .center) {
-                    HStack {
-                        Spacer()
-                        Text("Test: \(string)")
-                        Spacer()
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-        } else {
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("Wrong Format")
-                    Spacer()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+    private func setupToolbar() {
+        let toolbar = NSToolbar(identifier: UUID().uuidString)
+        toolbar.delegate = self
+        toolbar.displayMode = .labelOnly
+        toolbar.showsBaselineSeparator = false
+        self.window?.titleVisibility = .hidden
+        self.window?.toolbarStyle = .unifiedCompact
+        self.window?.titlebarAppearsTransparent = false
+        self.window?.titlebarSeparatorStyle = .automatic
+        self.window?.toolbar = toolbar
     }
 
     private func setupSplitView() {
@@ -138,43 +76,8 @@ class MainWindowController: NSWindowController {
 
         self.splitViewController = splitVC
     }
-}
 
-extension MainWindowController: NSToolbarDelegate {
-    func setupToolbar() {
-        let toolbar = NSToolbar(identifier: UUID().uuidString)
-        toolbar.delegate = self
-        toolbar.displayMode = .labelOnly
-        toolbar.showsBaselineSeparator = false
-        self.window?.titleVisibility = .hidden
-        self.window?.toolbarStyle = .unifiedCompact
-        self.window?.titlebarAppearsTransparent = false
-        self.window?.titlebarSeparatorStyle = .automatic
-        self.window?.toolbar = toolbar
-    }
-
-    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        [
-            .toggleFirstSidebarItem,
-            .sidebarTrackingSeparator,
-            .flexibleSpace,
-            .itemListTrackingSeparator,
-            .flexibleSpace,
-            .toggleLastSidebarItem
-        ]
-    }
-
-    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        [
-            .toggleFirstSidebarItem,
-            .flexibleSpace,
-            .itemListTrackingSeparator,
-            .toggleLastSidebarItem
-        ]
-    }
-
-    // swiftlint:disable:next function_body_length
-    func toolbar(
+    func builtinDefaultToolbar(
         _ toolbar: NSToolbar,
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
         willBeInsertedIntoToolbar flag: Bool
@@ -219,7 +122,7 @@ extension MainWindowController: NSToolbarDelegate {
 
             return toolbarItem
         default:
-            return NSToolbarItem(itemIdentifier: itemIdentifier)
+            return nil
         }
     }
 
@@ -236,8 +139,8 @@ extension MainWindowController: NSToolbarDelegate {
 
         let itemCount = toolbar.items.count
         if lastSplitView.isCollapsed {
-           toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
-           toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
+            toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
+            toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
         } else {
             toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
@@ -248,6 +151,21 @@ extension MainWindowController: NSToolbarDelegate {
                 at: itemCount-0 // insert it as "last" (actually second last now)
             )
         }
+    }
+
+    func defaultLeadingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        [
+            .toggleFirstSidebarItem,
+            .sidebarTrackingSeparator
+        ]
+    }
+
+    func defaultTrailingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        [
+            .itemListTrackingSeparator,
+            .flexibleSpace,
+            .toggleLastSidebarItem
+        ]
     }
 }
 
@@ -260,11 +178,3 @@ private extension NSToolbarItem.Identifier {
     //    static let runApplication = NSToolbarItem.Identifier("RunApplication")
     //    static let toolbarAppInformation = NSToolbarItem.Identifier("ToolbarAppInformation")
 }
-
-//[
-//    <NSToolbarItem: 0x6000002acb00> identifier = "ToggleFirstSidebarItem",
-//    <NSTrackingSeparatorToolbarItem: 0x6000000b9a40> identifier = "NSToolbarSidebarTrackingSeparatorItemIdentifier" identifier = "NSToolbarSidebarTrackingSeparatorItemIdentifier" splitView = 0x153051ba0 dividerIndex = 0,
-//    <NSToolbarFlexibleSpaceItem: 0x6000002ac6e0> identifier = "NSToolbarFlexibleSpaceItem",
-//    <NSTrackingSeparatorToolbarItem: 0x6000000b9b00> identifier = "ItemListTrackingSeparator" identifier = "ItemListTrackingSeparator" splitView = 0x153051ba0 dividerIndex = 1,
-//    <NSToolbarItem: 0x6000002acbb0> identifier = "ToggleLastSidebarItem"
-//]
