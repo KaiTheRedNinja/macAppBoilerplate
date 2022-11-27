@@ -10,21 +10,8 @@ import SwiftUI
 
 class MainWindowController: NSWindowController, NSToolbarDelegate {
 
-    var navigatorItems: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
-
-    var inspectorItems: [SidebarDockIcon] = [
-        .init(imageName: "1.circle", title: "One", id: 0),
-        .init(imageName: "2.circle", title: "Two", id: 1),
-        .init(imageName: "3.circle", title: "Three", id: 2),
-        .init(imageName: "4.circle", title: "Four", id: 3),
-        .init(imageName: "5.circle", title: "Five", id: 4)
-    ]
+    var navigatorProtocol: some NavigatorProtocol = DefaultNavigatorProtocol()
+    var inspectorProtocol: some InspectorProtocol = DefaultInspectorProtocol()
 
     @ViewBuilder
     func viewForNavigationSidebar(selection: Int) -> some View {
@@ -34,27 +21,17 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
                 TestOutlineViewController()
             }
         default:
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("Needs Implementation")
-                    Spacer()
-                }
+            SidebarContainer {
+                Text("Needs Implementation")
             }
-            .frame(maxHeight: .infinity)
         }
     }
 
     @ViewBuilder
     func viewForInspectorSidebar(selection: Int) -> some View {
-        VStack(alignment: .center) {
-            HStack {
-                Spacer()
-                Text("Needs Implementation")
-                Spacer()
-            }
+        SidebarContainer {
+            Text("Needs Implementation")
         }
-        .frame(maxHeight: .infinity)
     }
 
     @ViewBuilder

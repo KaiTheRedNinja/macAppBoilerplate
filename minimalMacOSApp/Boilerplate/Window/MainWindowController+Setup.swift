@@ -23,8 +23,8 @@ extension MainWindowController {
         setupToolbar()
 
         // set up the items
-        NavigatorModeSelectModel.shared.icons = navigatorItems
-        InspectorModeSelectModel.shared.icons = inspectorItems
+        NavigatorModeSelectModel.shared.icons = navigatorProtocol.navigatorItems
+        InspectorModeSelectModel.shared.icons = inspectorProtocol.inspectorItems
     }
 
     private func setupToolbar() {
@@ -43,7 +43,7 @@ extension MainWindowController {
         let splitVC = NSSplitViewController()
 
         let navigatorView = NavigatorSidebar(viewForSelection: { selection in
-            self.viewForNavigationSidebar(selection: selection)
+            self.navigatorProtocol.viewForNavigationSidebar(selection: selection)
         })
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
@@ -64,7 +64,7 @@ extension MainWindowController {
         splitVC.addSplitViewItem(mainContent)
 
         let inspectorView = InspectorSidebar(viewForSelection: { selection in
-            self.viewForInspectorSidebar(selection: selection)
+            self.inspectorProtocol.viewForInspectorSidebar(selection: selection)
         })
         let inspector = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: inspectorView)

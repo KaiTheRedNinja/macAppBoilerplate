@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */; };
 		930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */; };
+		9311E27C2933943C00099594 /* NavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27B2933943C00099594 /* NavigatorProtocol.swift */; };
+		9311E27E2933949500099594 /* InspectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27D2933949500099594 /* InspectorProtocol.swift */; };
+		9311E2822933978200099594 /* SidebarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E2812933978200099594 /* SidebarContainer.swift */; };
 		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
 		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
 		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
@@ -59,6 +62,9 @@
 /* Begin PBXFileReference section */
 		930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorModeSelectModel.swift; sourceTree = "<group>"; };
+		9311E27B2933943C00099594 /* NavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorProtocol.swift; sourceTree = "<group>"; };
+		9311E27D2933949500099594 /* InspectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorProtocol.swift; sourceTree = "<group>"; };
+		9311E2812933978200099594 /* SidebarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarContainer.swift; sourceTree = "<group>"; };
 		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
@@ -118,6 +124,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9311E27A2933942300099594 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				937BDF422927CA1000F99805 /* MainWindowController.swift */,
+				9311E27B2933943C00099594 /* NavigatorProtocol.swift */,
+				9311E27D2933949500099594 /* InspectorProtocol.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		936239CE2928634100763131 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				936239D829286A7300763131 /* EffectView.swift */,
+				9311E2812933978200099594 /* SidebarContainer.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -246,7 +263,6 @@
 		937BDF162927C7E600F99805 /* minimalMacOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				937BDF422927CA1000F99805 /* MainWindowController.swift */,
 				93DD337A2931F1770044F71A /* Boilerplate */,
 				93EABBFC292F6418009053D9 /* TestClasses */,
 				936239CE2928634100763131 /* Application */,
@@ -284,6 +300,7 @@
 		93DD337A2931F1770044F71A /* Boilerplate */ = {
 			isa = PBXGroup;
 			children = (
+				9311E27A2933942300099594 /* Interface */,
 				936239CF2928635900763131 /* Window */,
 				936239E52928B31700763131 /* Sidebars */,
 				936239D12928637000763131 /* Workspace */,
@@ -434,9 +451,11 @@
 			files = (
 				936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */,
 				93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */,
+				9311E2822933978200099594 /* SidebarContainer.swift in Sources */,
 				936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */,
 				930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */,
 				936239DE29286EF200763131 /* TabBarItemID.swift in Sources */,
+				9311E27C2933943C00099594 /* NavigatorProtocol.swift in Sources */,
 				936239F02928B98900763131 /* OutlineViewController.swift in Sources */,
 				930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
@@ -451,6 +470,7 @@
 				936239EE2928B8E200763131 /* StandardTableViewCell.swift in Sources */,
 				936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */,
+				9311E27E2933949500099594 /* InspectorProtocol.swift in Sources */,
 				936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */,
 				936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */,
 				936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */,
