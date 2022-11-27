@@ -12,53 +12,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
 
     var navigatorProtocol: some NavigatorProtocol = DefaultNavigatorProtocol()
     var inspectorProtocol: some InspectorProtocol = DefaultInspectorProtocol()
-
-    @ViewBuilder
-    func viewForNavigationSidebar(selection: Int) -> some View {
-        switch selection {
-        case 0:
-            OutlineView { _ in
-                TestOutlineViewController()
-            }
-        default:
-            SidebarContainer {
-                Text("Needs Implementation")
-            }
-        }
-    }
-
-    @ViewBuilder
-    func viewForInspectorSidebar(selection: Int) -> some View {
-        SidebarContainer {
-            Text("Needs Implementation")
-        }
-    }
-
-    @ViewBuilder
-    func viewForWorkspace(tab: TabBarID) -> some View {
-        if let tab = tab as? TestTabBarID {
-            switch tab {
-            case .test(let string):
-                VStack(alignment: .center) {
-                    HStack {
-                        Spacer()
-                        Text("Test: \(string)")
-                        Spacer()
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-        } else {
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("Wrong Format")
-                    Spacer()
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-    }
+    var workspaceProtocol: some WorkspaceProtocol = DefaultWorkspaceProtocol()
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []

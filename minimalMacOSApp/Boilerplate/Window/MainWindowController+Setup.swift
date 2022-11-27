@@ -54,7 +54,7 @@ extension MainWindowController {
         splitVC.addSplitViewItem(navigator)
 
         let workspaceView = WorkspaceView(viewForTab: { tab in
-            self.viewForWorkspace(tab: tab)
+            self.workspaceProtocol.viewForWorkspace(tab: tab)
         })
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)

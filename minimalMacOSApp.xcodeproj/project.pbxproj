@@ -12,6 +12,7 @@
 		9311E27C2933943C00099594 /* NavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27B2933943C00099594 /* NavigatorProtocol.swift */; };
 		9311E27E2933949500099594 /* InspectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27D2933949500099594 /* InspectorProtocol.swift */; };
 		9311E2822933978200099594 /* SidebarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E2812933978200099594 /* SidebarContainer.swift */; };
+		9311E28429339ABA00099594 /* WorkspaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E28329339ABA00099594 /* WorkspaceProtocol.swift */; };
 		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
 		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
 		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
@@ -65,6 +66,7 @@
 		9311E27B2933943C00099594 /* NavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorProtocol.swift; sourceTree = "<group>"; };
 		9311E27D2933949500099594 /* InspectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorProtocol.swift; sourceTree = "<group>"; };
 		9311E2812933978200099594 /* SidebarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarContainer.swift; sourceTree = "<group>"; };
+		9311E28329339ABA00099594 /* WorkspaceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceProtocol.swift; sourceTree = "<group>"; };
 		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
 		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
 		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				937BDF422927CA1000F99805 /* MainWindowController.swift */,
 				9311E27B2933943C00099594 /* NavigatorProtocol.swift */,
 				9311E27D2933949500099594 /* InspectorProtocol.swift */,
+				9311E28329339ABA00099594 /* WorkspaceProtocol.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
 				93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */,
 				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
+				9311E28429339ABA00099594 /* WorkspaceProtocol.swift in Sources */,
 				936239D929286A7300763131 /* EffectView.swift in Sources */,
 				93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */,
 				936239F42928C39F00763131 /* OutlineView.swift in Sources */,
