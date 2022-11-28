@@ -55,9 +55,9 @@ extension MainWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(tabManager: self.tabManager, viewForTab: { tab in
+        let workspaceView = WorkspaceView(viewForTab: { tab in
             self.workspaceProtocol.viewForWorkspace(tab: tab)
-        })
+        }).environmentObject(tabManager)
         let mainContent = NSSplitViewItem(
             viewController: NSHostingController(rootView: workspaceView)
         )

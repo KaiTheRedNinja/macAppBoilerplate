@@ -12,8 +12,6 @@ import SwiftUI
 
 /// Manages tab state, including open tabs, and manipulating tabs
 public final class TabManager: ObservableObject {
-    /// Default instance. ONLY TO BE USED IN PREVIEWS
-    public static var `default`: TabManager { TabManager() }
 
     /// Data source
     var dataSource: any TabBarProtocol { didSet {

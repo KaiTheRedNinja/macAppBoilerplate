@@ -10,11 +10,10 @@ import SwiftUI
 /// The main workspace content
 struct WorkspaceView<Content: View>: View {
 
-    @ObservedObject
+    @EnvironmentObject
     var tabManager: TabManager
 
-    init(tabManager: TabManager, @ViewBuilder viewForTab: @escaping (TabBarID) -> Content) {
-        self.tabManager = tabManager
+    init(@ViewBuilder viewForTab: @escaping (TabBarID) -> Content) {
         self.viewForTab = viewForTab
     }
 
@@ -44,7 +43,7 @@ struct WorkspaceView<Content: View>: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             if tabManager.openedTabs.count > 0 && !tabManager.dataSource.disableTabs {
                 VStack(spacing: 0) {
-                    TabBarViewRepresentable(tabManager: tabManager)
+                    TabBarViewRepresentable()
                         .frame(height: tabManager.dataSource.tabBarViewHeight)
                     Divider().foregroundColor(.secondary)
                 }
@@ -55,6 +54,6 @@ struct WorkspaceView<Content: View>: View {
 
 struct WorkspaceView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkspaceView(tabManager: TabManager.default, viewForTab: { _ in Text("HIII") })
+        WorkspaceView(viewForTab: { _ in Text("HIII") })
     }
 }
