@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import macAppBoilerplate
 
 class TestWindowController: MainWindowController {
     override func getNavigatorProtocol() -> any NavigatorProtocol {

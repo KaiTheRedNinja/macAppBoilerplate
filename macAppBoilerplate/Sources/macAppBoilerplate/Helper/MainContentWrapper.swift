@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-func MainContentWrapper(_ wrapping: @escaping () -> some View) -> AnyView {
+public func MainContentWrapper(_ wrapping: @escaping () -> some View) -> AnyView {
     return AnyView {
         MainContentContainer {
             wrapping()

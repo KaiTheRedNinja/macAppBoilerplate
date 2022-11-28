@@ -184,7 +184,7 @@ class TabBarItemView: NSView {
         }
     }
 
-    public override func updateTrackingAreas() {
+    open override func updateTrackingAreas() {
         mouseHovering = false
         removeTrackingArea(area)
         area = makeTrackingArea()
@@ -196,11 +196,11 @@ class TabBarItemView: NSView {
                               options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
     }
 
-    public override func mouseEntered(with event: NSEvent) {
+    open override func mouseEntered(with event: NSEvent) {
         mouseHovering = true
     }
 
-    public override func mouseExited(with event: NSEvent) {
+    open override func mouseExited(with event: NSEvent) {
         mouseHovering = false
     }
 

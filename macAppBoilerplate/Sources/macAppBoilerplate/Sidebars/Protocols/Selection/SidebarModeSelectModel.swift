@@ -33,8 +33,14 @@ extension SidebarModeSelectModel {
     }
 }
 
-struct SidebarDockIcon: Identifiable, Equatable {
-    let imageName: String
-    let title: String
-    var id: Int
+public struct SidebarDockIcon: Identifiable, Equatable {
+    public let imageName: String
+    public let title: String
+    public var id: Int
+
+    public init(imageName: String, title: String, id: Int) {
+        self.imageName = imageName
+        self.title = title
+        self.id = id
+    }
 }

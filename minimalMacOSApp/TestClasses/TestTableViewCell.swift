@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import macAppBoilerplate
 
 class TestTableViewCell: StandardTableViewCell {
 

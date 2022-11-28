@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol InspectorProtocol {
+public protocol InspectorProtocol {
     var inspectorItems: [SidebarDockIcon] { get set }
     func viewForInspectorSidebar(selection: Int) -> AnyView
 }

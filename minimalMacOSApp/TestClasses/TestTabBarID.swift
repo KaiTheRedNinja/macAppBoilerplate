@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import macAppBoilerplate
 
 public enum TestTabBarID: TabBarID {
     public var id: String {

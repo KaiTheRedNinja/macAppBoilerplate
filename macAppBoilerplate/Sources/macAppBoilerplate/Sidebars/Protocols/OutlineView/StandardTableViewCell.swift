@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-class StandardTableViewCell: NSTableCellView {
+open class StandardTableViewCell: NSTableCellView {
 
-    var label: NSTextField!
-    var secondaryLabel: NSTextField!
-    var icon: NSImageView!
+    public var label: NSTextField!
+    public var secondaryLabel: NSTextField!
+    public var icon: NSImageView!
 
     var secondaryLabelRightAlignmed: Bool = true {
         didSet {
@@ -26,7 +26,7 @@ class StandardTableViewCell: NSTableCellView {
     ///   - frameRect: The frame of the cell.
     ///   - item: The file item the cell represents.
     ///   - isEditable: Set to true if the user should be able to edit the file name.
-    init(frame frameRect: NSRect, isEditable: Bool = true) {
+    public init(frame frameRect: NSRect, isEditable: Bool = true) {
         super.init(frame: frameRect)
         setupViews(frame: frameRect, isEditable: isEditable)
     }
@@ -61,11 +61,11 @@ class StandardTableViewCell: NSTableCellView {
     }
 
     // MARK: Create and config stuff
-    func createLabel() -> NSTextField {
+    open func createLabel() -> NSTextField {
         return SpecialSelectTextField(frame: .zero)
     }
 
-    func configLabel(label: NSTextField, isEditable: Bool) {
+    open func configLabel(label: NSTextField, isEditable: Bool) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
         label.isBordered = false
@@ -76,11 +76,11 @@ class StandardTableViewCell: NSTableCellView {
         label.lineBreakMode = .byTruncatingMiddle
     }
 
-    func createSecondaryLabel() -> NSTextField {
+    open func createSecondaryLabel() -> NSTextField {
         return NSTextField(frame: .zero)
     }
 
-    func configSecondaryLabel(secondaryLabel: NSTextField) {
+    open func configSecondaryLabel(secondaryLabel: NSTextField) {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         secondaryLabel.drawsBackground = false
         secondaryLabel.isBordered = false
@@ -92,21 +92,21 @@ class StandardTableViewCell: NSTableCellView {
         secondaryLabel.textColor = NSColor(Color.secondary)
     }
 
-    func createIcon() -> NSImageView {
+    open func createIcon() -> NSImageView {
         return NSImageView(frame: .zero)
     }
 
-    func configIcon(icon: NSImageView) {
+    open func configIcon(icon: NSImageView) {
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
     }
 
-    func createConstraints(frame frameRect: NSRect) {
+    open func createConstraints(frame frameRect: NSRect) {
         resizeSubviews(withOldSize: .zero)
     }
 
     let iconWidth: CGFloat = 22
-    override func resizeSubviews(withOldSize oldSize: NSSize) {
+    open override func resizeSubviews(withOldSize oldSize: NSSize) {
         super.resizeSubviews(withOldSize: oldSize)
 
         icon.frame = NSRect(x: 2, y: 4,
@@ -142,7 +142,7 @@ class StandardTableViewCell: NSTableCellView {
     }
 
     /// *Not Implemented*
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("""
             init?(coder: NSCoder) isn't implemented on `StandardTableViewCell`.
             Please use `.init(frame: NSRect, isEditable: Bool)

@@ -10,8 +10,8 @@ import SwiftUI
 
 let disableTabs: Bool = false
 
-class TabManager: ObservableObject {
-    static let shared: TabManager = .init()
+public class TabManager: ObservableObject {
+    public static let shared: TabManager = .init()
 
     private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
         self.openedTabs = disableTabs ? [] : openedTabs
@@ -37,7 +37,7 @@ class TabManager: ObservableObject {
         return openedTabs.first(where: { $0.tabID.id == id.id })
     }
 
-    public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
+    open func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
         if disableTabs && id.id == selectedTab?.id {
@@ -60,7 +60,7 @@ class TabManager: ObservableObject {
         }
     }
 
-    public func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
+    open func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
         if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || disableTabs {
             selectedTab = tab.tabID
             return

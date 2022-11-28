@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import macAppBoilerplate
 
 class TestViewProtocol: NavigatorProtocol, InspectorProtocol, WorkspaceProtocol {
     // MARK: Navigator protocol

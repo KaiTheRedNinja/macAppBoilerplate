@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol NavigatorProtocol {
+public protocol NavigatorProtocol {
     var navigatorItems: [SidebarDockIcon] { get set }
     func viewForNavigationSidebar(selection: Int) -> AnyView
 }

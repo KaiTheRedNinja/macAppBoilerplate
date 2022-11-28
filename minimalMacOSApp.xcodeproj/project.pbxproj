@@ -7,95 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */; };
-		930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */; };
-		9311E27C2933943C00099594 /* NavigatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27B2933943C00099594 /* NavigatorProtocol.swift */; };
-		9311E27E2933949500099594 /* InspectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E27D2933949500099594 /* InspectorProtocol.swift */; };
-		9311E2822933978200099594 /* MainContentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E2812933978200099594 /* MainContentWrapper.swift */; };
-		9311E28429339ABA00099594 /* WorkspaceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9311E28329339ABA00099594 /* WorkspaceProtocol.swift */; };
-		936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */; };
-		936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D52928645B00763131 /* NavigatorModeSelectModel.swift */; };
-		936239D929286A7300763131 /* EffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239D829286A7300763131 /* EffectView.swift */; };
-		936239DE29286EF200763131 /* TabBarItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DD29286EF200763131 /* TabBarItemID.swift */; };
-		936239E02928773800763131 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239DF2928773800763131 /* TabManager.swift */; };
-		936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E329288A9B00763131 /* TabBarItemRepresentable.swift */; };
-		936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E62928B35900763131 /* SidebarToolbarTop.swift */; };
-		936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239E82928B37F00763131 /* SidebarModeSelectModel.swift */; };
-		936239EE2928B8E200763131 /* StandardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239ED2928B8E200763131 /* StandardTableViewCell.swift */; };
-		936239F02928B98900763131 /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239EF2928B98900763131 /* OutlineViewController.swift */; };
-		936239F42928C39F00763131 /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239F32928C39F00763131 /* OutlineView.swift */; };
 		936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936239F52928C47E00763131 /* TestOutlineViewController.swift */; };
 		937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF172927C7E600F99805 /* AppDelegate.swift */; };
 		937BDF1C2927C7E700F99805 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1B2927C7E700F99805 /* Assets.xcassets */; };
 		937BDF1F2927C7E700F99805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937BDF1D2927C7E700F99805 /* Main.storyboard */; };
-		937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF422927CA1000F99805 /* MainWindowController.swift */; };
-		937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */; };
-		937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF462927CA8900F99805 /* WorkspaceView.swift */; };
-		937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BDF482927CA9100F99805 /* InspectorSidebar.swift */; };
 		93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A19AFD29290626002B170A /* TestTableViewCell.swift */; };
 		93A5CDD729344607000951FD /* TestWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A5CDD629344607000951FD /* TestWindowController.swift */; };
 		93A5CDD929344804000951FD /* TestViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A5CDD829344804000951FD /* TestViewProtocols.swift */; };
-		93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF3292DC11D009F470D /* TabBarView.swift */; };
-		93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF6292DC856009F470D /* TabBarItemView.swift */; };
-		93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */; };
-		93DD33792931EEA00044F71A /* MainWindowController+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DD33782931EEA00044F71A /* MainWindowController+Setup.swift */; };
+		93A5CDDF29344D1A000951FD /* macAppBoilerplate in Frameworks */ = {isa = PBXBuildFile; productRef = 93A5CDDE29344D1A000951FD /* macAppBoilerplate */; };
 		93EABBFE292F6499009053D9 /* TestTabBarID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EABBFD292F6499009053D9 /* TestTabBarID.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		937BDF262927C7E700F99805 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 937BDF0C2927C7E600F99805 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 937BDF132927C7E600F99805;
-			remoteInfo = minimalMacOSApp;
-		};
-		937BDF302927C7E700F99805 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 937BDF0C2927C7E600F99805 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 937BDF132927C7E600F99805;
-			remoteInfo = minimalMacOSApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebarToolbarTop.swift; sourceTree = "<group>"; };
-		930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorModeSelectModel.swift; sourceTree = "<group>"; };
-		9311E27B2933943C00099594 /* NavigatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorProtocol.swift; sourceTree = "<group>"; };
-		9311E27D2933949500099594 /* InspectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorProtocol.swift; sourceTree = "<group>"; };
-		9311E2812933978200099594 /* MainContentWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentWrapper.swift; sourceTree = "<group>"; };
-		9311E28329339ABA00099594 /* WorkspaceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceProtocol.swift; sourceTree = "<group>"; };
-		936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebarToolbarTop.swift; sourceTree = "<group>"; };
-		936239D52928645B00763131 /* NavigatorModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorModeSelectModel.swift; sourceTree = "<group>"; };
-		936239D829286A7300763131 /* EffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectView.swift; sourceTree = "<group>"; };
-		936239DD29286EF200763131 /* TabBarItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemID.swift; sourceTree = "<group>"; };
-		936239DF2928773800763131 /* TabManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
-		936239E329288A9B00763131 /* TabBarItemRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemRepresentable.swift; sourceTree = "<group>"; };
-		936239E62928B35900763131 /* SidebarToolbarTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarToolbarTop.swift; sourceTree = "<group>"; };
-		936239E82928B37F00763131 /* SidebarModeSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarModeSelectModel.swift; sourceTree = "<group>"; };
-		936239ED2928B8E200763131 /* StandardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTableViewCell.swift; sourceTree = "<group>"; };
-		936239EF2928B98900763131 /* OutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
-		936239F32928C39F00763131 /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
 		936239F52928C47E00763131 /* TestOutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOutlineViewController.swift; sourceTree = "<group>"; };
 		937BDF142927C7E600F99805 /* minimalMacOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = minimalMacOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		937BDF172927C7E600F99805 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		937BDF1B2927C7E700F99805 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		937BDF1E2927C7E700F99805 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		937BDF202927C7E700F99805 /* minimalMacOSApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minimalMacOSApp.entitlements; sourceTree = "<group>"; };
-		937BDF252927C7E700F99805 /* minimalMacOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = minimalMacOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		937BDF2F2927C7E700F99805 /* minimalMacOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = minimalMacOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		937BDF422927CA1000F99805 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSidebar.swift; sourceTree = "<group>"; };
-		937BDF462927CA8900F99805 /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
-		937BDF482927CA9100F99805 /* InspectorSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorSidebar.swift; sourceTree = "<group>"; };
 		93A19AFD29290626002B170A /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		93A5CDD629344607000951FD /* TestWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWindowController.swift; sourceTree = "<group>"; };
 		93A5CDD829344804000951FD /* TestViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewProtocols.swift; sourceTree = "<group>"; };
-		93B8FEF3292DC11D009F470D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		93B8FEF6292DC856009F470D /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
-		93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewRepresentable.swift; sourceTree = "<group>"; };
-		93DD33782931EEA00044F71A /* MainWindowController+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainWindowController+Setup.swift"; sourceTree = "<group>"; };
+		93A5CDDC29344CC9000951FD /* macAppBoilerplate */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = macAppBoilerplate; sourceTree = "<group>"; };
 		93EABBFD292F6499009053D9 /* TestTabBarID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTabBarID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,37 +37,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		937BDF222927C7E700F99805 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		937BDF2C2927C7E700F99805 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				93A5CDDF29344D1A000951FD /* macAppBoilerplate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9311E27A2933942300099594 /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				937BDF422927CA1000F99805 /* MainWindowController.swift */,
-				9311E27B2933943C00099594 /* NavigatorProtocol.swift */,
-				9311E27D2933949500099594 /* InspectorProtocol.swift */,
-				9311E28329339ABA00099594 /* WorkspaceProtocol.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
 		936239CE2928634100763131 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,106 +55,13 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		936239CF2928635900763131 /* Window */ = {
-			isa = PBXGroup;
-			children = (
-				93DD33782931EEA00044F71A /* MainWindowController+Setup.swift */,
-			);
-			path = Window;
-			sourceTree = "<group>";
-		};
-		936239D02928636900763131 /* Inspector */ = {
-			isa = PBXGroup;
-			children = (
-				937BDF482927CA9100F99805 /* InspectorSidebar.swift */,
-				930D86D6292E176F008B5B8D /* InspectorSidebarToolbarTop.swift */,
-				930D86D8292E177A008B5B8D /* InspectorModeSelectModel.swift */,
-			);
-			path = Inspector;
-			sourceTree = "<group>";
-		};
-		936239D12928637000763131 /* Workspace */ = {
-			isa = PBXGroup;
-			children = (
-				936239DC29286EA100763131 /* TabBar */,
-				937BDF462927CA8900F99805 /* WorkspaceView.swift */,
-			);
-			path = Workspace;
-			sourceTree = "<group>";
-		};
-		936239D22928637900763131 /* Navigator */ = {
-			isa = PBXGroup;
-			children = (
-				937BDF442927CA7E00F99805 /* NavigatorSidebar.swift */,
-				936239D32928642C00763131 /* NavigatorSidebarToolbarTop.swift */,
-				936239D52928645B00763131 /* NavigatorModeSelectModel.swift */,
-			);
-			path = Navigator;
-			sourceTree = "<group>";
-		};
-		936239D729286A5500763131 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				936239D829286A7300763131 /* EffectView.swift */,
-				9311E2812933978200099594 /* MainContentWrapper.swift */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		936239DC29286EA100763131 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				93B8FEF5292DC14E009F470D /* UI */,
-				936239E329288A9B00763131 /* TabBarItemRepresentable.swift */,
-				936239DF2928773800763131 /* TabManager.swift */,
-				936239DD29286EF200763131 /* TabBarItemID.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		936239E52928B31700763131 /* Sidebars */ = {
-			isa = PBXGroup;
-			children = (
-				936239EA2928B78F00763131 /* Protocols */,
-				936239D22928637900763131 /* Navigator */,
-				936239D02928636900763131 /* Inspector */,
-			);
-			path = Sidebars;
-			sourceTree = "<group>";
-		};
-		936239EA2928B78F00763131 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				936239EB2928B79900763131 /* Selection */,
-				936239EC2928B7A400763131 /* OutlineView */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		936239EB2928B79900763131 /* Selection */ = {
-			isa = PBXGroup;
-			children = (
-				936239E62928B35900763131 /* SidebarToolbarTop.swift */,
-				936239E82928B37F00763131 /* SidebarModeSelectModel.swift */,
-			);
-			path = Selection;
-			sourceTree = "<group>";
-		};
-		936239EC2928B7A400763131 /* OutlineView */ = {
-			isa = PBXGroup;
-			children = (
-				936239ED2928B8E200763131 /* StandardTableViewCell.swift */,
-				936239EF2928B98900763131 /* OutlineViewController.swift */,
-				936239F32928C39F00763131 /* OutlineView.swift */,
-			);
-			path = OutlineView;
-			sourceTree = "<group>";
-		};
 		937BDF0B2927C7E600F99805 = {
 			isa = PBXGroup;
 			children = (
+				93A5CDDB29344CC9000951FD /* Packages */,
 				937BDF162927C7E600F99805 /* minimalMacOSApp */,
 				937BDF152927C7E600F99805 /* Products */,
+				93A5CDDD29344D1A000951FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,8 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				937BDF142927C7E600F99805 /* minimalMacOSApp.app */,
-				937BDF252927C7E700F99805 /* minimalMacOSAppTests.xctest */,
-				937BDF2F2927C7E700F99805 /* minimalMacOSAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,33 +76,25 @@
 		937BDF162927C7E600F99805 /* minimalMacOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				93DD337A2931F1770044F71A /* Boilerplate */,
 				93EABBFC292F6418009053D9 /* TestClasses */,
 				936239CE2928634100763131 /* Application */,
 			);
 			path = minimalMacOSApp;
 			sourceTree = "<group>";
 		};
-		93B8FEF5292DC14E009F470D /* UI */ = {
+		93A5CDDB29344CC9000951FD /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				93B8FEF3292DC11D009F470D /* TabBarView.swift */,
-				93B8FEF8292DCD51009F470D /* TabBarViewRepresentable.swift */,
-				93B8FEF6292DC856009F470D /* TabBarItemView.swift */,
+				93A5CDDC29344CC9000951FD /* macAppBoilerplate */,
 			);
-			path = UI;
+			name = Packages;
 			sourceTree = "<group>";
 		};
-		93DD337A2931F1770044F71A /* Boilerplate */ = {
+		93A5CDDD29344D1A000951FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9311E27A2933942300099594 /* Interface */,
-				936239CF2928635900763131 /* Window */,
-				936239E52928B31700763131 /* Sidebars */,
-				936239D12928637000763131 /* Workspace */,
-				936239D729286A5500763131 /* Helper */,
 			);
-			path = Boilerplate;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		93EABBFC292F6418009053D9 /* TestClasses */ = {
@@ -319,45 +125,12 @@
 			dependencies = (
 			);
 			name = minimalMacOSApp;
+			packageProductDependencies = (
+				93A5CDDE29344D1A000951FD /* macAppBoilerplate */,
+			);
 			productName = minimalMacOSApp;
 			productReference = 937BDF142927C7E600F99805 /* minimalMacOSApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		937BDF242927C7E700F99805 /* minimalMacOSAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 937BDF3C2927C7E700F99805 /* Build configuration list for PBXNativeTarget "minimalMacOSAppTests" */;
-			buildPhases = (
-				937BDF212927C7E700F99805 /* Sources */,
-				937BDF222927C7E700F99805 /* Frameworks */,
-				937BDF232927C7E700F99805 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				937BDF272927C7E700F99805 /* PBXTargetDependency */,
-			);
-			name = minimalMacOSAppTests;
-			productName = minimalMacOSAppTests;
-			productReference = 937BDF252927C7E700F99805 /* minimalMacOSAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		937BDF2E2927C7E700F99805 /* minimalMacOSAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 937BDF3F2927C7E700F99805 /* Build configuration list for PBXNativeTarget "minimalMacOSAppUITests" */;
-			buildPhases = (
-				937BDF2B2927C7E700F99805 /* Sources */,
-				937BDF2C2927C7E700F99805 /* Frameworks */,
-				937BDF2D2927C7E700F99805 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				937BDF312927C7E700F99805 /* PBXTargetDependency */,
-			);
-			name = minimalMacOSAppUITests;
-			productName = minimalMacOSAppUITests;
-			productReference = 937BDF2F2927C7E700F99805 /* minimalMacOSAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -371,14 +144,6 @@
 				TargetAttributes = {
 					937BDF132927C7E600F99805 = {
 						CreatedOnToolsVersion = 14.1;
-					};
-					937BDF242927C7E700F99805 = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = 937BDF132927C7E600F99805;
-					};
-					937BDF2E2927C7E700F99805 = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = 937BDF132927C7E600F99805;
 					};
 				};
 			};
@@ -396,8 +161,6 @@
 			projectRoot = "";
 			targets = (
 				937BDF132927C7E600F99805 /* minimalMacOSApp */,
-				937BDF242927C7E700F99805 /* minimalMacOSAppTests */,
-				937BDF2E2927C7E700F99805 /* minimalMacOSAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -412,20 +175,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		937BDF232927C7E700F99805 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		937BDF2D2927C7E700F99805 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -433,68 +182,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				936239E72928B35900763131 /* SidebarToolbarTop.swift in Sources */,
-				93B8FEF9292DCD51009F470D /* TabBarViewRepresentable.swift in Sources */,
-				9311E2822933978200099594 /* MainContentWrapper.swift in Sources */,
 				936239F62928C47E00763131 /* TestOutlineViewController.swift in Sources */,
-				930D86D7292E176F008B5B8D /* InspectorSidebarToolbarTop.swift in Sources */,
-				936239DE29286EF200763131 /* TabBarItemID.swift in Sources */,
-				9311E27C2933943C00099594 /* NavigatorProtocol.swift in Sources */,
-				936239F02928B98900763131 /* OutlineViewController.swift in Sources */,
-				930D86D9292E177A008B5B8D /* InspectorModeSelectModel.swift in Sources */,
 				93A5CDD729344607000951FD /* TestWindowController.swift in Sources */,
 				937BDF182927C7E600F99805 /* AppDelegate.swift in Sources */,
-				937BDF452927CA7E00F99805 /* NavigatorSidebar.swift in Sources */,
-				93B8FEF7292DC856009F470D /* TabBarItemView.swift in Sources */,
-				937BDF472927CA8900F99805 /* WorkspaceView.swift in Sources */,
-				9311E28429339ABA00099594 /* WorkspaceProtocol.swift in Sources */,
-				936239D929286A7300763131 /* EffectView.swift in Sources */,
 				93A19AFE29290626002B170A /* TestTableViewCell.swift in Sources */,
-				936239F42928C39F00763131 /* OutlineView.swift in Sources */,
-				937BDF492927CA9100F99805 /* InspectorSidebar.swift in Sources */,
-				936239E02928773800763131 /* TabManager.swift in Sources */,
-				936239EE2928B8E200763131 /* StandardTableViewCell.swift in Sources */,
-				936239D42928642C00763131 /* NavigatorSidebarToolbarTop.swift in Sources */,
 				93A5CDD929344804000951FD /* TestViewProtocols.swift in Sources */,
-				93B8FEF4292DC11D009F470D /* TabBarView.swift in Sources */,
-				9311E27E2933949500099594 /* InspectorProtocol.swift in Sources */,
-				936239E92928B37F00763131 /* SidebarModeSelectModel.swift in Sources */,
-				936239D62928645B00763131 /* NavigatorModeSelectModel.swift in Sources */,
-				936239E429288A9B00763131 /* TabBarItemRepresentable.swift in Sources */,
 				93EABBFE292F6499009053D9 /* TestTabBarID.swift in Sources */,
-				93DD33792931EEA00044F71A /* MainWindowController+Setup.swift in Sources */,
-				937BDF432927CA1000F99805 /* MainWindowController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		937BDF212927C7E700F99805 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		937BDF2B2927C7E700F99805 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		937BDF272927C7E700F99805 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 937BDF132927C7E600F99805 /* minimalMacOSApp */;
-			targetProxy = 937BDF262927C7E700F99805 /* PBXContainerItemProxy */;
-		};
-		937BDF312927C7E700F99805 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 937BDF132927C7E600F99805 /* minimalMacOSApp */;
-			targetProxy = 937BDF302927C7E700F99805 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		937BDF1D2927C7E700F99805 /* Main.storyboard */ = {
@@ -673,74 +370,6 @@
 			};
 			name = Release;
 		};
-		937BDF3D2927C7E700F99805 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaitay.minimalMacOSAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/minimalMacOSApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/minimalMacOSApp";
-			};
-			name = Debug;
-		};
-		937BDF3E2927C7E700F99805 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaitay.minimalMacOSAppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/minimalMacOSApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/minimalMacOSApp";
-			};
-			name = Release;
-		};
-		937BDF402927C7E700F99805 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaitay.minimalMacOSAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = minimalMacOSApp;
-			};
-			name = Debug;
-		};
-		937BDF412927C7E700F99805 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaitay.minimalMacOSAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = minimalMacOSApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -762,25 +391,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		937BDF3C2927C7E700F99805 /* Build configuration list for PBXNativeTarget "minimalMacOSAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				937BDF3D2927C7E700F99805 /* Debug */,
-				937BDF3E2927C7E700F99805 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		937BDF3F2927C7E700F99805 /* Build configuration list for PBXNativeTarget "minimalMacOSAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				937BDF402927C7E700F99805 /* Debug */,
-				937BDF412927C7E700F99805 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		93A5CDDE29344D1A000951FD /* macAppBoilerplate */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = macAppBoilerplate;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 937BDF0C2927C7E600F99805 /* Project object */;
 }

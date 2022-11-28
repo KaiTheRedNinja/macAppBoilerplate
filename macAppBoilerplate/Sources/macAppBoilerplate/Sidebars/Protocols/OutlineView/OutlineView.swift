@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct OutlineView: NSViewControllerRepresentable {
-    typealias NSViewControllerType = OutlineViewController
+public struct OutlineView: NSViewControllerRepresentable {
+    public typealias NSViewControllerType = OutlineViewController
 
-    init(createController: @escaping (Context) -> OutlineViewController,
+    public init(createController: @escaping (Context) -> OutlineViewController,
          updateController: @escaping (OutlineViewController, Context) -> Void = { _, _ in }) {
         self.createController = createController
         self.updateController = updateController
@@ -19,11 +19,11 @@ struct OutlineView: NSViewControllerRepresentable {
     var createController: (Context) -> OutlineViewController
     var updateController: (OutlineViewController, Context) -> Void
 
-    func makeNSViewController(context: Context) -> OutlineViewController {
+    public func makeNSViewController(context: Context) -> OutlineViewController {
         createController(context)
     }
 
-    func updateNSViewController(_ nsViewController: OutlineViewController, context: Context) {
+    public func updateNSViewController(_ nsViewController: OutlineViewController, context: Context) {
         updateController(nsViewController, context)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import macAppBoilerplate
 
 class TestOutlineViewController: OutlineViewController {
 

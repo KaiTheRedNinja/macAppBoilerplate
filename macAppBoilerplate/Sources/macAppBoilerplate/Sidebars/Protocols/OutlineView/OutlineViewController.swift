@@ -7,34 +7,34 @@
 
 import SwiftUI
 
-let defaultRowHeight: Double = 22
+public let defaultRowHeight: Double = 22
 
 /// A `NSViewController` that handles the **ProjectNavigator** in the **NavigatorSideabr**.
 ///
 /// Adds a ``outlineView`` inside a ``scrollView`` which shows the folder structure of the
 /// currently open project.
-class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
+open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
 
     var scrollView: NSScrollView!
-    var outlineView: NSOutlineView!
+    public var outlineView: NSOutlineView!
 
     /// Gets the folder structure
     ///
     /// Also creates a top level item "root" which represents the projects root directory and automatically expands it.
     var content: [OutlineElement] = []
 
-    func loadContent() -> [OutlineElement] {
+    open func loadContent() -> [OutlineElement] {
         fatalError("Please override this function")
     }
 
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+    open func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         fatalError("Please override this function")
     }
 
     var iconColor: NSColor = .controlAccentColor
 
     /// Setup the ``scrollView`` and ``outlineView``
-    override func loadView() {
+    open override func loadView() {
         self.content = loadContent()
 
         self.scrollView = NSScrollView()
@@ -77,40 +77,40 @@ extension OutlineViewController {
         }
     }
 
-    func outlineViewSelectionDidChange(_ notification: Notification) {
+    open func outlineViewSelectionDidChange(_ notification: Notification) {
         // for the dev to override
     }
 
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+    open func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         guard let item = item as? OutlineElement else { return content.count }
         return item.children.count
     }
 
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+    open func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         guard let item = item as? OutlineElement else { return content[index] }
         return item.children[index]
     }
 
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+    open func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         guard let item = item as? OutlineElement else { return false }
         return item.expandable
     }
 
-    func outlineView(_ outlineView: NSOutlineView,
+    open func outlineView(_ outlineView: NSOutlineView,
                      shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
         true
     }
 
-    func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
+    open func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         true
     }
 
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+    open func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         defaultRowHeight // This can be changed to 20 to match Xcode's row height.
     }
 }
 
-protocol OutlineElement {
+public protocol OutlineElement {
     var children: [OutlineElement] { get set }
     var expandable: Bool { get set }
 }

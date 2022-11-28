@@ -14,7 +14,7 @@ extension MainWindowController {
         set { contentViewController = newValue }
     }
 
-    override func windowDidLoad() {
+    open override func windowDidLoad() {
         super.windowDidLoad()
 
         // set up the protocols

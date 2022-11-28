@@ -8,17 +8,17 @@
 import Cocoa
 import SwiftUI
 
-class MainWindowController: NSWindowController, NSToolbarDelegate {
+open class MainWindowController: NSWindowController, NSToolbarDelegate {
 
     var navigatorProtocol: (any NavigatorProtocol)!
     var inspectorProtocol: (any InspectorProtocol)!
     var workspaceProtocol: (any WorkspaceProtocol)!
 
-    func getNavigatorProtocol() -> any NavigatorProtocol { DefaultNavigatorProtocol() }
-    func getInspectorProtocol() -> any InspectorProtocol { DefaultInspectorProtocol() }
-    func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
+    open func getNavigatorProtocol() -> any NavigatorProtocol { DefaultNavigatorProtocol() }
+    open func getInspectorProtocol() -> any InspectorProtocol { DefaultInspectorProtocol() }
+    open func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
 
-    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    open func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
         items.append(contentsOf: defaultLeadingItems(toolbar))
         // add additional toolbar items here
@@ -27,7 +27,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
         return items
     }
 
-    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    open func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
         items.append(contentsOf: defaultLeadingItems(toolbar))
         // add additional toolbar items here
@@ -35,7 +35,7 @@ class MainWindowController: NSWindowController, NSToolbarDelegate {
         return items
     }
 
-    func toolbar(
+    open func toolbar(
         _ toolbar: NSToolbar,
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
         willBeInsertedIntoToolbar flag: Bool

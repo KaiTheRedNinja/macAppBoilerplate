@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol WorkspaceProtocol {
+public protocol WorkspaceProtocol {
     func viewForWorkspace(tab: TabBarID) -> AnyView
 }
 
