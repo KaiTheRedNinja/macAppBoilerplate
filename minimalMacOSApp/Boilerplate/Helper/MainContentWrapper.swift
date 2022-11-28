@@ -7,22 +7,21 @@
 
 import SwiftUI
 
-/// A wrapper for ``MainContentContainer``
-struct SidebarContainer<Content: View>: View {
-    var content: () -> Content
-
-    init(@ViewBuilder content: @escaping () -> Content) {
-        self.content = content
-    }
-
-    var body: some View {
+func MainContentWrapper(_ wrapping: @escaping () -> some View) -> AnyView {
+    return AnyView {
         MainContentContainer {
-            content()
+            wrapping()
         }
     }
 }
 
-struct MainContentContainer<Content: View>: View {
+extension AnyView {
+    init(_ wrapping: () -> some View) {
+        self.init(wrapping())
+    }
+}
+
+fileprivate struct MainContentContainer<Content: View>: View {
     var content: () -> Content
 
     init(@ViewBuilder content: @escaping () -> Content) {

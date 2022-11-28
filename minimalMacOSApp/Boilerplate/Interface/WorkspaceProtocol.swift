@@ -7,36 +7,22 @@
 
 import SwiftUI
 
-protocol WorkspaceProtocol<WSView> {
-    associatedtype WSView: View
-
-    func viewForWorkspace(tab: TabBarID) -> WSView
+protocol WorkspaceProtocol {
+    func viewForWorkspace(tab: TabBarID) -> AnyView
 }
 
 class DefaultWorkspaceProtocol: WorkspaceProtocol {
-    func viewForWorkspace(tab: TabBarID) -> some View {
-        MainContentContainer {
-            if let tab = tab as? TestTabBarID {
-                switch tab {
-                case .test(let string):
-                    VStack(alignment: .center) {
-                        HStack {
-                            Spacer()
-                            Text("Test: \(string)")
-                            Spacer()
-                        }
+    func viewForWorkspace(tab: TabBarID) -> AnyView {
+        MainContentWrapper {
+            ZStack {
+                if let tab = tab as? TestTabBarID {
+                    switch tab {
+                    case .test(let string):
+                        Text("Test: \(string)")
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    Text("Wrong Format")
                 }
-            } else {
-                VStack(alignment: .center) {
-                    HStack {
-                        Spacer()
-                        Text("Wrong Format")
-                        Spacer()
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
     }

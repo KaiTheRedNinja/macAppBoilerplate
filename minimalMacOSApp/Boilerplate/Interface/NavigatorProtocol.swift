@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-protocol NavigatorProtocol<NavView> {
-    associatedtype NavView: View
+protocol NavigatorProtocol {
     var navigatorItems: [SidebarDockIcon] { get set }
-    func viewForNavigationSidebar(selection: Int) -> NavView
+    func viewForNavigationSidebar(selection: Int) -> AnyView
 }
 
 class DefaultNavigatorProtocol: NavigatorProtocol {
@@ -22,15 +21,17 @@ class DefaultNavigatorProtocol: NavigatorProtocol {
         .init(imageName: "5.circle", title: "Five", id: 4)
     ]
 
-    func viewForNavigationSidebar(selection: Int) -> some View {
-        SidebarContainer {
-            switch selection {
-            case 0:
-                OutlineView { _ in
-                    TestOutlineViewController()
+    func viewForNavigationSidebar(selection: Int) -> AnyView {
+        MainContentWrapper {
+            ZStack {
+                switch selection {
+                case 0:
+                    OutlineView { _ in
+                        TestOutlineViewController()
+                    }
+                default:
+                    Text("Needs Implementation: \(selection)")
                 }
-            default:
-                Text("Needs Implementation: \(selection)")
             }
         }
     }

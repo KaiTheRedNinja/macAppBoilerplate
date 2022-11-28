@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-protocol InspectorProtocol<InsView> {
-    associatedtype InsView: View
+protocol InspectorProtocol {
     var inspectorItems: [SidebarDockIcon] { get set }
-    func viewForInspectorSidebar(selection: Int) -> InsView
+    func viewForInspectorSidebar(selection: Int) -> AnyView
 }
 
 class DefaultInspectorProtocol: InspectorProtocol {
@@ -22,8 +21,8 @@ class DefaultInspectorProtocol: InspectorProtocol {
         .init(imageName: "5.circle", title: "Five", id: 4)
     ]
 
-    func viewForInspectorSidebar(selection: Int) -> some View {
-        SidebarContainer {
+    func viewForInspectorSidebar(selection: Int) -> AnyView {
+        MainContentWrapper {
             Text("Selection: \(selection)")
         }
     }
