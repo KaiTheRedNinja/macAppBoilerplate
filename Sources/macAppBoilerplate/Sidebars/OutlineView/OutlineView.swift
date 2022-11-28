@@ -11,6 +11,9 @@ import SwiftUI
 public struct OutlineView: NSViewControllerRepresentable {
     public typealias NSViewControllerType = OutlineViewController
 
+    @EnvironmentObject
+    var tabManger: TabManager
+
     public init(createController: @escaping (Context) -> OutlineViewController,
          updateController: @escaping (OutlineViewController, Context) -> Void = { _, _ in }) {
         self.createController = createController
@@ -23,10 +26,15 @@ public struct OutlineView: NSViewControllerRepresentable {
     var updateController: (OutlineViewController, Context) -> Void
 
     public func makeNSViewController(context: Context) -> OutlineViewController {
-        createController(context)
+        let controller = createController(context)
+        controller.tabManager = self.tabManger
+        return controller
     }
 
     public func updateNSViewController(_ nsViewController: OutlineViewController, context: Context) {
         updateController(nsViewController, context)
+        if nsViewController.tabManager != self.tabManger {
+            nsViewController.tabManager = self.tabManger
+        }
     }
 }

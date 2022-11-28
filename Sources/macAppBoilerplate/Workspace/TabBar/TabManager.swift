@@ -19,8 +19,8 @@ public final class TabManager: ObservableObject {
     }}
 
     init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
-                 openedTabs: [any TabBarItemRepresentable] = [],
-                 initialTab: TabBarID? = nil) {
+         openedTabs: [any TabBarItemRepresentable] = [],
+         initialTab: TabBarID? = nil) {
         self.dataSource = dataSource
         self.openedTabs = dataSource.disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
@@ -97,5 +97,11 @@ public final class TabManager: ObservableObject {
         if focus {
             selectedTab = tab.tabID
         }
+    }
+}
+
+extension TabManager: Equatable {
+    public static func == (lhs: TabManager, rhs: TabManager) -> Bool {
+        lhs.openedTabs.count == rhs.openedTabs.count && lhs.selectedTab?.id == rhs.selectedTab?.id
     }
 }

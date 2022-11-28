@@ -17,6 +17,7 @@ open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOut
 
     var scrollView: NSScrollView!
     public var outlineView: NSOutlineView!
+    public var tabManager: TabManager!
 
     /// Gets the folder structure
     ///

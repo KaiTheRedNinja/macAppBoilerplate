@@ -46,10 +46,10 @@ extension MainWindowController {
     private func setupSplitView() {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = SidebarView(dataSource: navigatorProtocol)
+        let navigatorView = SidebarView(dataSource: navigatorProtocol).environmentObject(tabManager)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
-        ).environmentObject(tabManager)
+        )
         navigator.titlebarSeparatorStyle = .none
         navigator.minimumThickness = 240
         navigator.collapseBehavior = .useConstraints
@@ -65,10 +65,10 @@ extension MainWindowController {
         mainContent.canCollapse = false
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = SidebarView(dataSource: inspectorProtocol)
+        let inspectorView = SidebarView(dataSource: inspectorProtocol).environmentObject(tabManager)
         let inspector = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: inspectorView)
-        ).environmentObject(tabManager)
+        )
         inspector.titlebarSeparatorStyle = .line
         inspector.minimumThickness = 260
         inspector.collapseBehavior = .useConstraints
