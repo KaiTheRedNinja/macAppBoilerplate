@@ -1,7 +1,23 @@
 # macAppBoilerplate
 A library that provides boilerplate for an Xcode-like macOS app UI.
 
-Majority of behaviour and code extracted from AuroraEditor.
+Some behaviour and code extracted from AuroraEditor.
+
+## Features
+- Customisable navigation sidebar with pages
+- Customisable inspector sidebar with pages
+- Tabular main content
+- Tab Bar
+  - Custmisable using `TabBarID` and `TabBarRepresentable` protocols
+  - Drag to rearrange
+  - Resize/scroll on tab excess
+  - Animation on close/open/scroll
+- Customisable toolbar
+- Easy-to-use OutlineView template
+
+#### Coming soon:
+- Settings Page
+- About Page
 
 ## Implementation Details
 
