@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-let disableTabs: Bool = false
+//let disableTabs: Bool = false
 
 /// Manages tab state, including open tabs, and manipulating tabs
 public final class TabManager: ObservableObject {
@@ -16,20 +16,22 @@ public final class TabManager: ObservableObject {
     public static let shared: TabManager = .init()
 
     /// Data source
-    var dataSource: any TabBarProtocol
+    var dataSource: any TabBarProtocol { didSet {
+        self.openedTabs = dataSource.disableTabs ? [] : openedTabs
+    }}
 
     private init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
                  openedTabs: [any TabBarItemRepresentable] = [],
                  initialTab: TabBarID? = nil) {
         self.dataSource = dataSource
-        self.openedTabs = disableTabs ? [] : openedTabs
+        self.openedTabs = dataSource.disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
     }
 
     /// List of opened tabs
     @Published var openedTabs: [any TabBarItemRepresentable] {
         didSet {
-            if disableTabs && !openedTabs.isEmpty {
+            if dataSource.disableTabs && !openedTabs.isEmpty {
                 self.openedTabs = []
             }
         }
@@ -57,7 +59,7 @@ public final class TabManager: ObservableObject {
     public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
-        if disableTabs && id.id == selectedTab?.id {
+        if dataSource.disableTabs && id.id == selectedTab?.id {
             selectedTab = nil
             return
         }
@@ -83,7 +85,7 @@ public final class TabManager: ObservableObject {
     ///   - origin: The item that it originates from. If provided, the tab opens to the right of that item.
     ///   - focus: If the tab should be automatically focused
     public func openTab(tab: any TabBarItemRepresentable, from origin: (any TabBarItemRepresentable)? = nil, focus: Bool = true) {
-        if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || disableTabs {
+        if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || dataSource.disableTabs {
             selectedTab = tab.tabID
             return
         }

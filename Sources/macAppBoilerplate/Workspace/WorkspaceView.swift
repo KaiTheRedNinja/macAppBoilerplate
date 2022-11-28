@@ -41,10 +41,10 @@ struct WorkspaceView<Content: View>: View {
             )
         }
         .safeAreaInset(edge: .top, spacing: 0) {
-            if tabManager.openedTabs.count > 0 && !disableTabs {
+            if tabManager.openedTabs.count > 0 && !tabManager.dataSource.disableTabs {
                 VStack(spacing: 0) {
                     TabBarViewRepresentable(tabManager: .shared)
-                        .frame(height: tabBarViewHeight)
+                        .frame(height: tabManager.dataSource.tabBarViewHeight)
                     Divider().foregroundColor(.secondary)
                 }
             }

@@ -64,11 +64,11 @@ class TabBarItemView: NSView {
     }
 
     func manageDividers(animate: Bool = true) {
-        leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: tabBarViewHeight-16)
+        leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: tabManager.dataSource.tabBarViewHeight-16)
         leftDivider.wantsLayer = true
         leftDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
-        rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: tabBarViewHeight-16)
+        rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: tabManager.dataSource.tabBarViewHeight-16)
         rightDivider.wantsLayer = true
         rightDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
@@ -95,7 +95,7 @@ class TabBarItemView: NSView {
 
         if animate {
             NSAnimationContext.runAnimationGroup({ context in
-                context.duration = animationDuration
+                context.duration = tabManager.dataSource.animationDuration
                 leftDivider.animator().alphaValue = leftAlphaValue
                 rightDivider.animator().alphaValue = rightAlphaValue
             })
@@ -126,18 +126,18 @@ class TabBarItemView: NSView {
                                       width: frame.width-frame.height, height: frame.height-7)
 
         // if the tab is in expanded mode
-        if frame.width > tabBecomesSmall {
+        if frame.width > tabManager.dataSource.tabBecomesSmall {
             // if the frame just only got expanded from compact mode, animate the changes
-            if oldSize.width <= tabBecomesSmall {
+            if oldSize.width <= tabManager.dataSource.tabBecomesSmall {
                 NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = animationDuration
+                    context.duration = tabManager.dataSource.animationDuration
 
                     iconView.animator().frame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
                     textView.animator().frame = newTextViewFrame
                     textView.animator().alphaValue = 1
                 }) {
                     // In case the position the iconView should be at has changed, just set it when the animation has ended.
-                    if self.frame.width > tabBecomesSmall {
+                    if self.frame.width > self.tabManager.dataSource.tabBecomesSmall {
                         self.iconView.frame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
                     }
                     self.updateTrackingAreas()
@@ -151,15 +151,15 @@ class TabBarItemView: NSView {
             // if the tab is in compact mode
         } else {
             // if the frame just only got compacted from expanded mode, animate the changes
-            if oldSize.width > tabBecomesSmall {
+            if oldSize.width > tabManager.dataSource.tabBecomesSmall {
                 NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = animationDuration
+                    context.duration = tabManager.dataSource.animationDuration
 
                     iconView.animator().frame = CGRect(x: (self.frame.width - (self.frame.height-8))/2, y: 4,
                                                        width: self.frame.height-8, height: self.frame.height-8)
                     textView.animator().alphaValue = 0
                 }) {
-                    if self.frame.width <= tabBecomesSmall {
+                    if self.frame.width <= self.tabManager.dataSource.tabBecomesSmall {
                         self.iconView.frame = CGRect(x: (self.frame.width - (self.frame.height-8))/2, y: 4,
                                                     width: self.frame.height-8, height: self.frame.height-8)
                     }

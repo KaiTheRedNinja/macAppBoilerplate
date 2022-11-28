@@ -7,13 +7,6 @@
 
 import Cocoa
 
-let minimumTabWidth: CGFloat = 60
-let tabBecomesSmall: CGFloat = 60
-let maximumTabWidth: CGFloat = 120
-let animationDuration = 0.3
-
-let tabBarViewHeight: CGFloat = 28
-
 /// A view for a tab bar
 class TabBarView: NSView {
     /// The scroll view that the tab bar manages
@@ -62,9 +55,9 @@ class TabBarView: NSView {
                 newItem.tabRepresentable = tab
                 newItem.addViews(rect: .zero)
                 if index-1 < newTabs.count && index-1 >= 0 {
-                    newItem.frame = NSRect(x: newTabs[index-1].frame.maxX, y: 0, width: 0, height: tabBarViewHeight)
+                    newItem.frame = NSRect(x: newTabs[index-1].frame.maxX, y: 0, width: 0, height: tabManager.dataSource.tabBarViewHeight)
                 } else {
-                    newItem.frame = NSRect(x: 0, y: 0, width: 0, height: tabBarViewHeight)
+                    newItem.frame = NSRect(x: 0, y: 0, width: 0, height: tabManager.dataSource.tabBarViewHeight)
                 }
                 newItem.resizeSubviews(withOldSize: .zero)
                 newTabs.insert(newItem, at: index)
@@ -81,12 +74,12 @@ class TabBarView: NSView {
 
         // determine the maximum width of a tab
         let numberOfTabs = tabManager.openedTabs.count
-        var idealWidth: CGFloat = minimumTabWidth
+        var idealWidth: CGFloat = tabManager.dataSource.minimumTabWidth
 
         idealWidth = widthOfTabView/CGFloat(numberOfTabs)
 
         // pin idealWidth between the minimum and maximum tab sizes
-        idealWidth = max(minimumTabWidth, min(idealWidth, maximumTabWidth))
+        idealWidth = max(tabManager.dataSource.minimumTabWidth, min(idealWidth, tabManager.dataSource.maximumTabWidth))
 
         // iterate over the tabs and size them as needed
         var widthSoFar: CGFloat = 0
@@ -100,10 +93,10 @@ class TabBarView: NSView {
             // if the tab is marked as dead, animate its width to 0 and remove it
             guard tabView.isAlive else {
                 NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = animationDuration
+                    context.duration = tabManager.dataSource.animationDuration
 
                     // change the width to 0
-                    tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: 0, height: tabBarViewHeight)
+                    tabView.animator().frame = NSRect(x: widthSoFar, y: 0, width: 0, height: tabManager.dataSource.tabBarViewHeight)
 
                     // change the opacity
                     tabView.animator().alphaValue = 0.0
@@ -126,12 +119,14 @@ class TabBarView: NSView {
 
             if tabIsFocused {
                 // if its focused, size it to be the maximum size
-                newFrame = NSRect(x: widthSoFar, y: 0, width: maximumTabWidth * (tabView.zoomAmount + 1), height: tabBarViewHeight)
+                newFrame = NSRect(x: widthSoFar, y: 0,
+                                  width: tabManager.dataSource.maximumTabWidth * (tabView.zoomAmount + 1),
+                                  height: tabManager.dataSource.tabBarViewHeight)
                 newColor = NSColor.controlAccentColor.cgColor.copy(alpha: 0.5)
-                widthSoFar += maximumTabWidth * (tabView.zoomAmount + 1)
+                widthSoFar += tabManager.dataSource.maximumTabWidth * (tabView.zoomAmount + 1)
             } else {
                 // if it is not focused, size it to be the ideal size
-                newFrame = NSRect(x: widthSoFar, y: 0, width: idealWidth * (tabView.zoomAmount + 1), height: tabBarViewHeight)
+                newFrame = NSRect(x: widthSoFar, y: 0, width: idealWidth * (tabView.zoomAmount + 1), height: tabManager.dataSource.tabBarViewHeight)
                 newColor = nil
                 widthSoFar += idealWidth * (tabView.zoomAmount + 1)
             }
@@ -151,7 +146,7 @@ class TabBarView: NSView {
             // animate only if the tab is not panning
             } else if animate {
                 NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = animationDuration
+                    context.duration = tabManager.dataSource.animationDuration
                     tabView.animator().frame = newFrame
                 })
             } else {
@@ -161,10 +156,10 @@ class TabBarView: NSView {
         }
 
         // set the document view size
-        let newDocSize = NSRect(x: 0, y: 0, width: max(frame.width, widthSoFar), height: tabBarViewHeight)
+        let newDocSize = NSRect(x: 0, y: 0, width: max(frame.width, widthSoFar), height: tabManager.dataSource.tabBarViewHeight)
         if animate {
             NSAnimationContext.runAnimationGroup({ context in
-                context.duration = animationDuration
+                context.duration = tabManager.dataSource.animationDuration
                 scrollView?.documentView?.animator().frame = newDocSize
             })
         } else {

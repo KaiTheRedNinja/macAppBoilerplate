@@ -16,6 +16,15 @@ public protocol TabBarProtocol {
     func disableTabs() -> Bool?
 }
 
+extension TabBarProtocol {
+    var minimumTabWidth: CGFloat { minimumTabWidth() ?? 60 }
+    var tabBecomesSmall: CGFloat { tabBecomesSmall() ?? 60 }
+    var maximumTabWidth: CGFloat { maximumTabWidth() ?? 120 }
+    var animationDuration: CGFloat { animationDuration() ?? 0.3 }
+    var tabBarViewHeight: CGFloat { tabBarViewHeight() ?? 28 }
+    var disableTabs: Bool { disableTabs() ?? false }
+}
+
 class DefaultTabBarProtocol: TabBarProtocol {
     func minimumTabWidth() -> CGFloat? { 60 }
     func tabBecomesSmall() -> CGFloat? { 60 }
