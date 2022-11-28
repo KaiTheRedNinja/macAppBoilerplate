@@ -23,7 +23,7 @@ class DefaultInspectorProtocol: InspectorProtocol {
 
     func viewForInspectorSidebar(selection: Int) -> AnyView {
         MainContentWrapper {
-            Text("Selection: \(selection)")
+            Text("Needs Implementation")
         }
     }
 }
