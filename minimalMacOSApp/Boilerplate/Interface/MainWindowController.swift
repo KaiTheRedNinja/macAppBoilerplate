@@ -10,9 +10,13 @@ import SwiftUI
 
 class MainWindowController: NSWindowController, NSToolbarDelegate {
 
-    var navigatorProtocol: any NavigatorProtocol = DefaultNavigatorProtocol()
-    var inspectorProtocol: any InspectorProtocol = DefaultInspectorProtocol()
-    var workspaceProtocol: any WorkspaceProtocol = DefaultWorkspaceProtocol()
+    var navigatorProtocol: (any NavigatorProtocol)!
+    var inspectorProtocol: (any InspectorProtocol)!
+    var workspaceProtocol: (any WorkspaceProtocol)!
+
+    func getNavigatorProtocol() -> any NavigatorProtocol { DefaultNavigatorProtocol() }
+    func getInspectorProtocol() -> any InspectorProtocol { DefaultInspectorProtocol() }
+    func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
 
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []

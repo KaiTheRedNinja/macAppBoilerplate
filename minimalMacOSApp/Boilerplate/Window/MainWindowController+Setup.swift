@@ -17,6 +17,11 @@ extension MainWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
+        // set up the protocols
+        self.navigatorProtocol = getNavigatorProtocol()
+        self.inspectorProtocol = getInspectorProtocol()
+        self.workspaceProtocol = getWorkspaceProtocol()
+
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         setupSplitView()
