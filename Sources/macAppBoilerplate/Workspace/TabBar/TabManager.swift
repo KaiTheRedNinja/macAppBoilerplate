@@ -15,7 +15,13 @@ public final class TabManager: ObservableObject {
     /// Shared instance
     public static let shared: TabManager = .init()
 
-    private init(openedTabs: [any TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
+    /// Data source
+    var dataSource: any TabBarProtocol
+
+    private init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
+                 openedTabs: [any TabBarItemRepresentable] = [],
+                 initialTab: TabBarID? = nil) {
+        self.dataSource = dataSource
         self.openedTabs = disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
     }

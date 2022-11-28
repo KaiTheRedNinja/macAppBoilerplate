@@ -24,6 +24,9 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
     /// Gets a ``WorkspaceProtocol``, defaulting to ``DefaultWorkspaceProtocol`` if not overridden.
     open func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
 
+    /// Gets a ``TabBarProtocol``, defaulting to ``DefaultTabBarProtocol`` if not overridden
+    open func getTabBarProtocol() -> any TabBarProtocol { DefaultTabBarProtocol() }
+
     /// Inherited from ``NSToolbarDelegate.toolbarDefaultItemIdentifiers(_:).``
     open func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
