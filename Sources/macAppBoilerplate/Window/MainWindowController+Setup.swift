@@ -26,10 +26,6 @@ extension MainWindowController {
         self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         setupSplitView()
         setupToolbar()
-
-        // set up the items
-        NavigatorModeSelectModel.shared.icons = navigatorProtocol.items
-        InspectorModeSelectModel.shared.icons = inspectorProtocol.items
     }
 
     private func setupToolbar() {
@@ -47,9 +43,7 @@ extension MainWindowController {
     private func setupSplitView() {
         let splitVC = NSSplitViewController()
 
-        let navigatorView = NavigatorSidebar(viewForSelection: { selection in
-            self.navigatorProtocol.sidebarViewFor(selection: selection)
-        })
+        let navigatorView = SidebarView(dataSource: navigatorProtocol)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
@@ -68,9 +62,7 @@ extension MainWindowController {
         mainContent.canCollapse = false
         splitVC.addSplitViewItem(mainContent)
 
-        let inspectorView = InspectorSidebar(viewForSelection: { selection in
-            self.inspectorProtocol.sidebarViewFor(selection: selection)
-        })
+        let inspectorView = SidebarView(dataSource: inspectorProtocol)
         let inspector = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: inspectorView)
         )
