@@ -12,15 +12,15 @@ import SwiftUI
 
 /// Manages tab state, including open tabs, and manipulating tabs
 public final class TabManager: ObservableObject {
-    /// Shared instance
-    public static let shared: TabManager = .init()
+    /// Default instance. ONLY TO BE USED IN PREVIEWS
+    public static var `default`: TabManager { TabManager() }
 
     /// Data source
     var dataSource: any TabBarProtocol { didSet {
         self.openedTabs = dataSource.disableTabs ? [] : openedTabs
     }}
 
-    private init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
+    init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
                  openedTabs: [any TabBarItemRepresentable] = [],
                  initialTab: TabBarID? = nil) {
         self.dataSource = dataSource

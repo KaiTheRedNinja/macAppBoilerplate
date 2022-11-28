@@ -52,6 +52,7 @@ class TabBarView: NSView {
             if !tabViews.contains(where: { $0.tabRepresentable.tabID.id == tab.tabID.id }) {
                 let newItem = TabBarItemView()
                 newItem.tabBarView = self
+                newItem.tabManager = self.tabManager
                 newItem.tabRepresentable = tab
                 newItem.addViews(rect: .zero)
                 if index-1 < newTabs.count && index-1 >= 0 {

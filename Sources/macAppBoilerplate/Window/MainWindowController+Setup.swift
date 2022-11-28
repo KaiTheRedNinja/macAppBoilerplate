@@ -22,7 +22,8 @@ extension MainWindowController {
         self.navigatorProtocol = getNavigatorProtocol()
         self.inspectorProtocol = getInspectorProtocol()
         self.workspaceProtocol = getWorkspaceProtocol()
-        TabManager.shared.dataSource = getTabBarProtocol()
+        self.tabManager = TabManager()
+        tabManager.dataSource = getTabBarProtocol()
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
         self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
@@ -54,7 +55,7 @@ extension MainWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
-        let workspaceView = WorkspaceView(viewForTab: { tab in
+        let workspaceView = WorkspaceView(tabManager: self.tabManager, viewForTab: { tab in
             self.workspaceProtocol.viewForWorkspace(tab: tab)
         })
         let mainContent = NSSplitViewItem(

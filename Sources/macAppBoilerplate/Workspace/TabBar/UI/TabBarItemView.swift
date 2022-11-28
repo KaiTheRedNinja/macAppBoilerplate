@@ -15,7 +15,7 @@ class TabBarItemView: NSView {
     /// The parent tab bar view
     var tabBarView: TabBarView!
     /// The tab manager
-    var tabManager: TabManager = .shared
+    var tabManager: TabManager!
     /// If the tab is alive or not
     var isAlive: Bool = true
 

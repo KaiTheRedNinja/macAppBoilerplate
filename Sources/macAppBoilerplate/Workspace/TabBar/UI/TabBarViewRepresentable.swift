@@ -14,7 +14,7 @@ struct TabBarViewRepresentable: NSViewRepresentable {
 
     func makeNSView(context: Context) -> TabBarView {
         let tabView = TabBarView()
-        tabView.tabManager = .shared
+        tabView.tabManager = self.tabManager
         tabView.updateTabs()
         return tabView
     }

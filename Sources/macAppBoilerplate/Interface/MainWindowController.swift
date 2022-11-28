@@ -16,6 +16,8 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
     var inspectorProtocol: (any SidebarProtocol)!
     /// The ``WorkspaceProtocol`` used for the main workspace content
     var workspaceProtocol: (any WorkspaceProtocol)!
+    /// The ``TabManager`` used to manage tabs
+    var tabManager: TabManager!
 
     /// Gets a ``SidebarProtocol``, defaulting to ``DefaultSidebarProtocol`` if not overridden.
     open func getNavigatorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
