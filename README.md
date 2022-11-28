@@ -84,7 +84,8 @@ override func getNavigatorProtocol() -> any NavigatorProtocol {
 2. Add a case to your enum. This case can hold information (eg. by using `case myCase(String)` to hold a string).
 3. To store data for the tab type, create a class conforming to `TabBarItemRepresentable`. See the `test` case and the `TestElement` class as an example
    in [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git)
-  - To open a new tab, use the `openTab` function of the `TabManager` shared instance. 
+  - To open a new tab, use the `openTab` function of the `TabManager` EnvironmentObject, available in all SwiftUI subviews of the sidebars and workspace view.
+  It is also accessible via the `MainWindowController` subclass instance as `tabManager`.
   - Similarly, use the `closeTab` function to close your tab.
 
 #### Creating the UI for the tab
