@@ -10,15 +10,15 @@ import SwiftUI
 
 let disableTabs: Bool = false
 
-public class TabManager: ObservableObject {
+public final class TabManager: ObservableObject {
     public static let shared: TabManager = .init()
 
-    private init(openedTabs: [TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
+    private init(openedTabs: [any TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
         self.openedTabs = disableTabs ? [] : openedTabs
         self.selectedTab = initialTab
     }
 
-    @Published var openedTabs: [TabBarItemRepresentable] {
+    @Published var openedTabs: [any TabBarItemRepresentable] {
         didSet {
             if disableTabs && !openedTabs.isEmpty {
                 self.openedTabs = []
@@ -28,16 +28,16 @@ public class TabManager: ObservableObject {
 
     @Published var selectedTab: TabBarID?
 
-    func selectedTabItem() -> TabBarItemRepresentable? {
+    public func selectedTabItem() -> (any TabBarItemRepresentable)? {
         return tabForID(id: selectedTab)
     }
 
-    func tabForID(id: TabBarID?) -> TabBarItemRepresentable? {
+    public func tabForID(id: TabBarID?) -> (any TabBarItemRepresentable)? {
         guard let id else { return nil }
         return openedTabs.first(where: { $0.tabID.id == id.id })
     }
 
-    open func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
+    public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
         if disableTabs && id.id == selectedTab?.id {
@@ -60,7 +60,7 @@ public class TabManager: ObservableObject {
         }
     }
 
-    open func openTab(tab: TabBarItemRepresentable, from origin: TabBarItemRepresentable? = nil, focus: Bool = true) {
+    public func openTab(tab: any TabBarItemRepresentable, from origin: (any TabBarItemRepresentable)? = nil, focus: Bool = true) {
         if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || disableTabs {
             selectedTab = tab.tabID
             return
