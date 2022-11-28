@@ -10,12 +10,12 @@ import SwiftUI
 
 open class MainWindowController: NSWindowController, NSToolbarDelegate {
 
-    var navigatorProtocol: (any NavigatorProtocol)!
-    var inspectorProtocol: (any InspectorProtocol)!
+    var navigatorProtocol: (any SidebarProtocol)!
+    var inspectorProtocol: (any SidebarProtocol)!
     var workspaceProtocol: (any WorkspaceProtocol)!
 
-    open func getNavigatorProtocol() -> any NavigatorProtocol { DefaultNavigatorProtocol() }
-    open func getInspectorProtocol() -> any InspectorProtocol { DefaultInspectorProtocol() }
+    open func getNavigatorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
+    open func getInspectorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
     open func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
 
     open func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {

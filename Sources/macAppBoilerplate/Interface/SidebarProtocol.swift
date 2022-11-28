@@ -1,19 +1,19 @@
 //
-//  InspectorProtocol.swift
-//  minimalMacOSApp
+//  SidebarProtocol.swift
+//  
 //
-//  Created by Kai Quan Tay on 27/11/22.
+//  Created by Kai Quan Tay on 28/11/22.
 //
 
 import SwiftUI
 
-public protocol InspectorProtocol {
-    var inspectorItems: [SidebarDockIcon] { get set }
-    func viewForInspectorSidebar(selection: Int) -> AnyView
+public protocol SidebarProtocol {
+    var items: [SidebarDockIcon] { get set }
+    func sidebarViewFor(selection: Int) -> AnyView
 }
 
-class DefaultInspectorProtocol: InspectorProtocol {
-    var inspectorItems: [SidebarDockIcon] = [
+class DefaultSidebarProtocol: SidebarProtocol {
+    var items: [SidebarDockIcon] = [
         .init(imageName: "1.circle", title: "One", id: 0),
         .init(imageName: "2.circle", title: "Two", id: 1),
         .init(imageName: "3.circle", title: "Three", id: 2),
@@ -21,7 +21,7 @@ class DefaultInspectorProtocol: InspectorProtocol {
         .init(imageName: "5.circle", title: "Five", id: 4)
     ]
 
-    func viewForInspectorSidebar(selection: Int) -> AnyView {
+    func sidebarViewFor(selection: Int) -> AnyView {
         MainContentWrapper {
             Text("Needs Implementation")
         }
