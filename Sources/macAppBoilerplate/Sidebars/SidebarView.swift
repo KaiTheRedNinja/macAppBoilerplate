@@ -25,10 +25,13 @@ struct SidebarView: View {
     var body: some View {
         VStack {
             viewForSelection(selection)
+                .padding(.horizontal, -8)
         }
         .safeAreaInset(edge: .top) {
-            SidebarToolbarTopView(dataSource: dataSource, selection: $selection)
-                .padding(.bottom, -8)
+            if dataSource.items.count > 0 {
+                SidebarToolbarTopView(dataSource: dataSource, selection: $selection)
+                    .padding(.bottom, -8)
+            }
         }
     }
 }
