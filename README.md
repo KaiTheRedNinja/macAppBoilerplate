@@ -3,9 +3,7 @@ A library that provides boilerplate for an Xcode-like macOS app UI.
 
 Majority of behaviour and code extracted from AuroraEditor.
 
-## Usage
-
-See [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git) for reference
+## Implementation Details
 
 ### Basic architecture
 - Window and Sidebar behaviour:
@@ -20,6 +18,10 @@ See [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git) fo
 - Tab Bar:
   - `TabBarID`: A protocol that includes an ID. Intended to be implemented on an Enum, so that each tab has an assigned `case`.
   - `TabBarRepresentable`: A protocol that provides information like the title and icon to show for a tab. Intended to be implemented on a class or struct.
+
+## Usage
+
+See [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git) for reference
 
 ### Modifying the Navigator or Inspector Sidebar pages
 1. Create a class conforming to `NavigatorProtocol` or `InspectorProtocol`. Add new pages
@@ -52,7 +54,7 @@ of your `SidebarDockIcon`). Put your view there, and it will be visible when tha
 selected.
 
 3. Override the default `NavigatorProtocol` in your `MainWindowController` subclass 
-by overriding the `func getNavigatorProtocol() -> any NavigatorProtocol` or `func getInspectorProtocol() -> any InspectorProtocol` class, eg:
+by overriding the `func getNavigatorProtocol() -> any NavigatorProtocol` or `func getInspectorProtocol() -> any InspectorProtocol` function, eg:
 
 ```swift
 override func getNavigatorProtocol() -> any NavigatorProtocol {
@@ -61,16 +63,43 @@ override func getNavigatorProtocol() -> any NavigatorProtocol {
 ```
 
 ### Creating new tab types
-To create a tab type, create a new case in the `TabBarItemID`.
+#### Creating the data classes for the tab
+1. Create an enum conforming to `TabBarItemID`. You should ONLY MAKE **ONE** in the entire project, and add cases for other tabs
+2. Add a case to your enum. This case can hold information (eg. by using `case myCase(String)` to hold a string).
+3. To store data for the tab type, create a class conforming to `TabBarItemRepresentable`. See the `test` case and the `TestElement` class as an example
+   in [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git)
+  - To open a new tab, use the `openTab` function of the `TabManager` shared instance. 
+  - Similarly, use the `closeTab` function to close your tab.
 
-To store data for the tab type, create a class that conforms to `TabBarItemRepresentable`.
+#### Creating the UI for the tab
+1. Create a class conforming to `WorkspaceProtocol`
+2. Implement the `viewForTab(tab: TabBarItemID) -> AnyView` function. You can use the following as a base:
 
-To open a new tab, use the `openTab` function of the `TabManager` shared instance. 
-Similarly, use the `closeTab` function to close your tab.
+```swift
+func viewForTab(tab: TabBarItemID) -> AnyView {
+    MainContentWrapper {
+        if let tab = tab as? MyTabBarItemID {
+            switch tab {
+            case .myCase(let string):
+                // things to show on page 0
+                Text("My Case: \(string)")
+            // add more cases as needed
+            default:
+                Text("Not Implemented Yet")
+            }
+        }
+    }
+}
+```
 
-See the `test` case and the `TestElement` class as an example.
+3. Override the default `WorkspaceProtocol` in your `MainViewController` subclass by overriding the 
+   `funcc getWorkspaceProtocol() -> any WorkspaceProtocol` function, eg:
 
-// TODO: Instructions on creating the UI for new tab types
+```swift
+override func getWorkspaceProtocol() -> any WorkspaceProtocol {
+    return MyWorkspaceProtocol()
+}
+```
 
 ### Creating an OutlineView
 1. Create a subclass of `OutlineElement` to hold the information in each view in the OutlineView
@@ -85,4 +114,15 @@ See `TestElement`, `TestOutlineViewController`, and `TestTableViewCell`
 for an example in [the example repo](https://github.com/KaiTheRedNinja/minimalMacOSApp.git)
 
 ### Adding extra toolbar elements
-// TODO: Instructions here
+Override the `toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]`, 
+`toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier]`, and
+`open func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem?` functions in your `MainWindowController` subclass. 
+Extend `NSToolbarItem.Identifier` to add custom identifiers. See the [apple developer documentation](https://developer.apple.com/documentation/appkit/nstoolbar/) for more details
+
+Remember that you can use `defaultLeadingItems()` and `defaultTrailingItems` to get the default leading and trailing items, which are the toolbar items
+for the sidebar show/hide buttons. You can also use the `builtinDefaultToolbar(
+        _ toolbar: NSToolbar,
+        itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+        willBeInsertedIntoToolbar flag: Bool
+    ) -> NSToolbarItem?` function to get the `NSToolbarItem` for a given identifier, or nil if it is not a toolbar item that MainWindowController implements.
+
