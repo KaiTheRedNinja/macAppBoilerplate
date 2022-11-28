@@ -9,6 +9,7 @@ import SwiftUI
 
 extension MainWindowController {
 
+    /// The split view controller that the window controller controls
     var splitViewController: NSSplitViewController! {
         get { contentViewController as? NSSplitViewController }
         set { contentViewController = newValue }
@@ -74,7 +75,8 @@ extension MainWindowController {
         self.splitViewController = splitVC
     }
 
-    func builtinDefaultToolbar(
+    /// Gets the built in default toolbar item for an identifier, or nil if it is not a default toolbar item
+    public func builtinDefaultToolbar(
         _ toolbar: NSToolbar,
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
         willBeInsertedIntoToolbar flag: Bool
@@ -150,14 +152,16 @@ extension MainWindowController {
         }
     }
 
-    func defaultLeadingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    /// The default leading items (leading sidebar items)
+    public func defaultLeadingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .toggleFirstSidebarItem,
             .sidebarTrackingSeparator
         ]
     }
 
-    func defaultTrailingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+    /// The default trailing items (trailing sidebar items and tracker)
+    public func defaultTrailingItems(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         [
             .itemListTrackingSeparator,
             .flexibleSpace,

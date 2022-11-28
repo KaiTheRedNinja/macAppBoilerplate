@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Wraps a ``TabBarView`` via `NSViewRepresentable`
 struct TabBarViewRepresentable: NSViewRepresentable {
 
     @ObservedObject var tabManager: TabManager

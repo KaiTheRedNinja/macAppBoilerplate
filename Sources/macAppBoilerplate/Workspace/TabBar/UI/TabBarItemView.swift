@@ -7,10 +7,16 @@
 
 import Cocoa
 
+/// A view for a singular tab
 class TabBarItemView: NSView {
+
+    /// The TabBarItemRepresentable that this tab is for
     var tabRepresentable: TabBarItemRepresentable!
+    /// The parent tab bar view
     var tabBarView: TabBarView!
+    /// The tab manager
     var tabManager: TabManager = .shared
+    /// If the tab is alive or not
     var isAlive: Bool = true
 
     var icon: NSImage
@@ -99,6 +105,7 @@ class TabBarItemView: NSView {
         }
     }
 
+    /// Updates the icon and label to the tab representable's
     func updateIconAndLabel() {
         // short circuit if isAlive is false, to avoid possible errors
         guard isAlive else { return }
@@ -184,7 +191,7 @@ class TabBarItemView: NSView {
         }
     }
 
-    open override func updateTrackingAreas() {
+    override func updateTrackingAreas() {
         mouseHovering = false
         removeTrackingArea(area)
         area = makeTrackingArea()
@@ -196,11 +203,11 @@ class TabBarItemView: NSView {
                               options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
     }
 
-    open override func mouseEntered(with event: NSEvent) {
+    override func mouseEntered(with event: NSEvent) {
         mouseHovering = true
     }
 
-    open override func mouseExited(with event: NSEvent) {
+    override func mouseExited(with event: NSEvent) {
         mouseHovering = false
     }
 
@@ -221,6 +228,8 @@ class TabBarItemView: NSView {
     }
 
     var zoomAmount: CGFloat = 0
+
+    /// Processes zoom gestures
     @objc
     func didZoom(_ sender: NSMagnificationGestureRecognizer?) {
         guard let gesture = sender else { return }
@@ -233,9 +242,13 @@ class TabBarItemView: NSView {
         }
     }
 
-    var isPanning: Bool = false         // flag to indicate if the tab is panning
-    var originalFrame: NSRect = .zero   // the original frame pre-pan
-    var clickPointOffset: CGFloat = 0.0 // the distance that the tab should move
+    /// flag to indicate if the tab is panning
+    var isPanning: Bool = false
+    /// the original frame pre-pan
+    var originalFrame: NSRect = .zero
+    /// the distance that the tab should move
+    var clickPointOffset: CGFloat = 0.0
+    /// Processes drag gestures
     @objc
     func didPan(_ sender: NSPanGestureRecognizer?) {
         guard let gesture = sender else { return }

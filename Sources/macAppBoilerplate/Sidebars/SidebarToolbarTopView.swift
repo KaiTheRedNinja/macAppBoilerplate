@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A sidebar top toolbar view
 struct SidebarToolbarTopView: View {
     var dataSource: SidebarProtocol
 

@@ -7,8 +7,17 @@
 
 import SwiftUI
 
+/// A protocol for sidebars, containing an array of ``SidebarDockIcon`` and a function
+/// to turn selections into `AnyView`s. Acts as the data source for both Navigator and Inspector sidebars.
 public protocol SidebarProtocol {
+    /// An array of ``SidebarDockIcon``s, one for each icon in the sidebar, each corresponding
+    /// to a page.
     var items: [SidebarDockIcon] { get set }
+    /// Taking in a selection integer corresponding to a page, returns an `AnyView`.
+    /// - Parameter selection: An integer corresponding to a page. Index is the `id` of a ``SidebarDockIcon``
+    /// - Returns: An `AnyView` for the page
+    ///
+    /// It is advised to use ``MainContentWrapper(_:)`` to format your view and turn it into an `AnyView`
     func sidebarViewFor(selection: Int) -> AnyView
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Essentially Identifiable but only `String`s. Used for identifying tabs.
 public protocol TabBarID {
     var id: String { get }
 }

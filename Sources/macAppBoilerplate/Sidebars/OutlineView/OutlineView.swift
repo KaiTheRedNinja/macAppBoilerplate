@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A struct to contain any ``OutlineViewController`` easily in a `View`
 public struct OutlineView: NSViewControllerRepresentable {
     public typealias NSViewControllerType = OutlineViewController
 
@@ -16,7 +17,9 @@ public struct OutlineView: NSViewControllerRepresentable {
         self.updateController = updateController
     }
 
+    /// Function to create an outline controller
     var createController: (Context) -> OutlineViewController
+    /// Function to update the controller
     var updateController: (OutlineViewController, Context) -> Void
 
     public func makeNSViewController(context: Context) -> OutlineViewController {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The main workspace content
 struct WorkspaceView<Content: View>: View {
 
     @StateObject

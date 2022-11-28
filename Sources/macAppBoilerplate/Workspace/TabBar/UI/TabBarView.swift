@@ -14,9 +14,13 @@ let animationDuration = 0.3
 
 let tabBarViewHeight: CGFloat = 28
 
+/// A view for a tab bar
 class TabBarView: NSView {
+    /// The scroll view that the tab bar manages
     var scrollView: NSScrollView?
+    /// The tab manager
     var tabManager: TabManager!
+    /// The views for tab items
     var tabViews: [TabBarItemView]
 
     override init(frame frameRect: NSRect) {
@@ -40,6 +44,7 @@ class TabBarView: NSView {
         addSubview(scrollView!)
     }
 
+    /// Updates the tab views, creating and deleting them as needed
     func updateTabs() {
         // iterate over tabs and mark those that don't exist anymore as dead
         for tabView in tabViews {
@@ -69,6 +74,7 @@ class TabBarView: NSView {
         sizeTabs()
     }
 
+    /// Change the frames of the tab views, animating it as needed
     func sizeTabs(animate: Bool = true) {
         scrollView?.frame = self.frame
         let widthOfTabView = self.frame.width

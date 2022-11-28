@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A sidebar view that consults a ``SidebarProtocol`` for information
 struct SidebarView: View {
 
     @State

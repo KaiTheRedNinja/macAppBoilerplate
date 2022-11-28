@@ -8,12 +8,17 @@
 import Foundation
 import SwiftUI
 
+/// A reusable Table View Cell with a label, secondary label, and icon
 open class StandardTableViewCell: NSTableCellView {
 
+    /// The main text to display
     public var label: NSTextField!
+    /// The secondary label, either directly after ``label`` or at the very end of the cell
     public var secondaryLabel: NSTextField!
+    /// The icon, at the leading edge of the cell
     public var icon: NSImageView!
 
+    /// Determines if the ``secondaryLabel`` is at the trailing edge of the cell (true) or directly after ``label`` (false)
     var secondaryLabelRightAlignmed: Bool = true {
         didSet {
             resizeSubviews(withOldSize: .zero)
@@ -31,7 +36,7 @@ open class StandardTableViewCell: NSTableCellView {
         setupViews(frame: frameRect, isEditable: isEditable)
     }
 
-    // Default init, assumes isEditable to be false
+    /// Default init, assumes isEditable to be false
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setupViews(frame: frameRect, isEditable: false)
@@ -61,10 +66,12 @@ open class StandardTableViewCell: NSTableCellView {
     }
 
     // MARK: Create and config stuff
+    /// Creates the label
     open func createLabel() -> NSTextField {
         return SpecialSelectTextField(frame: .zero)
     }
 
+    /// Sets up a given label with a given editability
     open func configLabel(label: NSTextField, isEditable: Bool) {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.drawsBackground = false
@@ -76,10 +83,12 @@ open class StandardTableViewCell: NSTableCellView {
         label.lineBreakMode = .byTruncatingMiddle
     }
 
+    /// Creates the secondary label
     open func createSecondaryLabel() -> NSTextField {
         return NSTextField(frame: .zero)
     }
 
+    /// Sets up a given secondary label with a given editability
     open func configSecondaryLabel(secondaryLabel: NSTextField) {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         secondaryLabel.drawsBackground = false
@@ -92,20 +101,25 @@ open class StandardTableViewCell: NSTableCellView {
         secondaryLabel.textColor = NSColor(Color.secondary)
     }
 
+    /// Creates the image view
     open func createIcon() -> NSImageView {
         return NSImageView(frame: .zero)
     }
 
+    /// Sets up a given image view
     open func configIcon(icon: NSImageView) {
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.symbolConfiguration = .init(pointSize: fontSize, weight: .regular, scale: .medium)
     }
 
+    /// Contrains the views. Currently only redirects to ``resizeSubviews(withOldSize:)``
     open func createConstraints(frame frameRect: NSRect) {
         resizeSubviews(withOldSize: .zero)
     }
 
     let iconWidth: CGFloat = 22
+
+    /// Positions all the views
     open override func resizeSubviews(withOldSize oldSize: NSSize) {
         super.resizeSubviews(withOldSize: oldSize)
 

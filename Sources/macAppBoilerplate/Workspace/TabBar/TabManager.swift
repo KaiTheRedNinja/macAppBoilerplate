@@ -10,7 +10,9 @@ import SwiftUI
 
 let disableTabs: Bool = false
 
+/// Manages tab state, including open tabs, and manipulating tabs
 public final class TabManager: ObservableObject {
+    /// Shared instance
     public static let shared: TabManager = .init()
 
     private init(openedTabs: [any TabBarItemRepresentable] = [], initialTab: TabBarID? = nil) {
@@ -18,6 +20,7 @@ public final class TabManager: ObservableObject {
         self.selectedTab = initialTab
     }
 
+    /// List of opened tabs
     @Published var openedTabs: [any TabBarItemRepresentable] {
         didSet {
             if disableTabs && !openedTabs.isEmpty {
@@ -26,17 +29,25 @@ public final class TabManager: ObservableObject {
         }
     }
 
+    /// The currently selected tab
     @Published var selectedTab: TabBarID?
 
+    /// Gets the tab representable for the selected tab
     public func selectedTabItem() -> (any TabBarItemRepresentable)? {
         return tabForID(id: selectedTab)
     }
 
+    /// Gets the tab representable for any given tab ID
     public func tabForID(id: TabBarID?) -> (any TabBarItemRepresentable)? {
         guard let id else { return nil }
         return openedTabs.first(where: { $0.tabID.id == id.id })
     }
 
+    /// Close a given tab
+    /// - Parameters:
+    ///   - id: The Tab Bar ID to close
+    ///   - removeAllOccurences: If it should remove all duplicate instances (defaults to true)
+    ///   - refocus: If the selected tab should be refocused if the closed tab was selected (defaults to true)
     public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
         guard let id else { return }
 
@@ -60,6 +71,11 @@ public final class TabManager: ObservableObject {
         }
     }
 
+    /// Opens a given tab
+    /// - Parameters:
+    ///   - tab: The TabBarItemRepresentable
+    ///   - origin: The item that it originates from. If provided, the tab opens to the right of that item.
+    ///   - focus: If the tab should be automatically focused
     public func openTab(tab: any TabBarItemRepresentable, from origin: (any TabBarItemRepresentable)? = nil, focus: Bool = true) {
         if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || disableTabs {
             selectedTab = tab.tabID

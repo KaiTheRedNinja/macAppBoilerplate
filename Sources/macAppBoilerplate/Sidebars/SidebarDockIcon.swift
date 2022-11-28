@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+/// A struct representing a sidebar dock icon
 public struct SidebarDockIcon: Identifiable, Equatable {
+    /// The name of the SF Image or local image
     public let imageName: String
+    /// The title to show on hover
     public let title: String
+    /// The ID (usually an index) of a SidebarDockIcon
     public var id: Int
 
     public init(imageName: String, title: String, id: Int) {
@@ -19,6 +23,7 @@ public struct SidebarDockIcon: Identifiable, Equatable {
     }
 }
 
+/// A button style for sidebar buttons
 struct SidebarToolbarButtonStyle: ButtonStyle {
     var id: Int
     var selection: Int
@@ -35,6 +40,7 @@ struct SidebarToolbarButtonStyle: ButtonStyle {
 }
 
 extension Image {
+    /// Makes an icon with a given name, consulting SF Images and local images
     static func makeIcon(named: String, title: String) -> some View {
         getSafeImage(named: named, accesibilityDescription: title)
             .help(title)

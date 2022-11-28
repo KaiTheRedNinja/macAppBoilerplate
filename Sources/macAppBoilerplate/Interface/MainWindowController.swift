@@ -10,14 +10,21 @@ import SwiftUI
 
 open class MainWindowController: NSWindowController, NSToolbarDelegate {
 
+    /// The ``SidebarProtocol`` used for the Navigator Sidebar
     var navigatorProtocol: (any SidebarProtocol)!
+    /// The ``SidebarProtocol`` used for the Inspector Sidebar
     var inspectorProtocol: (any SidebarProtocol)!
+    /// The ``WorkspaceProtocol`` used for the main workspace content
     var workspaceProtocol: (any WorkspaceProtocol)!
 
+    /// Gets a ``SidebarProtocol``, defaulting to ``DefaultSidebarProtocol`` if not overridden.
     open func getNavigatorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
+    /// Gets a ``SidebarProtocol``, defaulting to ``DefaultSidebarProtocol`` if not overridden.
     open func getInspectorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
+    /// Gets a ``WorkspaceProtocol``, defaulting to ``DefaultWorkspaceProtocol`` if not overridden.
     open func getWorkspaceProtocol() -> any WorkspaceProtocol { DefaultWorkspaceProtocol() }
 
+    /// Inherited from ``NSToolbarDelegate.toolbarDefaultItemIdentifiers(_:).``
     open func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
         items.append(contentsOf: defaultLeadingItems(toolbar))
@@ -27,6 +34,7 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
         return items
     }
 
+    /// Inherited from ``NSToolbarDelegate.toolbarAllowedItemIdentifiers(_:).``
     open func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
         items.append(contentsOf: defaultLeadingItems(toolbar))
@@ -35,6 +43,7 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
         return items
     }
 
+    /// Inherited from ``NSToolbarDelegate.toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:).``
     open func toolbar(
         _ toolbar: NSToolbar,
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
