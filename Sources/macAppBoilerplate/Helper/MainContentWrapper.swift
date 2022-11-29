@@ -35,10 +35,9 @@ fileprivate struct MainContentContainer<Content: View>: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                Spacer()
                 content()
-                Spacer()
             }
+            .frame(maxWidth: .infinity)
         }
         .frame(maxHeight: .infinity)
     }

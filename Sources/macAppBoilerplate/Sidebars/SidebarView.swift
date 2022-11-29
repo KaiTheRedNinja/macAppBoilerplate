@@ -25,7 +25,6 @@ struct SidebarView: View {
     var body: some View {
         VStack {
             viewForSelection(selection)
-                .padding(.horizontal, -8)
         }
         .safeAreaInset(edge: .top) {
             if dataSource.items.count > 0 {
