@@ -29,6 +29,11 @@ extension MainWindowController {
         self.window?.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
         setupSplitView()
         setupToolbar()
+
+        // collapse/show as needed
+        splitViewController.splitViewItems.first?.isCollapsed = !navigatorProtocol.showSidebarFor(sidebarType: .navigator)
+        splitViewController.splitViewItems.last?.isCollapsed = !inspectorProtocol.showSidebarFor(sidebarType: .inspector)
+        manageLastPanelToolbarItems()
     }
 
     private func setupToolbar() {
@@ -74,9 +79,6 @@ extension MainWindowController {
         splitVC.addSplitViewItem(inspector)
 
         self.splitViewController = splitVC
-
-        splitViewController.splitViewItems.first?.isCollapsed = !navigatorProtocol.showSidebarFor(sidebarType: .navigator)
-        splitViewController.splitViewItems.last?.isCollapsed = !inspectorProtocol.showSidebarFor(sidebarType: .inspector)
     }
 
     /// Gets the built in default toolbar item for an identifier, or nil if it is not a default toolbar item
@@ -135,10 +137,15 @@ extension MainWindowController {
     }
 
     @objc func toggleLastPanel() {
+        guard let lastSplitView = splitViewController.splitViewItems.last else { return }
+        lastSplitView.animator().isCollapsed.toggle()
+        manageLastPanelToolbarItems()
+    }
+
+    func manageLastPanelToolbarItems() {
         guard let lastSplitView = splitViewController.splitViewItems.last,
               let toolbar = window?.toolbar
         else { return }
-        lastSplitView.animator().isCollapsed.toggle()
 
         let itemCount = toolbar.items.count
         if lastSplitView.isCollapsed {
