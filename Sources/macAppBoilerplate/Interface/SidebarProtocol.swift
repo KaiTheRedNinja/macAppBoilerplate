@@ -19,6 +19,26 @@ public protocol SidebarProtocol {
     ///
     /// It is advised to use ``MainContentWrapper(_:)`` to format your view and turn it into an `AnyView`
     func sidebarViewFor(selection: Int) -> AnyView
+    /// A boolean for if the sidebar should be shown by default
+    func showSidebarFor(sidebarType: SidebarType) -> Bool
+}
+
+public extension SidebarProtocol {
+    // default implementations
+    func sidebarViewFor(selection: Int) -> AnyView {
+        MainContentWrapper {
+            Text("Needs Implementation")
+        }
+    }
+
+    func showSidebarFor(sidebarType: SidebarType) -> Bool {
+        true
+    }
+}
+
+public enum SidebarType {
+    case navigator
+    case inspector
 }
 
 class DefaultSidebarProtocol: SidebarProtocol {
@@ -29,10 +49,4 @@ class DefaultSidebarProtocol: SidebarProtocol {
         .init(imageName: "4.circle", title: "Four", id: 3),
         .init(imageName: "5.circle", title: "Five", id: 4)
     ]
-
-    func sidebarViewFor(selection: Int) -> AnyView {
-        MainContentWrapper {
-            Text("Needs Implementation")
-        }
-    }
 }

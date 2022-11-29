@@ -74,6 +74,9 @@ extension MainWindowController {
         splitVC.addSplitViewItem(inspector)
 
         self.splitViewController = splitVC
+
+        splitViewController.splitViewItems.first?.isCollapsed = !navigatorProtocol.showSidebarFor(sidebarType: .navigator)
+        splitViewController.splitViewItems.last?.isCollapsed = !inspectorProtocol.showSidebarFor(sidebarType: .inspector)
     }
 
     /// Gets the built in default toolbar item for an identifier, or nil if it is not a default toolbar item
@@ -175,8 +178,4 @@ private extension NSToolbarItem.Identifier {
     static let toggleFirstSidebarItem = NSToolbarItem.Identifier("ToggleFirstSidebarItem")
     static let toggleLastSidebarItem = NSToolbarItem.Identifier("ToggleLastSidebarItem")
     static let itemListTrackingSeparator = NSToolbarItem.Identifier("ItemListTrackingSeparator")
-    //    static let branchPicker = NSToolbarItem.Identifier("BranchPicker")
-    //    static let libraryPopup = NSToolbarItem.Identifier("LibraryPopup")
-    //    static let runApplication = NSToolbarItem.Identifier("RunApplication")
-    //    static let toolbarAppInformation = NSToolbarItem.Identifier("ToolbarAppInformation")
 }
