@@ -18,7 +18,7 @@ public protocol TabBarProtocol {
     func configWindow(_ window: NSWindow) -> Void
 }
 
-extension TabBarProtocol {
+public extension TabBarProtocol {
     // default implementations
     func getMinimumTabWidth() -> CGFloat? { nil }
     func getTabBecomesSmall() -> CGFloat? { nil }
