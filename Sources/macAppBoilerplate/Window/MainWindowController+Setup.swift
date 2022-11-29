@@ -55,7 +55,12 @@ extension MainWindowController {
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
         )
         navigator.titlebarSeparatorStyle = .none
-        navigator.minimumThickness = 240
+        if let min = navigatorProtocol.getMinimumThickness() {
+            navigator.minimumThickness = min
+        }
+        if let max = navigatorProtocol.getMaximumThickness() {
+            navigator.maximumThickness = max
+        }
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
@@ -74,7 +79,12 @@ extension MainWindowController {
             sidebarWithViewController: NSHostingController(rootView: inspectorView)
         )
         inspector.titlebarSeparatorStyle = .line
-        inspector.minimumThickness = 260
+        if let min = inspectorProtocol.getMinimumThickness() {
+            inspector.minimumThickness = min
+        }
+        if let max = inspectorProtocol.getMaximumThickness() {
+            inspector.maximumThickness = max
+        }
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 

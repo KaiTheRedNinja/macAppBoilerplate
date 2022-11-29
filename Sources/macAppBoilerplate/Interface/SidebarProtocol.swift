@@ -13,14 +13,22 @@ public protocol SidebarProtocol {
     /// An array of ``SidebarDockIcon``s, one for each icon in the sidebar, each corresponding
     /// to a page.
     var items: [SidebarDockIcon] { get set }
+
     /// Taking in a selection integer corresponding to a page, returns an `AnyView`.
     /// - Parameter selection: An integer corresponding to a page. Index is the `id` of a ``SidebarDockIcon``
     /// - Returns: An `AnyView` for the page
     ///
     /// It is advised to use ``MainContentWrapper(_:)`` to format your view and turn it into an `AnyView`
     func sidebarViewFor(selection: Int) -> AnyView
+
     /// A boolean for if the sidebar should be shown by default
     func showSidebarFor(sidebarType: SidebarType) -> Bool
+
+    /// A `CGFloat` for the minimum thickness of the sidebar
+    func getMinimumThickness() -> CGFloat?
+
+    /// A `CGFloat` for the maximum thickness of the sidebar
+    func getMaximumThickness() -> CGFloat?
 }
 
 public extension SidebarProtocol {
@@ -33,6 +41,14 @@ public extension SidebarProtocol {
 
     func showSidebarFor(sidebarType: SidebarType) -> Bool {
         true
+    }
+
+    func getMinimumThickness() -> CGFloat? {
+        240
+    }
+
+    func getMaximumThickness() -> CGFloat? {
+        nil
     }
 }
 
