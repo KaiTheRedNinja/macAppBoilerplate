@@ -12,8 +12,8 @@ public protocol TabBarProtocol {
     func tabBecomesSmall() -> CGFloat?
     func maximumTabWidth() -> CGFloat?
     func animationDuration() -> CGFloat?
+    func tabBarViewHeight() -> CGFloat?
     func configWindow(_ window: NSWindow) -> Void
-    func toolbarStyle() -> NSWindow.ToolbarStyle?
     func disableTabs() -> Bool?
 }
 
@@ -22,7 +22,7 @@ extension TabBarProtocol {
     var tabBecomesSmall: CGFloat { tabBecomesSmall() ?? 60 }
     var maximumTabWidth: CGFloat { maximumTabWidth() ?? 120 }
     var animationDuration: CGFloat { animationDuration() ?? 0.3 }
-    var toolbarStyle: NSWindow.ToolbarStyle { toolbarStyle() ?? .unifiedCompact }
+    var tabBarViewHeight: CGFloat { tabBarViewHeight() ?? 28 }
     var disableTabs: Bool { disableTabs() ?? false }
 }
 

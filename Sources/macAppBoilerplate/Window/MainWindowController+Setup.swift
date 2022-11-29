@@ -36,10 +36,9 @@ extension MainWindowController {
         toolbar.delegate = self
         toolbar.displayMode = .iconOnly
         toolbar.showsBaselineSeparator = false
-        self.window?.titleVisibility = .hidden
-        self.window?.toolbarStyle = tabManager.dataSource.toolbarStyle
-        self.window?.titlebarAppearsTransparent = false
-        self.window?.titlebarSeparatorStyle = .automatic
+        if let window {
+            tabManager.dataSource.configWindow(window)
+        }
         self.window?.toolbar = toolbar
     }
 
