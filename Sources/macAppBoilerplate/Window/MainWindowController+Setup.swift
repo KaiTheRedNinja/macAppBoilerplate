@@ -31,9 +31,13 @@ extension MainWindowController {
         setupToolbar()
 
         // collapse/show as needed
-        splitViewController.splitViewItems.first?.isCollapsed = !navigatorProtocol.showSidebarFor(sidebarType: .navigator)
-        splitViewController.splitViewItems.last?.isCollapsed = !inspectorProtocol.showSidebarFor(sidebarType: .inspector)
-        manageLastPanelToolbarItems()
+        if !navigatorProtocol.showSidebarFor(sidebarType: .navigator) {
+            splitViewController.splitViewItems.first?.isCollapsed = true
+        }
+        if !inspectorProtocol.showSidebarFor(sidebarType: .inspector) {
+            splitViewController.splitViewItems.last?.isCollapsed = true
+            manageLastPanelToolbarItems()
+        }
     }
 
     private func setupToolbar() {
