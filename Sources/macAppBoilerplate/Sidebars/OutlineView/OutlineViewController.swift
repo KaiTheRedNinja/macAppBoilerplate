@@ -19,10 +19,7 @@ open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOut
     public var outlineView: NSOutlineView!
     public var tabManager: TabManager!
 
-    /// Gets the folder structure
-    ///
-    /// Also creates a top level item "root" which represents the projects root directory and automatically expands it.
-    var content: [OutlineElement] = []
+    public var content: [OutlineElement] = []
 
     open func loadContent() -> [OutlineElement] {
         fatalError("Please override this function")
