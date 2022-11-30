@@ -32,6 +32,16 @@ open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOut
         fatalError("Please override this function")
     }
 
+    open func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        guard item is OutlineElement else { return content.count }
+        fatalError("Please override this function")
+    }
+
+    open func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        guard item is OutlineElement else { return content[index] }
+        fatalError("Please override this function")
+    }
+
     var iconColor: NSColor = .controlAccentColor
 
     /// Setup the ``scrollView`` and ``outlineView``
@@ -82,16 +92,6 @@ extension OutlineViewController {
         // for the dev to override
     }
 
-    open func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        guard let item = item as? OutlineElement else { return content.count }
-        return item.children.count
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        guard let item = item as? OutlineElement else { return content[index] }
-        return item.children[index]
-    }
-
     open func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         guard let item = item as? OutlineElement else { return false }
         return item.expandable
@@ -112,6 +112,5 @@ extension OutlineViewController {
 }
 
 public protocol OutlineElement {
-    var children: [OutlineElement] { get set }
     var expandable: Bool { get set }
 }
