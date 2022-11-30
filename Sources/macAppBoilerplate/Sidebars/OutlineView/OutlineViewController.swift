@@ -13,44 +13,20 @@ public let defaultRowHeight: Double = 22
 ///
 /// Adds a ``outlineView`` inside a ``scrollView`` which shows the folder structure of the
 /// currently open project.
-open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
+open class OutlineViewController: NSViewController {
 
     var scrollView: NSScrollView!
     public var outlineView: NSOutlineView!
     public var tabManager: TabManager!
 
-    public var content: [OutlineElement] = []
-
-    open func loadContent() -> [OutlineElement] {
-        fatalError("Please override this function")
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        fatalError("Please override this function")
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        guard item is OutlineElement else { return content.count }
-        fatalError("Please override this function")
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        guard item is OutlineElement else { return content[index] }
-        fatalError("Please override this function")
-    }
-
     var iconColor: NSColor = .controlAccentColor
 
     /// Setup the ``scrollView`` and ``outlineView``
     open override func loadView() {
-        self.content = loadContent()
-
         self.scrollView = NSScrollView()
         self.view = scrollView
 
         self.outlineView = NSOutlineView()
-        outlineView.dataSource = self
-        outlineView.delegate = self
         outlineView.autosaveExpandedItems = true
         outlineView.headerView = nil
         //        outlineView.menu = ProjectNavigatorMenu(sender: self.outlineView, workspaceURL: (workspace?.fileURL)!)
@@ -74,37 +50,16 @@ open class OutlineViewController: NSViewController, NSOutlineViewDelegate, NSOut
     }
 }
 
+// for the dev to override
 extension OutlineViewController {
 
     /// Reveals the given item in the outline view by expanding all the parent directories of the file.
     /// - Parameter item: The item to reveal
-    func expandParent(item: OutlineElement) {
+    public func expandParent(item: OutlineElement) {
         self.outlineView.expandItem(item)
         if let parent = outlineView.parent(forItem: item) as? OutlineElement {
             expandParent(item: parent)
         }
-    }
-
-    open func outlineViewSelectionDidChange(_ notification: Notification) {
-        // for the dev to override
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        guard let item = item as? OutlineElement else { return false }
-        return item.expandable
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView,
-                     shouldShowCellExpansionFor tableColumn: NSTableColumn?, item: Any) -> Bool {
-        true
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-        true
-    }
-
-    open func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        defaultRowHeight // This can be changed to 20 to match Xcode's row height.
     }
 }
 
