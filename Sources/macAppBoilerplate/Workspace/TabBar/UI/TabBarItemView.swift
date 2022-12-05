@@ -133,57 +133,49 @@ class TabBarItemView: NSView {
         // easier on show/hide, the frame is set anyway
         let newTextViewFrame = CGRect(x: frame.height-2, y: 0,
                                       width: frame.width-frame.height, height: frame.height-7)
+        var newTextAlphaValue: CGFloat = 1      // default value is 1         \
+        var newIconViewFrame: CGRect = .zero    // default to .zero           |-- all will be changed eventually
+        var tabIsInExpandedMode: Bool = true    // defaults to expanded mode  /
 
         // if the tab is in expanded mode
         if frame.width > tabManager.dataSource.tabBecomesSmall {
-            // if the frame just only got expanded from compact mode, animate the changes
-            if oldSize.width <= tabManager.dataSource.tabBecomesSmall {
-                NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = tabManager.dataSource.animationDuration
-
-                    // animate the frames and alpha values
-                    iconView.animator().frame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
-                    textView.animator().frame = newTextViewFrame
-                    textView.animator().alphaValue = 1
-                }) {
-                    // In case the position the iconView should be at has changed, just set it when the animation has ended.
-                    if self.frame.width > self.tabManager.dataSource.tabBecomesSmall {
-                        self.iconView.frame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
-                    }
-                    self.updateTrackingAreas()
-                }
-            } else { // no animation needed
-                textView.alphaValue = 1
-                iconView.frame = CGRect(x: 4, y: 4, width: frame.height-8, height: frame.height-8)
-                textView.frame = newTextViewFrame
-            }
+            tabIsInExpandedMode = true
+            newIconViewFrame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
+            newTextAlphaValue = 1
 
             // if the tab is in compact mode
         } else {
-            // if the frame just only got compacted from expanded mode, animate the changes
-            if oldSize.width > tabManager.dataSource.tabBecomesSmall {
-                NSAnimationContext.runAnimationGroup({ context in
-                    context.duration = tabManager.dataSource.animationDuration
-
-                    iconView.animator().frame = CGRect(x: (self.frame.width - (self.frame.height-8))/2, y: 4,
-                                                       width: self.frame.height-8, height: self.frame.height-8)
-                    textView.animator().alphaValue = 0
-                }) {
-                    if self.frame.width <= self.tabManager.dataSource.tabBecomesSmall {
-                        self.iconView.frame = CGRect(x: (self.frame.width - (self.frame.height-8))/2, y: 4,
-                                                    width: self.frame.height-8, height: self.frame.height-8)
-                    }
-                    self.textView.frame = newTextViewFrame
-                    self.updateTrackingAreas()
-                }
-            } else { // no animation needed
-                iconView.frame = CGRect(x: (frame.width - (frame.height-8))/2, y: 4, width: frame.height-8, height: frame.height-8)
-                textView.frame = newTextViewFrame
-                textView.alphaValue = 0
-            }
+            tabIsInExpandedMode = false
+            newIconViewFrame = CGRect(x: (self.frame.width - (self.frame.height-8))/2, y: 4,
+                                      width: self.frame.height-8, height: self.frame.height-8)
+            newTextAlphaValue = 0
         }
-        manageDividers()
+
+        // if the frame just only got expanded from compact mode, animate the changes
+        if oldSize.width <= tabManager.dataSource.tabBecomesSmall {
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = tabManager.dataSource.animationDuration
+                textView.animator().frame = newTextViewFrame
+                iconView.animator().frame = newIconViewFrame
+                textView.animator().alphaValue = newTextAlphaValue
+                self.updateTrackingAreas()
+                manageDividers()
+            } completionHandler: {
+                // In case the position the iconView should be at has changed, just set it when the animation has ended.
+                let tabStillInExpandedMode = self.frame.width < self.tabManager.dataSource.tabBecomesSmall
+                if tabStillInExpandedMode == tabIsInExpandedMode {
+                    self.iconView.frame = newIconViewFrame
+                }
+                self.updateTrackingAreas()
+                self.manageDividers()
+            }
+        } else { // no animation needed
+            textView.frame = newTextViewFrame
+            iconView.frame = newIconViewFrame
+            textView.alphaValue = newTextAlphaValue
+        }
         updateTrackingAreas()
+        manageDividers()
     }
 
     // MARK: Mouse hover
