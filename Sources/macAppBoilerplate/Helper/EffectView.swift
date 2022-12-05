@@ -43,6 +43,8 @@ public struct EffectView: NSViewRepresentable {
     }
 
     public func makeNSView(context: Context) -> NSVisualEffectView {
+        // set up the visual effects view and modify its
+        // properties mainly for use as a background view
         let view = NSVisualEffectView()
         view.material = material
         view.blendingMode = blendingMode
@@ -52,6 +54,7 @@ public struct EffectView: NSViewRepresentable {
     }
 
     public func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        // update the material and blending mode of the view
         nsView.material = material
         nsView.blendingMode = blendingMode
     }

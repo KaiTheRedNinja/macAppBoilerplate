@@ -23,6 +23,7 @@ class TabBarItemView: NSView {
     var iconView: NSButton
     var textView: NSTextField
 
+    // the vertical lines on the left and right of the view
     var leftDivider = NSView()
     var rightDivider = NSView()
 
@@ -39,10 +40,12 @@ class TabBarItemView: NSView {
 
     func addViews(rect: NSRect) {
         wantsLayer = true
+        // add the gesture recognisers
         self.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(focusTab)))
         self.addGestureRecognizer(NSMagnificationGestureRecognizer(target: self, action: #selector(didZoom(_:))))
         self.addGestureRecognizer(NSPanGestureRecognizer(target: self, action: #selector(didPan(_:))))
 
+        // configure the icon view
         iconView.isBordered = false
         iconView.bezelStyle = .regularSquare
         iconView.target = self
@@ -50,28 +53,32 @@ class TabBarItemView: NSView {
         iconView.wantsLayer = true
         addSubview(iconView)
 
+        // configure the text view
         textView.drawsBackground = false
         textView.isBezeled = false
         textView.cell?.lineBreakMode = .byTruncatingTail
         textView.isEditable = false
         addSubview(textView)
 
+        // add the dividers as subviews
         addSubview(leftDivider)
         addSubview(rightDivider)
 
+        // update and size everything appropriately
         updateIconAndLabel()
         resizeSubviews(withOldSize: .zero)
     }
 
     func manageDividers(animate: Bool = true) {
+        // set the frames of the left and right dividers
         leftDivider.frame = NSRect(x: 0, y: 8, width: 1, height: tabManager.dataSource.tabBarViewHeight-16)
         leftDivider.wantsLayer = true
         leftDivider.layer?.backgroundColor = NSColor.gray.cgColor
-
         rightDivider.frame = NSRect(x: frame.width-1, y: 8, width: 1, height: tabManager.dataSource.tabBarViewHeight-16)
         rightDivider.wantsLayer = true
         rightDivider.layer?.backgroundColor = NSColor.gray.cgColor
 
+        // create the variables that manage the alpha values and default them to 1 (100% visible)
         var leftAlphaValue: CGFloat = 1
         var rightAlphaValue: CGFloat = 1
 
@@ -94,12 +101,14 @@ class TabBarItemView: NSView {
         }
 
         if animate {
+            // animate the dividers opacity changing
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = tabManager.dataSource.animationDuration
                 leftDivider.animator().alphaValue = leftAlphaValue
                 rightDivider.animator().alphaValue = rightAlphaValue
             })
         } else {
+            // do not animate the dividers opacity changing and just do it instantly
             leftDivider.alphaValue = leftAlphaValue
             rightDivider.alphaValue = rightAlphaValue
         }
@@ -132,6 +141,7 @@ class TabBarItemView: NSView {
                 NSAnimationContext.runAnimationGroup({ context in
                     context.duration = tabManager.dataSource.animationDuration
 
+                    // animate the frames and alpha values
                     iconView.animator().frame = CGRect(x: 4, y: 4, width: self.frame.height-8, height: self.frame.height-8)
                     textView.animator().frame = newTextViewFrame
                     textView.animator().alphaValue = 1
@@ -191,6 +201,7 @@ class TabBarItemView: NSView {
         }
     }
 
+    /// Update the tracking areas to the frame
     override func updateTrackingAreas() {
         mouseHovering = false
         removeTrackingArea(area)
@@ -198,25 +209,26 @@ class TabBarItemView: NSView {
         addTrackingArea(area)
     }
 
+    /// Create a tracking area the size of the icon view
     private func makeTrackingArea() -> NSTrackingArea {
         return NSTrackingArea(rect: iconView.frame,
                               options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
     }
 
-    override func mouseEntered(with event: NSEvent) {
-        mouseHovering = true
-    }
+    /// If the mouse entered, mouseHovering is true
+    override func mouseEntered(with event: NSEvent) { mouseHovering = true }
 
-    override func mouseExited(with event: NSEvent) {
-        mouseHovering = false
-    }
+    /// If the mouse exited, mouseHovering is false
+    override func mouseExited(with event: NSEvent) { mouseHovering = false }
 
     // MARK: Gestures
+    /// Closes the tab via TabManager
     @objc
     func closeTab() {
         tabManager.closeTab(id: tabRepresentable.tabID)
     }
 
+    /// Closes the tab via TabManager if mouse hovering, else just selects it
     @objc
     func focusTab() {
         guard !mouseHovering else {
@@ -227,6 +239,7 @@ class TabBarItemView: NSView {
         tabManager.selectedTab = tabRepresentable.tabID
     }
 
+    /// The amount that the tab bar item is zoomed
     var zoomAmount: CGFloat = 0
 
     /// Processes zoom gestures
@@ -234,6 +247,7 @@ class TabBarItemView: NSView {
     func didZoom(_ sender: NSMagnificationGestureRecognizer?) {
         guard let gesture = sender else { return }
         if gesture.state == .ended {
+            // reset zoom amount
             zoomAmount = 0
             tabBarView.sizeTabs(animate: true)
         } else {
@@ -251,15 +265,24 @@ class TabBarItemView: NSView {
     /// Processes drag gestures
     @objc
     func didPan(_ sender: NSPanGestureRecognizer?) {
+        // ensure that the gesture exists and that the gesture's location is in self.superview
         guard let gesture = sender else { return }
         let location = gesture.location(in: self.superview)
+
+        // if the gesture began, setup some variables to keep track of initial state
         if gesture.state == .began {
             isPanning = true
             originalFrame = self.frame
             clickPointOffset = location.x - self.frame.minX
+
+        // if the gesture ended, set isPanning to false. The other variables will be reset the next
+        // time the gesture is enacted, so there is no need to set those.
         } else if gesture.state == .ended {
             isPanning = false
         }
+
+        // set the location of the tab to be the initial location offset by the offset
+        // then order the tabBarView to reposition all the tabs
         frame = NSRect(x: location.x - clickPointOffset, y: 0, width: frame.width, height: frame.height)
         tabBarView.repositionTabs(movingTab: self, state: gesture.state)
     }

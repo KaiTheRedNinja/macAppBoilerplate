@@ -40,20 +40,23 @@ extension MainWindowController {
         }
     }
 
+    // init the toolbar and do some basic setup
     private func setupToolbar() {
         let toolbar = NSToolbar(identifier: UUID().uuidString)
         toolbar.delegate = self
         toolbar.displayMode = .iconOnly
         toolbar.showsBaselineSeparator = false
         if let window {
+            window.toolbar = toolbar
             tabManager.dataSource.configWindow(window)
         }
-        self.window?.toolbar = toolbar
     }
 
     private func setupSplitView() {
+        // create the split view
         let splitVC = NSSplitViewController()
 
+        // add the navigator sidebar view
         let navigatorView = SidebarView(dataSource: navigatorProtocol).environmentObject(tabManager)
         let navigator = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: navigatorView)
@@ -68,6 +71,7 @@ extension MainWindowController {
         navigator.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(navigator)
 
+        // add the workspace view (middle view)
         let workspaceView = WorkspaceView(viewForTab: { tab in
             self.workspaceProtocol.viewForWorkspace(tab: tab)
         }).environmentObject(tabManager)
@@ -78,6 +82,7 @@ extension MainWindowController {
         mainContent.canCollapse = false
         splitVC.addSplitViewItem(mainContent)
 
+        // add the inspector sidebar view
         let inspectorView = SidebarView(dataSource: inspectorProtocol).environmentObject(tabManager)
         let inspector = NSSplitViewItem(
             sidebarWithViewController: NSHostingController(rootView: inspectorView)
@@ -92,6 +97,7 @@ extension MainWindowController {
         inspector.collapseBehavior = .useConstraints
         splitVC.addSplitViewItem(inspector)
 
+        // make this window controller's view the splitVC
         self.splitViewController = splitVC
     }
 
@@ -102,6 +108,7 @@ extension MainWindowController {
         willBeInsertedIntoToolbar flag: Bool
     ) -> NSToolbarItem? {
         switch itemIdentifier {
+        // Track the inspector sidebar~
         case .itemListTrackingSeparator:
             guard let splitViewController = splitViewController else {
                 return nil
@@ -112,6 +119,7 @@ extension MainWindowController {
                 splitView: splitViewController.splitView,
                 dividerIndex: 1
             )
+        // Button to toggle navigator sidebar
         case .toggleFirstSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleFirstSidebarItem)
             toolbarItem.label = "Navigator Sidebar"
@@ -126,6 +134,7 @@ extension MainWindowController {
             )?.withSymbolConfiguration(.init(scale: .large))
 
             return toolbarItem
+        // Button to toggle inspector sidebar
         case .toggleLastSidebarItem:
             let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier.toggleLastSidebarItem)
             toolbarItem.label = "Inspector Sidebar"
@@ -145,11 +154,13 @@ extension MainWindowController {
         }
     }
 
+    /// Toggles the first panel, the Navigator Sidebar
     @objc func toggleFirstPanel() {
         guard let firstSplitView = splitViewController.splitViewItems.first else { return }
         firstSplitView.animator().isCollapsed.toggle()
     }
 
+    /// Toggles the last panel, the Inspector Sidebar and calls `manageLstPanelToolbarItems` to clean up the menu bar.
     @objc func toggleLastPanel() {
         guard let lastSplitView = splitViewController.splitViewItems.last else { return }
         lastSplitView.animator().isCollapsed.toggle()
@@ -163,9 +174,11 @@ extension MainWindowController {
 
         let itemCount = toolbar.items.count
         if lastSplitView.isCollapsed {
+            // remove the spacer and tracker
             toolbar.removeItem(at: itemCount-3) // -1 is the last item, -2 is the second last
             toolbar.removeItem(at: itemCount-3) // this removes the second last and the third last
         } else {
+            // insert the spacer and tracker
             toolbar.insertItem(
                 withItemIdentifier: NSToolbarItem.Identifier.itemListTrackingSeparator,
                 at: itemCount-1 // insert it as second last

@@ -14,8 +14,9 @@ public struct OutlineView: NSViewControllerRepresentable {
     @EnvironmentObject
     var tabManger: TabManager
 
+    // Accept two escaping closures, one for creation and one for updating the controller
     public init(createController: @escaping (Context) -> OutlineViewController,
-         updateController: @escaping (OutlineViewController, Context) -> Void = { _, _ in }) {
+                updateController: @escaping (OutlineViewController, Context) -> Void = { _, _ in }) {
         self.createController = createController
         self.updateController = updateController
     }

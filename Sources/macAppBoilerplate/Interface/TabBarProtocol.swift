@@ -8,13 +8,30 @@
 import SwiftUI
 
 public protocol TabBarProtocol {
+
+    /// The minimum width of a tab. Tabs will not get any smaller (in width) than this value.
+    /// See also: ``getMaximumTabWidth()-8et9d``
     func getMinimumTabWidth() -> CGFloat?
+
+    /// The width at which the tab will hide its text and only show its icon.
     func getTabBecomesSmall() -> CGFloat?
+
+    /// The width at which the tab will stop growing. Tabs will not get any larger (in width) than this value.
+    /// See also: ``getMinimumTabWidth()-9ng11``
     func getMaximumTabWidth() -> CGFloat?
+
+    /// The duration of animations such as opening, closing, and rearrangement snapping
     func getAnimationDuration() -> CGFloat?
+
+    /// The height of the tab bar
     func getTabBarViewHeight() -> CGFloat?
+
+    /// If tabs should be disabled or not. When tabs are disabled, the tab bar
+    /// is hidden and only one tab's contents will be shown at a time. When the tab is closed,
+    /// the workspace view will revert to its "No Tab" state.
     func getDisableTabs() -> Bool?
 
+    /// Passes the NSWindow to the delegate for setup
     func configWindow(_ window: NSWindow) -> Void
 }
 
@@ -43,5 +60,6 @@ public extension TabBarProtocol {
     var disableTabs: Bool { getDisableTabs() ?? false }
 }
 
+/// An empty implementation of ``TabBarProtocol``, used as the default whenever a protocol is not provided.
 class DefaultTabBarProtocol: TabBarProtocol {
 }

@@ -40,20 +40,27 @@ public extension SidebarProtocol {
     }
 
     func showSidebarFor(sidebarType: SidebarType) -> Bool {
-        true
+        true // sidebar shown by default
     }
 
     func getMinimumThickness() -> CGFloat? {
-        240
+        240 // roughly matches xcode's
     }
 
     func getMaximumThickness() -> CGFloat? {
-        nil
+        nil // do not limit maximum thickness
     }
 }
 
+/// Enum that represents a type of sidebar
+///
+/// **navigator**: Represents the navigator sidebar
+///
+/// **inspector**: Represents the inspector sidebar
 public enum SidebarType {
+    /// Case **navigator**: Represents the navigator sidebar
     case navigator
+    /// Case **inspector**: Represents the inspector sidebar
     case inspector
 }
 

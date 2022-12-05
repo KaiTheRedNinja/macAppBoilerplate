@@ -19,6 +19,7 @@ struct SidebarToolbarTopView: View {
 
     var body: some View {
         HStack(spacing: 2) {
+            // add each button
             ForEach(dataSource.items) { icon in
                 Button {
                     selection = icon.id

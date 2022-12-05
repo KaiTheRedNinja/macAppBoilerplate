@@ -17,6 +17,7 @@ public protocol WorkspaceProtocol {
     func viewForWorkspace(tab: TabBarID) -> AnyView
 }
 
+/// Always returns a `Needs Implementation` message. Used as default when a `WorkspaceProtocol` is not provided.
 class DefaultWorkspaceProtocol: WorkspaceProtocol {
     func viewForWorkspace(tab: TabBarID) -> AnyView {
         MainContentWrapper {

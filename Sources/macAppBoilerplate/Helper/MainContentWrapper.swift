@@ -33,6 +33,7 @@ fileprivate struct MainContentContainer<Content: View>: View {
     }
 
     var body: some View {
+        // center the content and set it to maxwidth and maxheight infinity
         VStack(alignment: .center) {
             HStack {
                 content()

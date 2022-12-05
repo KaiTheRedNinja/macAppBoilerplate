@@ -31,8 +31,6 @@ class TabBarView: NSView {
         scrollView?.documentView = NSView()
         scrollView?.wantsLayer = true
         scrollView?.layer?.cornerRadius = 0
-//        scrollView?.drawsBackground = false
-//        scrollView?.contentView.drawsBackground = false
         scrollView?.verticalScrollElasticity = .none
         addSubview(scrollView!)
     }

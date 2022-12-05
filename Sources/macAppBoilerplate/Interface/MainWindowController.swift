@@ -32,8 +32,12 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
     /// Inherited from ``NSToolbarDelegate.toolbarDefaultItemIdentifiers(_:).``
     open func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
+        // add the leading items (the navigator sidebar, spacer and sidebar tracker)
         items.append(contentsOf: defaultLeadingItems(toolbar))
-        // add additional toolbar items here
+
+        // NOTE: add additional toolbar items here
+
+        // add the trailing items (the inspector sidebar, spacer and sidebar tracker)
         items.append(.flexibleSpace)
         items.append(contentsOf: defaultTrailingItems(toolbar))
         return items
@@ -42,9 +46,12 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
     /// Inherited from ``NSToolbarDelegate.toolbarAllowedItemIdentifiers(_:).``
     open func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         var items: [NSToolbarItem.Identifier] = []
+        // allow the default leading and trailing items
         items.append(contentsOf: defaultLeadingItems(toolbar))
-        // add additional toolbar items here
         items.append(contentsOf: defaultTrailingItems(toolbar))
+
+        // NOTE: add additional toolbar items here
+
         return items
     }
 
@@ -54,6 +61,7 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
         itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
         willBeInsertedIntoToolbar flag: Bool
     ) -> NSToolbarItem? {
+        // add the default items
         if let defaultItem = builtinDefaultToolbar(toolbar,
                                                    itemForItemIdentifier: itemIdentifier,
                                                    willBeInsertedIntoToolbar: flag) {
@@ -61,7 +69,9 @@ open class MainWindowController: NSWindowController, NSToolbarDelegate {
         }
 
         switch itemIdentifier {
-        // put your toolbar items in here
+
+        // NOTE: put your toolbar items in here
+
         default:
             return NSToolbarItem(itemIdentifier: itemIdentifier)
         }

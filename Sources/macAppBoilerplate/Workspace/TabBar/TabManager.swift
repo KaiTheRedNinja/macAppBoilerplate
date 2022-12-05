@@ -87,17 +87,21 @@ public final class TabManager: ObservableObject {
     ///   - origin: The item that it originates from. If provided, the tab opens to the right of that item.
     ///   - focus: If the tab should be automatically focused
     public func openTab(tab: any TabBarItemRepresentable, from origin: (any TabBarItemRepresentable)? = nil, focus: Bool = true) {
+        // if the tab is already open or tabs are disabled, just select it
         if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || dataSource.disableTabs {
             selectedTab = tab.tabID
             return
         }
 
+        // if the origin is specified, insert the tab to the right of the origin tab
+        // else, just open it at the extreme right
         if let origin, let originIndex = openedTabs.firstIndex(where: { $0.tabID.id == origin.tabID.id }) {
             openedTabs.insert(tab, at: originIndex+1)
         } else {
             openedTabs.append(tab)
         }
 
+        // focus the tab
         if focus {
             selectedTab = tab.tabID
         }

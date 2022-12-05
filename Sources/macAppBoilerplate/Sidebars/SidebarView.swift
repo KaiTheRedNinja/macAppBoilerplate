@@ -26,6 +26,7 @@ struct SidebarView: View {
         VStack {
             viewForSelection(selection)
         }
+        // add the sidebar toolbar top
         .safeAreaInset(edge: .top) {
             if dataSource.items.count > 0 {
                 SidebarToolbarTopView(dataSource: dataSource, selection: $selection)
