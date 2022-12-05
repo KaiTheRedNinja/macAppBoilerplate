@@ -122,7 +122,7 @@ class TabBarItemView: NSView {
         self.icon = tabRepresentable.icon
         self.iconView.image = icon
         self.textView.stringValue = tabRepresentable.title
-        self.textView.textColor = .white
+        self.textView.textColor = .textColor
     }
 
     override func resizeSubviews(withOldSize oldSize: NSSize) {
