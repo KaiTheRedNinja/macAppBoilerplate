@@ -63,11 +63,13 @@ public final class TabManager: ObservableObject {
             return
         }
 
+        // if the closed tab is the current tab
         if id.id == selectedTab?.id {
-            // if the selected tab is the tab being deleted and refocus == true,
-            // get the index of the selected tab, and then get the next index
-            // but modulo it to the opened tab count to prevent access out of bounds errors
-            if refocus, let firstIndex = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
+            // refocus                  -> if selection is not to be refocused, set selection to nil
+            // let firstIndex           -> gets the index of the closed tab
+            // openedTabs.count > 1     -> makes sure that there is at least 1 tab to take the selection
+            if refocus, let firstIndex = openedTabs.firstIndex(where: { $0.tabID.id == id.id }), openedTabs.count > 1 {
+                // get the next index, but modulo it to the opened tab count to prevent access out of bounds errors
                 let index = (firstIndex + 1) % openedTabs.count
                 selectedTab = openedTabs[index].tabID
             } else {
