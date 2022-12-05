@@ -52,29 +52,33 @@ public final class TabManager: ObservableObject {
     /// Close a given tab
     /// - Parameters:
     ///   - id: The Tab Bar ID to close
-    ///   - removeAllOccurences: If it should remove all duplicate instances (defaults to true)
-    ///   - refocus: If the selected tab should be refocused if the closed tab was selected (defaults to true)
-    public func closeTab(id: TabBarID?, removeAllOccurences: Bool = true, refocus: Bool = true) {
+    ///   - refocus: If the selected tab should be refocused if the closed tab was selected (defaults to true).
+    ///   If set to false and the closed tab was the current tab, the selected tab will be set to nil (AKA no tab open).
+    public func closeTab(id: TabBarID?, refocus: Bool = true) {
         guard let id else { return }
 
-        if dataSource.disableTabs && id.id == selectedTab?.id {
+        // if tabs are disabled, just deselect the tab
+        if dataSource.disableTabs {
             selectedTab = nil
             return
         }
 
-        if refocus && id.id == selectedTab?.id,
-           let firstIndex = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
-            let index = (firstIndex + 1) % openedTabs.count
-            selectedTab = openedTabs[index].tabID
-        } else {
-            selectedTab = nil
+        if id.id == selectedTab?.id {
+            // if the selected tab is the tab being deleted and refocus == true,
+            // get the index of the selected tab, and then get the next index
+            // but modulo it to the opened tab count to prevent access out of bounds errors
+            if refocus, let firstIndex = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
+                let index = (firstIndex + 1) % openedTabs.count
+                selectedTab = openedTabs[index].tabID
+            } else {
+                // if not refocus or the index was not found, set the selected tab to nil
+                selectedTab = nil
+            }
         }
+        // else, do nothing as the current tab did not change
 
-        if removeAllOccurences {
-            openedTabs.removeAll(where: { $0.tabID.id == id.id })
-        } else if let index = openedTabs.firstIndex(where: { $0.tabID.id == id.id }) {
-            openedTabs.remove(at: index)
-        }
+        // there should not be multiple tabs with the same ID, so just close all tabs that match the id.
+        openedTabs.removeAll(where: { $0.tabID.id == id.id })
     }
 
     /// Opens a given tab
