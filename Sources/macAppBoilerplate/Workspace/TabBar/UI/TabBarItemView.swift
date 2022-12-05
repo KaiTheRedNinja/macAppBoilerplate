@@ -151,8 +151,9 @@ class TabBarItemView: NSView {
             newTextAlphaValue = 0
         }
 
-        // if the frame just only got expanded from compact mode, animate the changes
-        if oldSize.width <= tabManager.dataSource.tabBecomesSmall {
+        // if the frame just only got expanded/contracted from compact/expanded mode, animate the changes
+        let oldSizeIsInExpandedMode = oldSize.width > tabManager.dataSource.tabBecomesSmall
+        if oldSizeIsInExpandedMode != tabIsInExpandedMode {
             NSAnimationContext.runAnimationGroup { context in
                 context.duration = tabManager.dataSource.animationDuration
                 textView.animator().frame = newTextViewFrame
@@ -162,7 +163,7 @@ class TabBarItemView: NSView {
                 manageDividers()
             } completionHandler: {
                 // In case the position the iconView should be at has changed, just set it when the animation has ended.
-                let tabStillInExpandedMode = self.frame.width < self.tabManager.dataSource.tabBecomesSmall
+                let tabStillInExpandedMode = self.frame.width > self.tabManager.dataSource.tabBecomesSmall
                 if tabStillInExpandedMode == tabIsInExpandedMode {
                     self.iconView.frame = newIconViewFrame
                 }
@@ -269,8 +270,10 @@ class TabBarItemView: NSView {
 
         // if the gesture ended, set isPanning to false. The other variables will be reset the next
         // time the gesture is enacted, so there is no need to set those.
+        // focus tab for consistency with Xcode
         } else if gesture.state == .ended {
             isPanning = false
+            tabManager.selectedTab = tabRepresentable.tabID
         }
 
         // set the location of the tab to be the initial location offset by the offset
