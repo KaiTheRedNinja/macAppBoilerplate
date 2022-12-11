@@ -60,6 +60,7 @@ public final class TabManager: ObservableObject {
         // if tabs are disabled, just deselect the tab
         if dataSource.disableTabs {
             selectedTab = nil
+            openedTabs = []
             return
         }
 
@@ -90,9 +91,15 @@ public final class TabManager: ObservableObject {
     ///   - focus: If the tab should be automatically focused
     public func openTab(tab: any TabBarItemRepresentable, from origin: (any TabBarItemRepresentable)? = nil, focus: Bool = true) {
         // if the tab is already open or tabs are disabled, just select it
-        if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) || dataSource.disableTabs {
+        if (openedTabs.contains(where: { $0.tabID.id == tab.tabID.id }) && focus) {
             selectedTab = tab.tabID
             return
+        }
+
+        // if tabs are disabled, select the tab and make it the only open tab
+        if dataSource.disableTabs {
+            selectedTab = tab.tabID
+            openedTabs = [tab]
         }
 
         // if the origin is specified, insert the tab to the right of the origin tab
