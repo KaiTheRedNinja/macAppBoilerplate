@@ -14,9 +14,7 @@ import SwiftUI
 public final class TabManager: ObservableObject {
 
     /// Data source
-    var dataSource: any TabBarProtocol { didSet {
-        self.openedTabs = dataSource.disableTabs ? [] : openedTabs
-    }}
+    var dataSource: any TabBarProtocol
 
     init(dataSource: TabBarProtocol = DefaultTabBarProtocol(),
          openedTabs: [any TabBarItemRepresentable] = [],
@@ -27,13 +25,7 @@ public final class TabManager: ObservableObject {
     }
 
     /// List of opened tabs
-    @Published public private(set) var openedTabs: [any TabBarItemRepresentable] {
-        didSet {
-            if dataSource.disableTabs && !openedTabs.isEmpty {
-                self.openedTabs = []
-            }
-        }
-    }
+    @Published public private(set) var openedTabs: [any TabBarItemRepresentable]
 
     /// The currently selected tab
     @Published public private(set) var selectedTab: TabBarID?
