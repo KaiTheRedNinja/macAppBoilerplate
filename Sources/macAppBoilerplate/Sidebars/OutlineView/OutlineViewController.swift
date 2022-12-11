@@ -15,7 +15,7 @@ public let defaultRowHeight: Double = 22
 /// currently open project.
 open class OutlineViewController: NSViewController {
 
-    var scrollView: NSScrollView!
+    public var scrollView: NSScrollView!
     public var outlineView: NSOutlineView!
     public var tabManager: TabManager!
 
