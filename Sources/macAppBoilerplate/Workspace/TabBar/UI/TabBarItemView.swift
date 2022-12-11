@@ -229,7 +229,7 @@ class TabBarItemView: NSView {
             return
         }
 
-        tabManager.selectedTab = tabRepresentable.tabID
+        tabManager.openTab(tab: tabRepresentable)
     }
 
     /// The amount that the tab bar item is zoomed
@@ -273,7 +273,7 @@ class TabBarItemView: NSView {
         // focus tab for consistency with Xcode
         } else if gesture.state == .ended {
             isPanning = false
-            tabManager.selectedTab = tabRepresentable.tabID
+            tabManager.openTab(tab: tabRepresentable)
         }
 
         // set the location of the tab to be the initial location offset by the offset

@@ -201,14 +201,14 @@ class TabBarView: NSView {
 
         if state == .ended || repositioned {
             // reorder the tabs in tabManager to match tab bar
-            tabManager.openedTabs = tabManager.openedTabs.sorted { firstTab, secondTab in
+            tabManager.setTabsTo(newTabs: tabManager.openedTabs.sorted { firstTab, secondTab in
                 // find the first instance of each tab
                 let firstLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID.id ==
                     firstTab.tabID.id }) ?? -1
                 let secondLocation = tabViews.firstIndex(where: { $0.tabRepresentable.tabID.id ==
                     secondTab.tabID.id }) ?? -1
                 return firstLocation < secondLocation
-            }
+            })
         }
 
         sizeTabs(animate: (state == .ended) ? true : repositioned)

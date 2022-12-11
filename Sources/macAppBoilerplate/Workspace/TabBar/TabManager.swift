@@ -27,7 +27,7 @@ public final class TabManager: ObservableObject {
     }
 
     /// List of opened tabs
-    @Published var openedTabs: [any TabBarItemRepresentable] {
+    @Published public private(set) var openedTabs: [any TabBarItemRepresentable] {
         didSet {
             if dataSource.disableTabs && !openedTabs.isEmpty {
                 self.openedTabs = []
@@ -36,7 +36,7 @@ public final class TabManager: ObservableObject {
     }
 
     /// The currently selected tab
-    @Published var selectedTab: TabBarID?
+    @Published public private(set) var selectedTab: TabBarID?
 
     /// Gets the tab representable for the selected tab
     public func selectedTabItem() -> (any TabBarItemRepresentable)? {
@@ -106,6 +106,17 @@ public final class TabManager: ObservableObject {
         // focus the tab
         if focus {
             selectedTab = tab.tabID
+        }
+    }
+
+    /// Replaces existing tabs with a new set of tabs
+    /// - Parameter newTabs: The tabs to replace the old tabs with
+    public func setTabsTo(newTabs: [any TabBarItemRepresentable]) {
+        openedTabs = newTabs
+
+        // make sure that the selected tab is in this new list
+        if !openedTabs.map({ $0.tabID }).contains(where: { $0.id == selectedTab?.id }) {
+            selectedTab = nil
         }
     }
 }
