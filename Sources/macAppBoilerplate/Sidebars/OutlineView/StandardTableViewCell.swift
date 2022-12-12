@@ -19,7 +19,7 @@ open class StandardTableViewCell: NSTableCellView {
     public var icon: NSImageView!
 
     /// Determines if the ``secondaryLabel`` is at the trailing edge of the cell (true) or directly after ``label`` (false)
-    public var secondaryLabelRightAligned: Bool = false {
+    public var secondaryLabelRightAligned: Bool = true {
         didSet {
             resizeSubviews(withOldSize: .zero)
         }
@@ -131,25 +131,36 @@ open class StandardTableViewCell: NSTableCellView {
                                 width: alignmentRect.width, height: frame.height)
         }
 
+        var secondaryLabelWidth = secondaryLabel.frame.width
+        var secondaryLabelMinX = secondaryLabel.frame.minX
+        var labelWidth = label.frame.width
+        var labelMinX = label.frame.minX
+
         // right align the secondary label
         if secondaryLabelRightAligned {
             secondaryLabel.sizeToFit()
-            let smallestWidth = secondaryLabel.frame.width
-            secondaryLabel.frame = NSRect(x: frame.width-smallestWidth, y: 2.5,
-                                          width: smallestWidth, height: secondaryLabel.frame.height)
+            secondaryLabelWidth = secondaryLabel.frame.width
+            secondaryLabelMinX = frame.width-secondaryLabelWidth
+            labelWidth = secondaryLabelMinX-icon.frame.maxX-5
+            labelMinX = iconWidth + 2
 
-            label.frame = NSRect(x: iconWidth+2, y: 2.5,
-                                 width: secondaryLabel.frame.minX-icon.frame.maxX-5, height: 25)
-
-            // put the secondary label right after the primary label
+        // put the secondary label right after the primary label
         } else {
             label.sizeToFit()
-            let smallestWidth = label.frame.width
-            label.frame = NSRect(x: iconWidth+2, y: 2.5,
-                                 width: smallestWidth, height: 25)
-            secondaryLabel.frame = NSRect(x: label.frame.maxX + 2, y: 2.5,
-                                          width: frame.width - label.frame.maxX - 2, height: 25)
+            labelWidth = label.frame.width
+            labelMinX = iconWidth + 2
+            secondaryLabelWidth = secondaryLabel.frame.width
+            secondaryLabelMinX = frame.width - labelMinX - labelWidth - 2
         }
+
+        label.frame = NSRect(x: labelMinX,
+                             y: 2.8,
+                             width: labelWidth,
+                             height: 22)
+        secondaryLabel.frame = NSRect(x: secondaryLabelMinX,
+                                      y: 2.8,
+                                      width: secondaryLabelWidth,
+                                      height: 22)
     }
 
     /// *Not Implemented*
