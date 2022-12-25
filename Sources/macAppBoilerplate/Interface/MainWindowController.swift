@@ -11,13 +11,13 @@ import SwiftUI
 open class MainWindowController: NSWindowController, NSToolbarDelegate {
 
     /// The ``SidebarProtocol`` used for the Navigator Sidebar
-    var navigatorProtocol: (any SidebarProtocol)!
+    public internal(set) var navigatorProtocol: (any SidebarProtocol)!
     /// The ``SidebarProtocol`` used for the Inspector Sidebar
-    var inspectorProtocol: (any SidebarProtocol)!
+    public internal(set) var inspectorProtocol: (any SidebarProtocol)!
     /// The ``WorkspaceProtocol`` used for the main workspace content
-    var workspaceProtocol: (any WorkspaceProtocol)!
+    public internal(set) var workspaceProtocol: (any WorkspaceProtocol)!
     /// The ``TabManager`` used to manage tabs
-    var tabManager: TabManager!
+    public internal(set) var tabManager: TabManager!
 
     /// Gets a ``SidebarProtocol``, defaulting to ``DefaultSidebarProtocol`` if not overridden.
     open func getNavigatorProtocol() -> any SidebarProtocol { DefaultSidebarProtocol() }
