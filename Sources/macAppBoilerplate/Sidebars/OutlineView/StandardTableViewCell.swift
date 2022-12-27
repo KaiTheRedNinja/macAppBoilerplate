@@ -44,18 +44,20 @@ open class StandardTableViewCell: NSTableCellView {
 
     private func setupViews(frame frameRect: NSRect, isEditable: Bool) {
         // Create the label
-        label = createLabel()
+        let label = createLabel()
+        self.label = label
         configLabel(label: self.label, isEditable: isEditable)
         self.textField = label
 
         // Create the secondary label
-        secondaryLabel = createSecondaryLabel()
+        let secondaryLabel = createSecondaryLabel()
+        self.secondaryLabel = secondaryLabel
         configSecondaryLabel(secondaryLabel: secondaryLabel)
 
         // Create the icon
-        icon = createIcon()
+        let icon = createIcon()
+        self.icon = icon
         configIcon(icon: icon)
-        addSubview(icon)
         imageView = icon
 
         // add constraints
