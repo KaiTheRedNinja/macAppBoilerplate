@@ -12,11 +12,11 @@ import SwiftUI
 open class StandardTableViewCell: NSTableCellView {
 
     /// The main text to display
-    public var label: NSTextField!
+    public weak var label: NSTextField!
     /// The secondary label, either directly after ``label`` or at the very end of the cell
-    public var secondaryLabel: NSTextField!
+    public weak var secondaryLabel: NSTextField!
     /// The icon, at the leading edge of the cell
-    public var icon: NSImageView!
+    public weak var icon: NSImageView!
 
     /// Determines if the ``secondaryLabel`` is at the trailing edge of the cell (true) or directly after ``label`` (false)
     public var secondaryLabelRightAligned: Bool = true {
